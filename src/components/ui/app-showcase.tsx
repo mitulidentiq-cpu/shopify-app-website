@@ -2,7 +2,10 @@
 
 import { motion, AnimatePresence } from "motion/react";
 import { ArrowUpRight, Star, ShoppingCart } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import shoeBlack from "@/images/shoe-black.png";
+import shoeWhite from "@/images/shoe-white.png";
+import shoeGreen from "@/images/shoe-green.png";
 
 const features = [
   "Replace native Shopify variant dropdowns with stunning swatches",
@@ -12,28 +15,18 @@ const features = [
   "Fully responsive: desktop, tablet & mobile ready",
 ];
 
-const colors = [
-  { label: "Red",   bg: "bg-red-500",    ring: "ring-red-400" },
-  { label: "Blue",  bg: "bg-blue-500",   ring: "ring-blue-400" },
-  { label: "Black", bg: "bg-zinc-900",   ring: "ring-zinc-400" },
-  { label: "White", bg: "bg-white",      ring: "ring-white" },
-  { label: "Green", bg: "bg-emerald-500",ring: "ring-emerald-400" },
+const variants = [
+  { label: "Black",      bg: "bg-zinc-900",    ring: "ring-zinc-400",    image: shoeBlack,  glow: "rgba(100,100,100,0.3)" },
+  { label: "White",      bg: "bg-white",       ring: "ring-white",       image: shoeWhite,  glow: "rgba(255,255,255,0.2)" },
+  { label: "Olive",      bg: "bg-[#6b7c3f]",   ring: "ring-[#6b7c3f]",   image: shoeGreen,  glow: "rgba(107,124,63,0.3)" },
 ];
 
 const sizes = ["XS", "S", "M", "L", "XL"];
 
 function AnimatedProductCard() {
-  const [selectedColor, setSelectedColor] = useState(0);
+  const [selected, setSelected] = useState(0);
   const [selectedSize, setSelectedSize] = useState(2);
   const [added, setAdded] = useState(false);
-
-  // Auto-cycle colors
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setSelectedColor((prev) => (prev + 1) % colors.length);
-    }, 1600);
-    return () => clearInterval(timer);
-  }, []);
 
   const handleCart = () => {
     setAdded(true);
@@ -48,7 +41,7 @@ function AnimatedProductCard() {
       transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
       className="relative w-full max-w-sm mx-auto rounded-2xl bg-zinc-900 border border-zinc-800 shadow-[0_0_60px_8px_rgba(255,255,255,0.05)] overflow-hidden"
     >
-      {/* Badge */}
+      {/* AI Badge */}
       <div className="absolute top-3 left-3 z-20">
         <span className="text-[10px] font-bold uppercase tracking-widest bg-emerald-500 text-black px-2 py-0.5 rounded-full">
           AI Powered
@@ -56,24 +49,31 @@ function AnimatedProductCard() {
       </div>
 
       {/* Product Image Area */}
-      <div className="relative h-44 bg-zinc-950 flex items-center justify-center overflow-hidden">
-        {/* Animated color blob reflecting selected color */}
+      <div className="relative h-52 bg-zinc-950 flex items-center justify-center overflow-hidden">
+        {/* Dynamic color glow */}
         <motion.div
-          className={`absolute w-32 h-32 rounded-full blur-3xl opacity-30 ${colors[selectedColor].bg}`}
-          animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.4, 0.2] }}
-          transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute w-40 h-40 rounded-full blur-3xl"
+          animate={{ 
+            background: variants[selected].glow,
+            scale: [1, 1.15, 1],
+            opacity: [0.5, 0.8, 0.5]
+          }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
         />
-        {/* Sneaker silhouette SVG */}
-        <svg viewBox="0 0 120 60" className="w-36 h-auto relative z-10 opacity-90" fill="none">
-          <ellipse cx="60" cy="50" rx="52" ry="6" fill="rgba(255,255,255,0.06)" />
-          <path d="M10 42 Q20 20 50 18 Q80 16 100 28 Q108 32 108 40 Q95 46 60 46 Q30 48 10 42Z" fill="white" opacity="0.9"/>
-          <path d="M50 18 Q55 10 65 12 Q72 14 75 22 Q65 20 50 18Z" fill="rgba(255,255,255,0.7)"/>
-          <path d="M10 42 Q15 38 30 38 Q45 37 60 38 Q80 38 108 40" stroke="rgba(0,0,0,0.15)" strokeWidth="1" fill="none"/>
-          {/* Laces */}
-          <line x1="52" y1="22" x2="58" y2="26" stroke="rgba(200,200,200,0.6)" strokeWidth="1.5" strokeLinecap="round"/>
-          <line x1="56" y1="20" x2="62" y2="24" stroke="rgba(200,200,200,0.6)" strokeWidth="1.5" strokeLinecap="round"/>
-          <line x1="60" y1="18" x2="66" y2="22" stroke="rgba(200,200,200,0.6)" strokeWidth="1.5" strokeLinecap="round"/>
-        </svg>
+
+        {/* Shoe image — animated crossfade on selection change */}
+        <AnimatePresence mode="wait">
+          <motion.img
+            key={selected}
+            src={variants[selected].image}
+            alt={`${variants[selected].label} sneaker`}
+            initial={{ opacity: 0, scale: 0.85, rotate: -4 }}
+            animate={{ opacity: 1, scale: 1, rotate: 0 }}
+            exit={{ opacity: 0, scale: 0.85, rotate: 4 }}
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            className="relative z-10 h-36 w-auto object-contain drop-shadow-2xl"
+          />
+        </AnimatePresence>
       </div>
 
       {/* Card Body */}
@@ -96,27 +96,28 @@ function AnimatedProductCard() {
             <p className="text-zinc-400 text-xs font-semibold uppercase tracking-wider">Color</p>
             <AnimatePresence mode="wait">
               <motion.span
-                key={colors[selectedColor].label}
+                key={variants[selected].label}
                 initial={{ opacity: 0, y: -4 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 4 }}
                 transition={{ duration: 0.2 }}
                 className="text-xs text-zinc-300 font-mono"
               >
-                {colors[selectedColor].label}
+                {variants[selected].label}
               </motion.span>
             </AnimatePresence>
           </div>
-          <div className="flex gap-2">
-            {colors.map((color, i) => (
+          <div className="flex gap-3">
+            {variants.map((v, i) => (
               <motion.button
                 key={i}
-                onClick={() => setSelectedColor(i)}
+                onClick={() => setSelected(i)}
                 whileHover={{ scale: 1.15 }}
                 whileTap={{ scale: 0.9 }}
-                className={`w-7 h-7 rounded-full ${color.bg} border-2 transition-all duration-200 ${
-                  selectedColor === i
-                    ? `border-white ring-2 ring-offset-2 ring-offset-zinc-900 ${color.ring}`
+                title={v.label}
+                className={`w-8 h-8 rounded-full ${v.bg} border-2 transition-all duration-200 ${
+                  selected === i
+                    ? `border-white ring-2 ring-offset-2 ring-offset-zinc-900 ${v.ring}`
                     : "border-zinc-700"
                 }`}
               />
@@ -152,9 +153,7 @@ function AnimatedProductCard() {
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
           className={`w-full py-3 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all duration-300 ${
-            added
-              ? "bg-emerald-500 text-black"
-              : "bg-white text-black hover:bg-zinc-200"
+            added ? "bg-emerald-500 text-black" : "bg-white text-black hover:bg-zinc-200"
           }`}
         >
           <AnimatePresence mode="wait">
