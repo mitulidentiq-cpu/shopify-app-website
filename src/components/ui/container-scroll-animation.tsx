@@ -1,6 +1,6 @@
 "use client";
 import React, { useRef } from "react";
-import { useScroll, useTransform, motion, MotionValue } from "motion/react";
+import { useScroll, useTransform, useSpring, motion, MotionValue } from "motion/react";
 
 export const ContainerScroll = ({
   titleComponent,
@@ -12,7 +12,16 @@ export const ContainerScroll = ({
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
+    offset: ["start end", "end start"],
   });
+
+  // Add buttery smooth spring physics to scroll progress
+  const smoothProgress = useSpring(scrollYProgress, {
+    damping: 30,
+    stiffness: 100,
+    restDelta: 0.001,
+  });
+
   const [isMobile, setIsMobile] = React.useState(false);
 
   React.useEffect(() => {
@@ -27,20 +36,21 @@ export const ContainerScroll = ({
   }, []);
 
   const scaleDimensions = () => {
-    return isMobile ? [0.7, 0.9] : [1.05, 1];
+    return isMobile ? [0.8, 0.95] : [1.08, 1];
   };
 
-  const rotate = useTransform(scrollYProgress, [0, 1], [20, 0]);
-  const scale = useTransform(scrollYProgress, [0, 1], scaleDimensions());
-  const translate = useTransform(scrollYProgress, [0, 1], [0, -100]);
+  // Complete rotation & scale transition in first 45% of scroll progress for better visibility
+  const rotate = useTransform(smoothProgress, [0, 0.45], [18, 0]);
+  const scale = useTransform(smoothProgress, [0, 0.45], scaleDimensions());
+  const translate = useTransform(smoothProgress, [0, 0.45], [0, -60]);
 
   return (
     <div
-      className="h-[60rem] md:h-[80rem] flex items-center justify-center relative p-2 md:p-20 bg-black"
+      className="h-[42rem] md:h-[65rem] flex items-start justify-center relative p-2 md:px-20 md:pb-20 md:pt-4 bg-black"
       ref={containerRef}
     >
       <div
-        className="py-10 md:py-40 w-full relative"
+        className="py-4 md:py-8 w-full relative"
         style={{
           perspective: "1000px",
         }}
@@ -60,7 +70,7 @@ export const Header = ({ translate, titleComponent }: any) => {
       style={{
         translateY: translate,
       }}
-      className="div max-w-5xl mx-auto text-center"
+      className="div max-w-5xl mx-auto text-center px-4"
     >
       {titleComponent}
     </motion.div>
@@ -83,11 +93,14 @@ export const Card = ({
         rotateX: rotate,
         scale,
         boxShadow:
-          "0 0 #0000004d, 0 9px 20px #0000004a, 0 37px 37px #00000042, 0 84px 50px #00000026, 0 149px 60px #0000000a, 0 233px 65px #00000003",
+          "0 0 80px -10px rgba(255,255,255,0.08), 0 25px 50px -12px rgba(0,0,0,0.8)",
       }}
-      className="max-w-5xl -mt-12 mx-auto h-[30rem] md:h-[40rem] w-full border-4 border-[#6C6C6C] p-2 md:p-6 bg-[#222222] rounded-[30px] shadow-2xl"
+      className="max-w-5xl -mt-6 mx-auto h-[26rem] md:h-[38rem] w-full border border-zinc-800 p-2 bg-zinc-950/90 rounded-[24px] shadow-2xl backdrop-blur-md relative"
     >
-      <div className="h-full w-full overflow-hidden rounded-2xl bg-gray-100 dark:bg-zinc-900 md:rounded-2xl md:p-4">
+      {/* Top inner gloss reflection line */}
+      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent rounded-t-[24px]" />
+      
+      <div className="h-full w-full overflow-hidden rounded-2xl bg-zinc-950 md:rounded-2xl border border-zinc-900">
         {children}
       </div>
     </motion.div>
