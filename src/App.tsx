@@ -58,7 +58,7 @@ function App() {
           logoContainerHeight="h-20"
           logoImageWidth="w-auto"
           logoImageHeight="h-8"
-          padding="py-12 lg:py-16"
+          padding="pt-12 lg:pt-16 pb-0"
         />
 
         {/* Scroll Reveal Mockup Section */}

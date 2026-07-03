@@ -3,7 +3,7 @@ import scrollImg from "@/images/scrollanimation image.png";
 
 export function HeroScrollDemo() {
   return (
-    <div className="flex flex-col overflow-hidden bg-black pb-20 pt-10">
+    <div className="flex flex-col overflow-hidden bg-black pb-20 pt-0">
       <ContainerScroll
         titleComponent={
           <div className="flex flex-col items-center gap-4">
