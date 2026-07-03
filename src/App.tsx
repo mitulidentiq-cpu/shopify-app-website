@@ -10,11 +10,11 @@ function App() {
       {/* Main Landing Page content */}
       <main className="pt-20">
         <Hero
-          title="Build smarter tools for modern teams"
-          subtitle="Streamline your workflow and boost productivity with intuitive solutions. Security, speed, and simplicity—all in one platform."
-          eyebrow="Next-Gen Productivity"
-          ctaLabel="Get Started"
-          ctaHref="#"
+          title="Boost Shopify Sales with AI-Powered Bundles"
+          subtitle="Increase your Average Order Value (AOV) instantly. Create stunning volume discounts, product bundles, and smart quantity breaks. No coding required."
+          eyebrow="Boost Average Order Value"
+          ctaLabel="Install on Shopify Store"
+          ctaHref="https://apps.shopify.com"
         />
       </main>
     </div>
