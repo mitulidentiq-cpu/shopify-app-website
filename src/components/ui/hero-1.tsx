@@ -7,6 +7,7 @@ interface HeroProps {
   subtitle: string
   ctaLabel?: string
   ctaHref?: string
+  badgeSrc?: string
 }
 
 export function Hero({
@@ -15,6 +16,7 @@ export function Hero({
   subtitle,
   ctaLabel = "Explore Now",
   ctaHref = "#",
+  badgeSrc,
 }: HeroProps) {
   return (
     <section
@@ -81,13 +83,25 @@ export function Hero({
 
       {/* CTA */}
       {ctaLabel && (
-        <div className="flex justify-center">
+        <div className="flex flex-col items-center justify-center gap-6">
           <Button
             asChild
             className="mt-[-20px] w-fit md:w-52 z-20 tracking-tighter text-center text-lg"
           >
             <a href={ctaHref}>{ctaLabel}</a>
           </Button>
+
+          {badgeSrc && (
+            <div className="z-20 -mt-2">
+              <a href={ctaHref} target="_blank" rel="noopener noreferrer">
+                <img
+                  src={badgeSrc}
+                  alt="Shopify App Store Badge"
+                  className="h-12 w-auto object-contain hover:scale-105 transition-transform duration-300"
+                />
+              </a>
+            </div>
+          )}
         </div>
       )}
 
