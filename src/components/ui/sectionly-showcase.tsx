@@ -32,14 +32,14 @@ function MarqueeRow({ images, direction }: { images: string[]; direction: "left"
   return (
     <div className="overflow-hidden w-full">
       <motion.div
-        className="flex gap-3"
+        className="flex gap-4 items-center"
         animate={{
           x: direction === "left"
             ? ["0%", "-50%"]
             : ["-50%", "0%"],
         }}
         transition={{
-          duration: 22,
+          duration: 25,
           repeat: Infinity,
           ease: "linear",
         }}
@@ -48,12 +48,12 @@ function MarqueeRow({ images, direction }: { images: string[]; direction: "left"
         {doubled.map((src, i) => (
           <div
             key={i}
-            className="shrink-0 w-52 h-36 rounded-xl overflow-hidden border border-zinc-800 bg-zinc-900"
+            className="shrink-0 h-40 rounded-xl overflow-hidden border border-zinc-800 bg-zinc-900 flex items-center justify-center"
           >
             <img
               src={src}
               alt={`Section preview ${(i % images.length) + 1}`}
-              className="w-full h-full object-cover"
+              className="h-full w-auto object-contain"
             />
           </div>
         ))}
