@@ -1,6 +1,7 @@
 import { Header1 } from "@/components/ui/header"
 import { Hero } from "@/components/ui/hero-1"
 import { AppShowcase } from "@/components/ui/app-showcase"
+import { SectionlyShowcase } from "@/components/ui/sectionly-showcase"
 import { AnimatedCarousel } from "@/components/ui/logo-carousel"
 import { FaqSection } from "@/components/ui/faq-section"
 import { CtaBanner } from "@/components/ui/cta-banner"
@@ -38,8 +39,11 @@ function App() {
           ctaHref="https://apps.shopify.com"
         />
 
-        {/* App Feature Showcase Section */}
+        {/* App Feature Showcase Section — Klenzo AI Variants */}
         <AppShowcase />
+
+        {/* Sectionly App Showcase with Dual Marquee */}
+        <SectionlyShowcase />
 
         {/* Brand/Partner Logo Carousel Section */}
         <AnimatedCarousel
