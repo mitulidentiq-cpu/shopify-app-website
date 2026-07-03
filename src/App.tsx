@@ -3,6 +3,7 @@ import { Hero } from "@/components/ui/hero-1"
 import { AppShowcase } from "@/components/ui/app-showcase"
 import { SectionlyShowcase } from "@/components/ui/sectionly-showcase"
 import { AnimatedCarousel } from "@/components/ui/logo-carousel"
+import { HeroScrollDemo } from "@/components/ui/hero-scroll-demo"
 import { FaqSection } from "@/components/ui/faq-section"
 import { CtaBanner } from "@/components/ui/cta-banner"
 import { MinimalFooter } from "@/components/ui/minimal-footer"
@@ -59,6 +60,9 @@ function App() {
           logoImageHeight="h-8"
           padding="py-12 lg:py-16"
         />
+
+        {/* Scroll Reveal Mockup Section */}
+        <HeroScrollDemo />
 
         {/* Animated FAQ Accordion Section */}
         <FaqSection />
