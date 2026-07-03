@@ -1,5 +1,5 @@
 import { ContainerScroll } from "@/components/ui/container-scroll-animation";
-import dashboardImg from "@/images/bundlify-dashboard.png";
+import scrollImg from "@/images/scrollanimation image.png";
 
 export function HeroScrollDemo() {
   return (
@@ -21,7 +21,7 @@ export function HeroScrollDemo() {
         }
       >
         <img
-          src={dashboardImg}
+          src={scrollImg}
           alt="Bundlify App Merchant Dashboard"
           className="mx-auto rounded-2xl object-cover h-full w-full object-top shadow-[0_0_80px_20px_rgba(255,255,255,0.08)]"
           draggable={false}
