@@ -1,5 +1,6 @@
 import { Header1 } from "@/components/ui/header"
 import { Hero } from "@/components/ui/hero-1"
+import { CursorFollower } from "@/components/ui/cursor-follower"
 import { AppShowcase } from "@/components/ui/app-showcase"
 import { SectionlyShowcase } from "@/components/ui/sectionly-showcase"
 import { AnimatedCarousel } from "@/components/ui/logo-carousel"
@@ -26,6 +27,9 @@ function App() {
 
   return (
     <div className="relative min-h-screen bg-background text-foreground">
+      {/* Custom premium cursor follower */}
+      <CursorFollower />
+
       {/* Header component integration */}
       <Header1 />
       
