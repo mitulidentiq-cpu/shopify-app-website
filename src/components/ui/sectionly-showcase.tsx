@@ -174,9 +174,9 @@ export function SectionlyShowcase() {
             className="relative flex flex-col gap-4 overflow-hidden"
           >
             {/* Left fade mask */}
-            <div className="pointer-events-none absolute left-0 top-0 h-full w-20 z-10 bg-gradient-to-r from-black to-transparent" />
+            <div className="pointer-events-none absolute left-0 top-0 h-full w-36 z-10 bg-gradient-to-r from-black to-transparent" />
             {/* Right fade mask */}
-            <div className="pointer-events-none absolute right-0 top-0 h-full w-20 z-10 bg-gradient-to-l from-black to-transparent" />
+            <div className="pointer-events-none absolute right-0 top-0 h-full w-36 z-10 bg-gradient-to-l from-black to-transparent" />
 
             {/* Row 1: scrolls right → left */}
             <MarqueeRow images={row1} direction="left" />
