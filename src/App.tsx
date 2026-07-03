@@ -2,6 +2,7 @@ import { Header1 } from "@/components/ui/header"
 import { Hero } from "@/components/ui/hero-1"
 import { AnimatedCarousel } from "@/components/ui/logo-carousel"
 import { FaqSection } from "@/components/ui/faq-section"
+import { CtaBanner } from "@/components/ui/cta-banner"
 import { MinimalFooter } from "@/components/ui/minimal-footer"
 
 function App() {
@@ -53,6 +54,9 @@ function App() {
 
         {/* Animated FAQ Accordion Section */}
         <FaqSection />
+
+        {/* Overlapping Bottom CTA Banner */}
+        <CtaBanner />
       </main>
       
       {/* Footer component */}

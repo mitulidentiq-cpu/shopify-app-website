@@ -107,7 +107,7 @@ export function MinimalFooter() {
 	return (
 		<footer className="relative mt-20 border-t border-border bg-black text-white">
 			<div className="bg-[radial-gradient(35%_80%_at_30%_0%,rgba(255,255,255,0.05),transparent)] mx-auto max-w-4xl md:border-x border-border">
-				<div className="grid max-w-4xl grid-cols-6 gap-8 p-8">
+				<div className="grid max-w-4xl grid-cols-6 gap-8 pt-28 pb-8 px-8">
 					<div className="col-span-6 flex flex-col gap-5 md:col-span-4">
 						<a href="#" className="w-max">
 							<img src={logo1} alt="Klenzo Logo" className="h-8 w-auto object-contain" style={{ filter: 'invert(1)' }} />
