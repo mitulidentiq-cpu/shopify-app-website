@@ -16,9 +16,7 @@ export function HeroScrollDemo() {
                 Real-Time
               </span>
             </h1>
-            <p className="text-zinc-400 max-w-xl text-sm md:text-base leading-relaxed mt-2">
-              Monitor average order value (AOV) increases, bundle conversion rates, and total generated revenue inside your merchant dashboard.
-            </p>
+            
           </div>
         }
       >
