@@ -39,11 +39,11 @@ function App() {
           ctaHref="https://apps.shopify.com"
         />
 
-        {/* App Feature Showcase Section — Klenzo AI Variants */}
-        <AppShowcase />
-
-        {/* Sectionly App Showcase with Dual Marquee */}
+        {/* Sectionly App Showcase — Meet AI Section Hub */}
         <SectionlyShowcase />
+
+        {/* App Feature Showcase — Meet Klenzo: AI Variants */}
+        <AppShowcase />
 
         {/* Brand/Partner Logo Carousel Section */}
         <AnimatedCarousel
