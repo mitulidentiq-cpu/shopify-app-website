@@ -3,12 +3,16 @@
 import { motion } from "motion/react";
 import { Star, Layers } from "lucide-react";
 
-import sec1 from "@/images/section-1.png";
-import sec2 from "@/images/section-2.png";
-import sec3 from "@/images/section-3.png";
-import sec4 from "@/images/section-4.png";
-import sec5 from "@/images/section-5.png";
-import sec6 from "@/images/section-6.png";
+import img1 from "@/images/images1.jpg";
+import img2 from "@/images/images2.jpg";
+import img3 from "@/images/images3.jpg";
+import img4 from "@/images/images4.jpg";
+import img5 from "@/images/images5.jpg";
+import img6 from "@/images/images6.jpg";
+import img7 from "@/images/images7.jpg";
+import img8 from "@/images/images8.jpg";
+import img9 from "@/images/images9.jpg";
+import img10 from "@/images/images10.jpg";
 
 const features = [
   "700+ ready-made premium Shopify sections",
@@ -19,8 +23,8 @@ const features = [
 ];
 
 // Row 1 scrolls right→left, Row 2 scrolls left→right
-const row1 = [sec1, sec2, sec3, sec4, sec5, sec6];
-const row2 = [sec4, sec5, sec6, sec1, sec2, sec3];
+const row1 = [img1, img2, img3, img4, img5];
+const row2 = [img6, img7, img8, img9, img10];
 
 function MarqueeRow({ images, direction }: { images: string[]; direction: "left" | "right" }) {
   const doubled = [...images, ...images]; // duplicate for seamless loop
