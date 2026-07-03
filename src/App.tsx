@@ -1,6 +1,7 @@
 import { Header1 } from "@/components/ui/header"
 import { Hero } from "@/components/ui/hero-1"
 import { AnimatedCarousel } from "@/components/ui/logo-carousel"
+import { FaqSection } from "@/components/ui/faq-section"
 import { MinimalFooter } from "@/components/ui/minimal-footer"
 
 function App() {
@@ -49,6 +50,9 @@ function App() {
           logoImageHeight="h-8"
           padding="py-12 lg:py-16"
         />
+
+        {/* Animated FAQ Accordion Section */}
+        <FaqSection />
       </main>
       
       {/* Footer component */}
