@@ -102,10 +102,7 @@ export function AppShowcase() {
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
             className="relative flex items-center justify-center"
           >
-            {/* Subtle dark glow behind image */}
-            <div className="absolute inset-0 bg-gradient-to-br from-zinc-800/40 via-zinc-900/20 to-zinc-800/40 rounded-3xl blur-2xl opacity-80" />
-
-            <div className="relative z-10 rounded-2xl overflow-hidden shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)] border border-zinc-800">
+            <div className="relative z-10 rounded-2xl overflow-hidden shadow-[0_0_60px_10px_rgba(255,255,255,0.06)] border border-zinc-800">
               <img
                 src={appMockup}
                 alt="Klenzo AI Variants — Shopify swatch app mockup"
