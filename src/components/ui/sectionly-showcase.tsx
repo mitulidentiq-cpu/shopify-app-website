@@ -48,12 +48,12 @@ function MarqueeRow({ images, direction }: { images: string[]; direction: "left"
         {doubled.map((src, i) => (
           <div
             key={i}
-            className="shrink-0 h-40 rounded-xl overflow-hidden border border-zinc-800 bg-zinc-900 flex items-center justify-center"
+            className="shrink-0 h-44 w-72 rounded-xl overflow-hidden border border-zinc-800 bg-zinc-900 flex items-center justify-center"
           >
             <img
               src={src}
               alt={`Section preview ${(i % images.length) + 1}`}
-              className="h-full w-auto object-contain"
+              className="w-full h-full object-cover"
             />
           </div>
         ))}
