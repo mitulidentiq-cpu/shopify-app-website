@@ -11,6 +11,7 @@ import { Menu, MoveRight, X } from "lucide-react";
 import { useState } from "react";
 
 import logo1 from "@/app logo/logo1.png"
+import shopifyBadge from "@/images/shopify badge.png"
 
 function Header1() {
     const navigationItems = [
@@ -123,9 +124,9 @@ function Header1() {
                     <img src={logo1} alt="App Logo" className="h-10 w-auto object-contain" style={{ filter: 'invert(1)' }} />
                 </div>
                 <div className="flex justify-end w-full gap-4 items-center">
-                    <Button variant="ghost" className="hidden md:inline-flex">
-                        Book a demo
-                    </Button>
+                    <a href="https://apps.shopify.com" target="_blank" rel="noopener noreferrer" className="hidden md:inline-block z-20">
+                        <img src={shopifyBadge} alt="Shopify Badge" className="h-8 w-auto object-contain hover:scale-105 transition-transform duration-300" />
+                    </a>
                     <div className="border-r h-6 hidden md:block border-border"></div>
                     <Button variant="outline">Sign in</Button>
                     <Button>Get started</Button>

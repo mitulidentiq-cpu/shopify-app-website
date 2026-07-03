@@ -3,7 +3,6 @@ import { Hero } from "@/components/ui/hero-1"
 import { AnimatedCarousel } from "@/components/ui/logo-carousel"
 import { FaqSection } from "@/components/ui/faq-section"
 import { MinimalFooter } from "@/components/ui/minimal-footer"
-import shopifyBadge from "@/images/shopify badge.png"
 
 function App() {
   const partnerLogos = [
@@ -35,7 +34,6 @@ function App() {
           eyebrow="Boost Average Order Value"
           ctaLabel="Install on Shopify Store"
           ctaHref="https://apps.shopify.com"
-          badgeSrc={shopifyBadge}
         />
 
         {/* Brand/Partner Logo Carousel Section */}
