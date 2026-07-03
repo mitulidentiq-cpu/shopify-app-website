@@ -49,14 +49,14 @@ function AnimatedProductCard() {
       </div>
 
       {/* Product Image Area */}
-      <div className="relative h-52 bg-zinc-950 flex items-center justify-center overflow-hidden">
-        {/* Dynamic color glow */}
+      <div className="relative h-56 bg-white flex items-center justify-center overflow-hidden rounded-t-2xl">
+        {/* Dynamic color glow — subtle on white bg */}
         <motion.div
           className="absolute w-40 h-40 rounded-full blur-3xl"
           animate={{ 
             background: variants[selected].glow,
             scale: [1, 1.15, 1],
-            opacity: [0.5, 0.8, 0.5]
+            opacity: [0.15, 0.25, 0.15]
           }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
         />
@@ -71,7 +71,7 @@ function AnimatedProductCard() {
             animate={{ opacity: 1, scale: 1, rotate: 0 }}
             exit={{ opacity: 0, scale: 0.85, rotate: 4 }}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="relative z-10 h-36 w-auto object-contain drop-shadow-2xl"
+            className="relative z-10 h-44 w-auto object-contain drop-shadow-xl"
           />
         </AnimatePresence>
       </div>
