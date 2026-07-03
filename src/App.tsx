@@ -25,7 +25,7 @@ function App() {
       <Header1 />
       
       {/* Main Landing Page content */}
-      <main className="pt-20">
+      <main className="pt-16 md:pt-20">
         {/* Hero Section */}
         <Hero
           title="Boost Shopify Sales with AI-Powered Bundles"

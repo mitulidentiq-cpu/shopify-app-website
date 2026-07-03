@@ -19,8 +19,8 @@ export function Hero({
   return (
     <section
       id="hero"
-      className="relative mx-auto w-full pt-40 px-6 text-center md:px-8 
-      min-h-[calc(100vh-40px)] overflow-hidden 
+      className="relative mx-auto w-full pt-12 md:pt-20 lg:pt-28 pb-16 md:pb-24 px-6 text-center md:px-8 
+      overflow-hidden 
       bg-[linear-gradient(to_bottom,#fff,#ffffff_50%,#f4f4f5_88%)]  
       dark:bg-[linear-gradient(to_bottom,#000,#0000_30%,#09090b_78%,#000_99%)] 
       rounded-b-xl"
