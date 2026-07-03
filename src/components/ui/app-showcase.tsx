@@ -1,8 +1,8 @@
 "use client";
 
-import { motion } from "motion/react";
-import { ArrowUpRight, Star } from "lucide-react";
-import appMockup from "@/images/klenzo-app-mockup.png";
+import { motion, AnimatePresence } from "motion/react";
+import { ArrowUpRight, Star, ShoppingCart } from "lucide-react";
+import { useState, useEffect } from "react";
 
 const features = [
   "Replace native Shopify variant dropdowns with stunning swatches",
@@ -11,6 +11,181 @@ const features = [
   "Works with most Shopify themes — zero coding needed",
   "Fully responsive: desktop, tablet & mobile ready",
 ];
+
+const colors = [
+  { label: "Red",   bg: "bg-red-500",    ring: "ring-red-400" },
+  { label: "Blue",  bg: "bg-blue-500",   ring: "ring-blue-400" },
+  { label: "Black", bg: "bg-zinc-900",   ring: "ring-zinc-400" },
+  { label: "White", bg: "bg-white",      ring: "ring-white" },
+  { label: "Green", bg: "bg-emerald-500",ring: "ring-emerald-400" },
+];
+
+const sizes = ["XS", "S", "M", "L", "XL"];
+
+function AnimatedProductCard() {
+  const [selectedColor, setSelectedColor] = useState(0);
+  const [selectedSize, setSelectedSize] = useState(2);
+  const [added, setAdded] = useState(false);
+
+  // Auto-cycle colors
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setSelectedColor((prev) => (prev + 1) % colors.length);
+    }, 1600);
+    return () => clearInterval(timer);
+  }, []);
+
+  const handleCart = () => {
+    setAdded(true);
+    setTimeout(() => setAdded(false), 1800);
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+      className="relative w-full max-w-sm mx-auto rounded-2xl bg-zinc-900 border border-zinc-800 shadow-[0_0_60px_8px_rgba(255,255,255,0.05)] overflow-hidden"
+    >
+      {/* Badge */}
+      <div className="absolute top-3 left-3 z-20">
+        <span className="text-[10px] font-bold uppercase tracking-widest bg-emerald-500 text-black px-2 py-0.5 rounded-full">
+          AI Powered
+        </span>
+      </div>
+
+      {/* Product Image Area */}
+      <div className="relative h-44 bg-zinc-950 flex items-center justify-center overflow-hidden">
+        {/* Animated color blob reflecting selected color */}
+        <motion.div
+          className={`absolute w-32 h-32 rounded-full blur-3xl opacity-30 ${colors[selectedColor].bg}`}
+          animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.4, 0.2] }}
+          transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+        />
+        {/* Sneaker silhouette SVG */}
+        <svg viewBox="0 0 120 60" className="w-36 h-auto relative z-10 opacity-90" fill="none">
+          <ellipse cx="60" cy="50" rx="52" ry="6" fill="rgba(255,255,255,0.06)" />
+          <path d="M10 42 Q20 20 50 18 Q80 16 100 28 Q108 32 108 40 Q95 46 60 46 Q30 48 10 42Z" fill="white" opacity="0.9"/>
+          <path d="M50 18 Q55 10 65 12 Q72 14 75 22 Q65 20 50 18Z" fill="rgba(255,255,255,0.7)"/>
+          <path d="M10 42 Q15 38 30 38 Q45 37 60 38 Q80 38 108 40" stroke="rgba(0,0,0,0.15)" strokeWidth="1" fill="none"/>
+          {/* Laces */}
+          <line x1="52" y1="22" x2="58" y2="26" stroke="rgba(200,200,200,0.6)" strokeWidth="1.5" strokeLinecap="round"/>
+          <line x1="56" y1="20" x2="62" y2="24" stroke="rgba(200,200,200,0.6)" strokeWidth="1.5" strokeLinecap="round"/>
+          <line x1="60" y1="18" x2="66" y2="22" stroke="rgba(200,200,200,0.6)" strokeWidth="1.5" strokeLinecap="round"/>
+        </svg>
+      </div>
+
+      {/* Card Body */}
+      <div className="p-5 flex flex-col gap-4">
+        {/* Title & Price */}
+        <div className="flex items-start justify-between">
+          <div>
+            <p className="text-xs text-zinc-500 font-mono uppercase tracking-widest mb-0.5">Shopify Product</p>
+            <h4 className="text-white font-bold text-base leading-tight">AeroStride Prime</h4>
+          </div>
+          <div className="text-right">
+            <p className="text-white font-extrabold text-lg">$140</p>
+            <p className="text-zinc-500 text-xs line-through">$180</p>
+          </div>
+        </div>
+
+        {/* Color Swatches */}
+        <div>
+          <div className="flex items-center justify-between mb-2">
+            <p className="text-zinc-400 text-xs font-semibold uppercase tracking-wider">Color</p>
+            <AnimatePresence mode="wait">
+              <motion.span
+                key={colors[selectedColor].label}
+                initial={{ opacity: 0, y: -4 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 4 }}
+                transition={{ duration: 0.2 }}
+                className="text-xs text-zinc-300 font-mono"
+              >
+                {colors[selectedColor].label}
+              </motion.span>
+            </AnimatePresence>
+          </div>
+          <div className="flex gap-2">
+            {colors.map((color, i) => (
+              <motion.button
+                key={i}
+                onClick={() => setSelectedColor(i)}
+                whileHover={{ scale: 1.15 }}
+                whileTap={{ scale: 0.9 }}
+                className={`w-7 h-7 rounded-full ${color.bg} border-2 transition-all duration-200 ${
+                  selectedColor === i
+                    ? `border-white ring-2 ring-offset-2 ring-offset-zinc-900 ${color.ring}`
+                    : "border-zinc-700"
+                }`}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Size Swatches */}
+        <div>
+          <p className="text-zinc-400 text-xs font-semibold uppercase tracking-wider mb-2">Size</p>
+          <div className="flex gap-2">
+            {sizes.map((size, i) => (
+              <motion.button
+                key={i}
+                onClick={() => setSelectedSize(i)}
+                whileHover={{ scale: 1.08 }}
+                whileTap={{ scale: 0.95 }}
+                className={`text-xs font-bold px-3 py-1.5 rounded-md border transition-all duration-200 ${
+                  selectedSize === i
+                    ? "bg-white text-black border-white"
+                    : "bg-transparent text-zinc-400 border-zinc-700 hover:border-zinc-500"
+                }`}
+              >
+                {size}
+              </motion.button>
+            ))}
+          </div>
+        </div>
+
+        {/* Add to Cart */}
+        <motion.button
+          onClick={handleCart}
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+          className={`w-full py-3 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all duration-300 ${
+            added
+              ? "bg-emerald-500 text-black"
+              : "bg-white text-black hover:bg-zinc-200"
+          }`}
+        >
+          <AnimatePresence mode="wait">
+            {added ? (
+              <motion.span
+                key="added"
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -6 }}
+                className="flex items-center gap-2"
+              >
+                ✓ Added to Cart!
+              </motion.span>
+            ) : (
+              <motion.span
+                key="add"
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -6 }}
+                className="flex items-center gap-2"
+              >
+                <ShoppingCart className="w-4 h-4" />
+                Add to Cart
+              </motion.span>
+            )}
+          </AnimatePresence>
+        </motion.button>
+      </div>
+    </motion.div>
+  );
+}
 
 export function AppShowcase() {
   return (
@@ -24,9 +199,7 @@ export function AppShowcase() {
           </span>
           <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white max-w-2xl leading-tight">
             Meet{" "}
-            <span className="text-zinc-400">
-              Klenzo: AI Variants
-            </span>
+            <span className="text-zinc-400">Klenzo: AI Variants</span>
           </h2>
           <p className="text-zinc-400 max-w-xl text-base md:text-lg leading-relaxed">
             Replace boring Shopify dropdowns with AI-powered color & image swatches.
@@ -94,22 +267,8 @@ export function AppShowcase() {
             </a>
           </motion.div>
 
-          {/* RIGHT — App Mockup Image */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-            className="relative flex items-center justify-center"
-          >
-            <div className="relative z-10 rounded-2xl overflow-hidden shadow-[0_0_60px_10px_rgba(255,255,255,0.06)] border border-zinc-800">
-              <img
-                src={appMockup}
-                alt="Klenzo AI Variants — Shopify swatch app mockup"
-                className="w-full h-auto object-cover"
-              />
-            </div>
-          </motion.div>
+          {/* RIGHT — Animated Dark Product Card */}
+          <AnimatedProductCard />
 
         </div>
       </div>
