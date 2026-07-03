@@ -100,7 +100,7 @@ export const AnimatedCarousel = ({
                         <img
                           src={logo}
                           alt={`Logo ${index + 1}`}
-                          className={`${logoImageSizeClasses} object-contain filter invert brightness-0 opacity-40 hover:opacity-100 transition-opacity duration-300`}
+                          className={`${logoImageSizeClasses} object-contain brightness-0 invert opacity-70 hover:opacity-100 transition-opacity duration-300`}
                         />
                       </div>
                     </CarouselItem>
