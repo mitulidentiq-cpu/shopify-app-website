@@ -1,5 +1,6 @@
 import { Header1 } from "@/components/ui/header"
 import { Hero } from "@/components/ui/hero-1"
+import { MinimalFooter } from "@/components/ui/minimal-footer"
 
 function App() {
   return (
@@ -17,6 +18,9 @@ function App() {
           ctaHref="https://apps.shopify.com"
         />
       </main>
+      
+      {/* Footer component */}
+      <MinimalFooter />
     </div>
   )
 }
