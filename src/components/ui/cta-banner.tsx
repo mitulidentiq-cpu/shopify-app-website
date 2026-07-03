@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react";
 
 export function CtaBanner() {
   return (
-    <div className="relative z-20 -mb-20 mx-auto max-w-4xl px-6">
+    <div className="relative z-20 -translate-y-1/2 mx-auto max-w-4xl px-6">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
