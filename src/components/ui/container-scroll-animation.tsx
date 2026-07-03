@@ -1,6 +1,6 @@
 "use client";
 import React, { useRef } from "react";
-import { useScroll, useTransform, useSpring, motion, MotionValue } from "motion/react";
+import { useScroll, useTransform, motion, MotionValue } from "motion/react";
 
 export const ContainerScroll = ({
   titleComponent,
@@ -12,16 +12,7 @@ export const ContainerScroll = ({
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start end", "end start"],
   });
-
-  // Add buttery smooth spring physics to scroll progress
-  const smoothProgress = useSpring(scrollYProgress, {
-    damping: 30,
-    stiffness: 100,
-    restDelta: 0.001,
-  });
-
   const [isMobile, setIsMobile] = React.useState(false);
 
   React.useEffect(() => {
@@ -36,21 +27,20 @@ export const ContainerScroll = ({
   }, []);
 
   const scaleDimensions = () => {
-    return isMobile ? [0.8, 0.95] : [1.08, 1];
+    return isMobile ? [0.7, 0.9] : [1.05, 1];
   };
 
-  // Complete rotation & scale transition in first 45% of scroll progress for better visibility
-  const rotate = useTransform(smoothProgress, [0, 0.45], [18, 0]);
-  const scale = useTransform(smoothProgress, [0, 0.45], scaleDimensions());
-  const translate = useTransform(smoothProgress, [0, 0.45], [0, -60]);
+  const rotate = useTransform(scrollYProgress, [0, 1], [20, 0]);
+  const scale = useTransform(scrollYProgress, [0, 1], scaleDimensions());
+  const translate = useTransform(scrollYProgress, [0, 1], [0, -100]);
 
   return (
     <div
-      className="h-[42rem] md:h-[65rem] flex items-start justify-center relative p-2 md:px-20 md:pb-20 md:pt-4 bg-black"
+      className="h-[55rem] md:h-[72rem] flex items-center justify-center relative p-2 md:p-20 bg-black"
       ref={containerRef}
     >
       <div
-        className="py-4 md:py-8 w-full relative"
+        className="py-10 md:py-40 w-full relative"
         style={{
           perspective: "1000px",
         }}
@@ -95,7 +85,7 @@ export const Card = ({
         boxShadow:
           "0 0 80px -10px rgba(255,255,255,0.08), 0 25px 50px -12px rgba(0,0,0,0.8)",
       }}
-      className="max-w-5xl -mt-6 mx-auto h-[26rem] md:h-[38rem] w-full border border-zinc-800 p-2 bg-zinc-950/90 rounded-[24px] shadow-2xl backdrop-blur-md relative"
+      className="max-w-5xl -mt-12 mx-auto h-[28rem] md:h-[40rem] w-full border border-zinc-800 p-2 bg-zinc-950/90 rounded-[24px] shadow-2xl backdrop-blur-md relative"
     >
       {/* Top inner gloss reflection line */}
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent rounded-t-[24px]" />
