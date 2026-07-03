@@ -165,14 +165,19 @@ export function SectionlyShowcase() {
             </div>
           </motion.div>
 
-          {/* RIGHT — Dual Marquee Rows */}
+          {/* RIGHT — Dual Marquee Rows with edge fade */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-            className="flex flex-col gap-4 overflow-hidden"
+            className="relative flex flex-col gap-4 overflow-hidden"
           >
+            {/* Left fade mask */}
+            <div className="pointer-events-none absolute left-0 top-0 h-full w-20 z-10 bg-gradient-to-r from-black to-transparent" />
+            {/* Right fade mask */}
+            <div className="pointer-events-none absolute right-0 top-0 h-full w-20 z-10 bg-gradient-to-l from-black to-transparent" />
+
             {/* Row 1: scrolls right → left */}
             <MarqueeRow images={row1} direction="left" />
             {/* Row 2: scrolls left → right */}
