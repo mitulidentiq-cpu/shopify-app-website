@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import { ArrowUpRight, Star, Layers } from "lucide-react";
+import { Star, Layers } from "lucide-react";
 
 import sec1 from "@/images/section-1.png";
 import sec2 from "@/images/section-2.png";
@@ -131,16 +131,34 @@ export function SectionlyShowcase() {
               ))}
             </ul>
 
-            {/* CTA link */}
-            <a
-              href="https://apps.shopify.com/sectionly"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 mt-2 font-bold text-sm text-white border-b border-white pb-0.5 w-fit hover:text-zinc-400 hover:border-zinc-400 transition-colors group"
-            >
-              View on Shopify App Store
-              <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </a>
+            {/* CTA Buttons */}
+            <div className="flex flex-wrap items-center gap-3 mt-2">
+              <motion.a
+                href="https://apps.shopify.com/sectionly"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.97 }}
+                className="inline-flex items-center gap-2.5 px-6 py-3 bg-black text-white font-bold text-sm rounded-full border border-zinc-700 hover:bg-zinc-900 transition-colors shadow-md"
+              >
+                Install Free on Shopify
+                {/* Shopify bag icon */}
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 57" className="w-5 h-5 fill-white" aria-hidden="true">
+                  <path d="M43.8 10.8c0 0-0.4-0.1-1-0.1-0.5 0-1.3 0.1-2.2 0.4C39.3 7.5 37 3 32.8 3c-0.1 0-0.3 0-0.4 0C31.2 1.7 29.9 1 28.8 1 20.7 1 16.8 11 15.6 16.1c-3 0.9-5.1 1.6-5.4 1.7C8.3 18.4 8.3 18.5 8.1 20.3 8 21.7 3 62 3 62l37.5 6.4L50 65.3c0 0-5.7-53.5-6.2-54.5zM32.6 5.1c2.8 0 4.7 3.5 5.7 7C36.1 12.6 33.7 13.4 31 14.2 31.9 10.3 33.1 5.1 32.6 5.1zM28.5 3c0.5 0 1 0.3 1.5 0.8-2 0.9-4.1 4.6-5 9.8L19.8 15C21.1 9.7 24.4 3 28.5 3z"/>
+                </svg>
+              </motion.a>
+
+              <motion.a
+                href="https://sectionly.vercel.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.97 }}
+                className="inline-flex items-center gap-2 px-6 py-3 bg-transparent text-white font-bold text-sm rounded-full border border-zinc-600 hover:border-zinc-400 hover:text-zinc-300 transition-colors"
+              >
+                Browse Sections
+              </motion.a>
+            </div>
           </motion.div>
 
           {/* RIGHT — Dual Marquee Rows */}
