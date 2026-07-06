@@ -45,9 +45,9 @@ export function Hero({
       {eyebrow && (
         <a href="#" className="group inline-block mb-4">
           <span
-            className="text-sm text-gray-600 mx-auto px-5 py-2 
+            className="text-sm text-black mx-auto px-5 py-2 
             bg-gradient-to-tr from-zinc-300/5 via-gray-400/5 to-transparent  
-            border border-gray-300/20 
+            border border-black 
             rounded-3xl w-fit tracking-tight uppercase flex items-center justify-center"
           >
             {eyebrow}
@@ -80,7 +80,8 @@ export function Hero({
         <div className="flex justify-center">
           <Button
             asChild
-            className="mt-[-20px] w-fit md:w-52 z-20 tracking-tighter text-center text-lg"
+            variant="outline"
+            className="mt-[-20px] w-fit md:w-52 z-20 tracking-tighter text-center text-lg border-black text-black hover:bg-zinc-100"
           >
             <a href={ctaHref}>{ctaLabel}</a>
           </Button>
