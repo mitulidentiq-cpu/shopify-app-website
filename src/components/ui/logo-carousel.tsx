@@ -81,10 +81,10 @@ export const AnimatedCarousel = ({
   const logoImageSizeClasses = `${logoImageWidth} ${logoImageHeight} ${logoMaxWidth} ${logoMaxHeight}`.trim();
 
   return (
-    <div className={`w-full ${padding} bg-background ${containerClassName}`}>
+    <div className={`w-full ${padding} bg-zinc-950 ${containerClassName}`}>
       <div className="container mx-auto">
         <div className={`flex flex-col ${spacing}`}>
-          <h2 className={`text-xl md:text-3xl md:text-5xl tracking-tighter lg:max-w-xl font-normal text-left ml-2 text-foreground ${titleClassName}`}>
+          <h2 className={`text-xl md:text-3xl md:text-5xl tracking-tighter lg:max-w-xl font-normal text-left ml-2 text-white ${titleClassName}`}>
             <TextRoll>{title}</TextRoll>
           </h2>
           <div>
@@ -96,11 +96,11 @@ export const AnimatedCarousel = ({
 
                   return (
                     <CarouselItem className={`${itemsPerViewMobileClass} ${itemsPerViewDesktopClass}`} key={index}>
-                      <div className={`flex rounded-md ${logoContainerWidth} ${logoContainerHeight} items-center justify-center p-4 hover:bg-zinc-100 transition-colors ${logoClassName}`}>
+                      <div className={`flex rounded-md ${logoContainerWidth} ${logoContainerHeight} items-center justify-center p-4 hover:bg-zinc-900 transition-colors ${logoClassName}`}>
                         <img
                           src={logo}
                           alt={`Logo ${index + 1}`}
-                          className={`${logoImageSizeClasses} object-contain opacity-50 hover:opacity-100 transition-opacity duration-300`}
+                          className={`${logoImageSizeClasses} object-contain brightness-0 invert opacity-50 hover:opacity-100 transition-opacity duration-300`}
                         />
                       </div>
                     </CarouselItem>
