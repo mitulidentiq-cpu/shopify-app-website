@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solvify Tech - Apps Documentation</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --font-sans: 'Inter', sans-serif;
+      --font-display: 'Outfit', sans-serif;
+      --bg: #ffffff;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --accent-light: #eff6ff;
+      --sidebar-width: 280px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      scroll-behavior: smooth;
+    }
+
+    /* Top Navigation Header */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 70px;
+      background-color: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      z-index: 50;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text);
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 20px;
+    }
+
+    .logo-dot {
+      width: 10px;
+      height: 10px;
+      background-color: #000;
+      border-radius: 50%;
+    }
+
+    .back-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      text-decoration: none;
+      border: 1px solid var(--text);
+      padding: 8px 16px;
+      border-radius: 20px;
+      transition: all 0.2s ease;
+    }
+
+    .back-btn:hover {
+      background-color: var(--text);
+      color: #fff;
+    }
+
+    /* Layout Wrapper */
+    .layout {
+      display: flex;
+      padding-top: 70px;
+      min-height: 100vh;
+    }
+
+    /* Sidebar Styling */
+    .sidebar {
+      width: var(--sidebar-width);
+      position: fixed;
+      top: 70px;
+      bottom: 0;
+      left: 0;
+      background-color: #f8fafc;
+      border-right: 1px solid var(--border);
+      padding: 32px 24px;
+      overflow-y: auto;
+      z-index: 40;
+    }
+
+    .nav-section {
+      margin-bottom: 28px;
+    }
+
+    .nav-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .nav-link {
+      display: block;
+      padding: 8px 12px;
+      color: #334155;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .nav-link:hover {
+      background-color: #f1f5f9;
+      color: var(--text);
+    }
+
+    .nav-link.active {
+      background-color: #e2e8f0;
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* Main Content Container */
+    .main-content {
+      margin-left: var(--sidebar-width);
+      flex: 1;
+      padding: 48px 60px 80px 60px;
+      max-width: 960px;
+    }
+
+    /* Typography & Core Styles */
+    h1 {
+      font-family: var(--font-display);
+      font-size: 38px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    h2 {
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-top: 40px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+    }
+
+    h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-top: 24px;
+      margin-bottom: 12px;
+    }
+
+    p {
+      color: #334155;
+      font-size: 16px;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    ol, ul {
+      margin-bottom: 20px;
+      padding-left: 20px;
+    }
+
+    li {
+      margin-bottom: 8px;
+      color: #334155;
+      font-size: 15px;
+    }
+
+    /* Code Block Formatting */
+    pre {
+      background-color: #0f172a;
+      color: #f8fafc;
+      padding: 20px;
+      border-radius: 12px;
+      overflow-x: auto;
+      font-family: monospace, monospace;
+      font-size: 14px;
+      margin: 20px 0;
+      border: 1px solid #1e293b;
+    }
+
+    code {
+      font-family: monospace, monospace;
+      background-color: #f1f5f9;
+      color: #0f172a;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    pre code {
+      background-color: transparent;
+      color: inherit;
+      padding: 0;
+      border-radius: 0;
+    }
+
+    /* Callout Boxes */
+    .callout {
+      background-color: var(--accent-light);
+      border-left: 4px solid var(--accent);
+      padding: 16px 20px;
+      border-radius: 0 12px 12px 0;
+      margin: 24px 0;
+    }
+
+    .callout p {
+      margin: 0;
+      color: #1e3a8a;
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .sidebar {
+        display: none;
+      }
+      .main-content {
+        margin-left: 0;
+        padding: 32px 24px;
+      }
+      .header {
+        padding: 0 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Header -->
+  <header class="header">
+    <a href="/" class="brand">
+      <div class="logo-dot"></div>
+      Solvify Tech Docs
+    </a>
+    <a href="/" class="back-btn">
+      ← Back to Site
+    </a>
+  </header>
+
+  <div class="layout">
+    <!-- Navigation Sidebar -->
+    <aside class="sidebar">
+      <div class="nav-section">
+        <h4 class="nav-title">Welcome</h4>
+        <ul class="nav-links">
+          <li><a href="#getting-started" class="nav-link active">Getting Started</a></li>
+        </ul>
+      </div>
+      <div class="nav-section">
+        <h4 class="nav-title">AI Section Hub</h4>
+        <ul class="nav-links">
+          <li><a href="#ash-introduction" class="nav-link">Introduction</a></li>
+          <li><a href="#ash-installation" class="nav-link">1-Click Installation</a></li>
+          <li><a href="#ash-theme-editor" class="nav-link">Shopify Theme Editor</a></li>
+          <li><a href="#ash-troubleshooting" class="nav-link">Troubleshooting</a></li>
+        </ul>
+      </div>
+      <div class="nav-section">
+        <h4 class="nav-title">Klenzo: AI Variants</h4>
+        <ul class="nav-links">
+          <li><a href="#klenzo-introduction" class="nav-link">Introduction</a></li>
+          <li><a href="#klenzo-setup" class="nav-link">Setup Swatches</a></li>
+          <li><a href="#klenzo-customizations" class="nav-link">Customizations</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      <section id="getting-started">
+        <h1>Solvify Tech Apps Documentation</h1>
+        <p>Welcome to the official developer and merchant documentation for Solvify Tech Shopify apps. Our apps are built natively for Shopify using theme-extension architecture to guarantee peak performance, zero speed loss, and 100% theme compatibility.</p>
+        
+        <div class="callout">
+          <p>💡 Tip: You don't need any coding skills to install and run these apps. We automatically handle all theme integration via Shopify App Embeds.</p>
+        </div>
+      </section>
+
+      <!-- AI Section Hub Documentation -->
+      <section id="ash-introduction">
+        <h2>AI Section Hub</h2>
+        <h3>Introduction</h3>
+        <p>AI Section Hub allows you to install beautiful, pre-designed sections and templates directly into your Shopify Online Store 2.0. With over 700 sections (FAQ pages, Reels, Testimonial sliders, Volume bundles), you can customize your store without switching themes or hiring coding agencies.</p>
+      </section>
+
+      <section id="ash-installation">
+        <h3>1-Click Installation</h3>
+        <p>To integrate AI Section Hub with your active Shopify theme:</p>
+        <ol>
+          <li>Navigate to the Shopify App Store and click <strong>Install app</strong>.</li>
+          <li>Once logged in, click <strong>Activate App Embed</strong> in your admin panel.</li>
+          <li>Our helper script will automatically initialize custom Liquid configurations inside your theme architecture.</li>
+        </ol>
+      </section>
+
+      <section id="ash-theme-editor">
+        <h3>Theme Editor Customization</h3>
+        <p>To add sections to your homepage or product templates:</p>
+        <ol>
+          <li>Go to Shopify Admin &gt; <strong>Online Store</strong> &gt; <strong>Themes</strong> &gt; <strong>Customize</strong>.</li>
+          <li>In the left sidebar, click <strong>Add Section</strong>.</li>
+          <li>Scroll down to the <strong>Apps</strong> tab and select the desired AI Section Hub widget.</li>
+          <li>Configure styles, sizes, image assets, and titles dynamically.</li>
+        </ol>
+        <pre><code><!-- AI Section Hub Embed container -->
+<div id="ai-section-hub-container" data-app-embed>
+  <!-- App automatically renders premium components here -->
+</div></code></pre>
+      </section>
+
+      <section id="ash-troubleshooting">
+        <h3>Troubleshooting & Support</h3>
+        <p>If you encounter layout rendering issues or CSS overlapping:</p>
+        <ul>
+          <li>Ensure <strong>App Embeds</strong> is enabled in your Theme Editor settings.</li>
+          <li>Clear your local browser cache to reload the latest layout assets.</li>
+          <li>If sections appear distorted, email our support team directly at <a href="mailto:mitulzalavadiya11@gmail.com">mitulzalavadiya11@gmail.com</a> for instant assistance.</li>
+        </ul>
+      </section>
+
+      <!-- Klenzo: AI Variants Documentation -->
+      <section id="klenzo-introduction">
+        <h2>Klenzo: AI Variants</h2>
+        <h3>Introduction</h3>
+        <p>Klenzo: AI Variants replaces standard dropdown selectors with vibrant color swatches, dynamic image buttons, and responsive size blocks. Powered by AI, it reads your variant names (e.g., "Olive Green", "Charcoal Gray") and automatically fetches matching styles.</p>
+      </section>
+
+      <section id="klenzo-setup">
+        <h3>Setup Swatches</h3>
+        <p>To set up swatches on your product pages:</p>
+        <ol>
+          <li>Open the Klenzo Dashboard from your Shopify apps dashboard.</li>
+          <li>Choose your swatch styles (Color bubble, image preview, custom text button).</li>
+          <li>Go to the Shopify Theme Customizer, add the <strong>Klenzo Swatch block</strong> inside your Product Information section, and drag it next to the variant selector.</li>
+        </ol>
+      </section>
+
+      <section id="klenzo-customizations">
+        <h3>Customizing Color Codes</h3>
+        <p>By default, Klenzo detects variant names automatically. To specify exact HEX color codes:</p>
+        <p>Open the app settings dashboard, click <strong>Color Mapping</strong>, and map custom variant names to custom colors:</p>
+        <pre><code>{
+  "Olive Green": "#6b7c3f",
+  "Charcoal Gray": "#2b2b2b",
+  "Ocean Blue": "#0077b6"
+}</code></pre>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    // Highlight sidebar links based on scroll position
+    const links = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('section');
+
+    window.addEventListener('scroll', () => {
+      let currentSectionId = '';
+      
+      sections.forEach(section => {
+        const top = section.offsetTop - 120;
+        if (window.scrollY >= top) {
+          currentSectionId = section.getAttribute('id');
+        }
+      });
+
+      links.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href').substring(1) === currentSectionId) {
+          link.classList.add('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

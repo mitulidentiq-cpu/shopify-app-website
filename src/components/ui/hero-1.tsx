@@ -1,4 +1,3 @@
-import { ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 interface HeroProps {
@@ -43,17 +42,11 @@ export function Hero({
 
       {/* Eyebrow */}
       {eyebrow && (
-        <a href="#" className="group inline-block mb-4">
-          <span
-            className="text-sm text-black mx-auto px-5 py-2 
-            bg-gradient-to-tr from-zinc-300/5 via-gray-400/5 to-transparent  
-            border border-black 
-            rounded-3xl w-fit tracking-tight uppercase flex items-center justify-center"
-          >
+        <div className="mb-4">
+          <span className="text-xs md:text-sm font-bold uppercase tracking-widest text-zinc-500">
             {eyebrow}
-            <ChevronRight className="inline w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
           </span>
-        </a>
+        </div>
       )}
 
       {/* Title */}

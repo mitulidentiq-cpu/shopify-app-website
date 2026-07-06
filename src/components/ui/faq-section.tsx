@@ -62,7 +62,9 @@ export function FaqSection() {
               Quick answers to common questions about Bundlify. Can't find what you are looking for? Learn more in our full documentation.
             </p>
             <a
-              href="#"
+              href="/docs.html"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-white font-bold text-sm border-b border-white pb-1 w-fit hover:text-zinc-300 hover:border-zinc-300 transition-colors group mt-2"
             >
               Read full documentation
