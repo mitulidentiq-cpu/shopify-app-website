@@ -59,7 +59,7 @@ export function CursorFollower() {
           setHoverText(textAttr);
         } else if (target.closest("a")?.href.includes("apps.shopify.com")) {
           setHoverText("INSTALL");
-        } else if (target.closest("#app-showcase") || target.closest("#sectionly-showcase")) {
+        } else if (target.closest("#app-showcase") || target.closest("#-showcase")) {
           setHoverText("VIEW");
         } else {
           setHoverText("");

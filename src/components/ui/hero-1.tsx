@@ -83,7 +83,7 @@ export function Hero({
             variant="outline"
             className="mt-[-20px] w-fit md:w-52 z-20 tracking-tighter text-center text-lg border-black text-black hover:bg-zinc-100"
           >
-            <a href={ctaHref}>{ctaLabel}</a>
+            <a href={ctaHref} target="_blank" rel="noopener noreferrer">{ctaLabel}</a>
           </Button>
         </div>
       )}

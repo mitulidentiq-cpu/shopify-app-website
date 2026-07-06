@@ -41,10 +41,10 @@ function App() {
           subtitle="Increase your Average Order Value (AOV) instantly. Create stunning volume discounts, product bundles, and smart quantity breaks. No coding required."
           eyebrow="Boost Average Order Value"
           ctaLabel="Install on Shopify Store"
-          ctaHref="https://apps.shopify.com"
+          ctaHref="https://apps.shopify.com/sectionly?st_source=autocomplete&surface_detail=autocomplete_apps"
         />
 
-        {/* Sectionly App Showcase — Meet AI Section Hub */}
+        {/* AI Section Hub App Showcase */}
         <SectionlyShowcase />
 
         {/* App Feature Showcase — Meet Klenzo: AI Variants */}
