@@ -3,41 +3,18 @@ import logo1 from "@/app logo/logo1.png";
 export function MinimalFooter() {
 	const year = new Date().getFullYear();
 
-	const services = [
-		{
-			title: 'Web Dev',
-			href: 'https://www.solvifytech.in/services/web-development',
-		},
-		{
-			title: 'App Dev',
-			href: 'https://www.solvifytech.in/services/app-development',
-		},
-		{
-			title: 'UI/UX Design',
-			href: 'https://www.solvifytech.in/services/ui-ux-design',
-		},
-		{
-			title: 'SEO & Marketing',
-			href: 'https://www.solvifytech.in/services/digital-marketing',
-		},
-	];
-
 	const company = [
 		{
 			title: 'About Us',
-			href: 'https://www.solvifytech.in/about-us',
+			href: '#',
 		},
 		{
 			title: 'Contact Us',
-			href: 'https://www.solvifytech.in/contact-us',
+			href: 'mailto:mitulzalavadiya11@gmail.com',
 		},
 		{
-			title: 'Portfolio',
-			href: 'https://www.solvifytech.in/portfolio',
-		},
-		{
-			title: 'Blogs',
-			href: 'https://www.solvifytech.in/blog',
+			title: 'FAQs',
+			href: '#faq',
 		},
 	];
 
@@ -99,7 +76,7 @@ export function MinimalFooter() {
 							<img src={logo1} alt="Klenzo Logo" className="h-8 w-auto object-contain" style={{ filter: 'invert(1)' }} />
 						</a>
 						<p className="text-zinc-400 max-w-sm text-sm text-balance">
-							Maximize your Average Order Value on Shopify with lightning-fast AI-powered bundles, upcells, and volume discounts. Built by Solvify Tech.
+							Maximize your Average Order Value on Shopify with lightning-fast AI-powered bundles, upcells, and volume discounts. Built by Klenzo.
 						</p>
 						<div className="flex gap-2">
 							{socialLinks.map((item, i) => (
@@ -115,25 +92,7 @@ export function MinimalFooter() {
 							))}
 						</div>
 					</div>
-					<div className="col-span-2 w-full md:col-span-1">
-						<span className="text-zinc-400 mb-3 block text-xs font-semibold uppercase tracking-wider">
-							Services
-						</span>
-						<div className="flex flex-col gap-2">
-							{services.map(({ href, title }, i) => (
-								<a
-									key={i}
-									className="w-max text-sm text-zinc-400 duration-200 hover:text-white hover:underline"
-									target="_blank"
-									rel="noopener noreferrer"
-									href={href}
-								>
-									{title}
-								</a>
-							))}
-						</div>
-					</div>
-					<div className="col-span-2 w-full md:col-span-1">
+					<div className="col-span-3 w-full md:col-span-1.5">
 						<span className="text-zinc-400 mb-3 block text-xs font-semibold uppercase tracking-wider">
 							Company
 						</span>
@@ -142,8 +101,6 @@ export function MinimalFooter() {
 								<a
 									key={i}
 									className="w-max text-sm text-zinc-400 duration-200 hover:text-white hover:underline"
-									target="_blank"
-									rel="noopener noreferrer"
 									href={href}
 								>
 									{title}
@@ -151,7 +108,7 @@ export function MinimalFooter() {
 							))}
 						</div>
 					</div>
-					<div className="col-span-2 w-full md:col-span-1">
+					<div className="col-span-3 w-full md:col-span-1.5">
 						<span className="text-zinc-400 mb-3 block text-xs font-semibold uppercase tracking-wider">
 							Products
 						</span>
@@ -172,7 +129,7 @@ export function MinimalFooter() {
 				</div>
 				<div className="border-t border-zinc-800 flex flex-col justify-between gap-2 py-6 px-8">
 					<p className="text-zinc-500 text-center text-xs">
-						&copy; {year} Solvify Tech. All rights reserved. Shopify is a registered trademark of Shopify Inc.
+						&copy; {year} Klenzo. All rights reserved. Shopify is a registered trademark of Shopify Inc.
 					</p>
 				</div>
 			</div>

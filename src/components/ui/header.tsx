@@ -36,23 +36,19 @@ function Header1() {
         },
         {
             title: "Company",
-            description: "Solvify Tech offers bespoke Web, App, and Digital Marketing Solutions.",
+            description: "Klenzo builds high-performance tools for modern Shopify merchants.",
             items: [
                 {
                     title: "About us",
-                    href: "https://www.solvifytech.in/about-us",
-                },
-                {
-                    title: "Our Services",
-                    href: "https://www.solvifytech.in/services",
-                },
-                {
-                    title: "Portfolio",
-                    href: "https://www.solvifytech.in/portfolio",
+                    href: "#",
                 },
                 {
                     title: "Contact us",
-                    href: "https://www.solvifytech.in/contact-us",
+                    href: "mailto:mitulzalavadiya11@gmail.com",
+                },
+                {
+                    title: "FAQs",
+                    href: "#faq",
                 },
             ],
         },
