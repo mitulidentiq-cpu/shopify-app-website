@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import { Star, Layers } from "lucide-react";
+import { Star, Layers, ArrowUpRight } from "lucide-react";
 
 import img1 from "@/images/images1.jpg";
 import img2 from "@/images/images2.jpg";
@@ -13,6 +13,7 @@ import img7 from "@/images/images7.jpg";
 import img8 from "@/images/images8.jpg";
 import img9 from "@/images/images9.jpg";
 import img10 from "@/images/images10.jpg";
+import aiSectionHubLogo from "@/images/ai sction hub logo.png";
 
 const features = [
   "700+ ready-made premium Shopify sections",
@@ -99,9 +100,22 @@ export function SectionlyShowcase() {
             </div>
 
             <div className="flex flex-col gap-1">
-              <h3 className="text-2xl md:text-3xl font-extrabold text-white leading-tight">
-                AI Section Hub
-              </h3>
+              <a
+                href="https://apps.shopify.com/sectionly?st_source=autocomplete&surface_detail=autocomplete_apps"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group hover:opacity-80 transition-opacity w-fit"
+              >
+                <h3 className="text-2xl md:text-3xl font-extrabold text-white leading-tight flex items-center gap-3">
+                  <img
+                    src={aiSectionHubLogo}
+                    alt="AI Section Hub Logo"
+                    className="w-8 h-8 md:w-10 md:h-10 rounded-lg object-contain"
+                  />
+                  <span>AI Section Hub</span>
+                  <ArrowUpRight className="w-5 h-5 text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-200" />
+                </h3>
+              </a>
               <p className="text-zinc-400 text-sm md:text-base leading-relaxed max-w-sm">
                 Premium native theme sections, FAQ accordions, shoppable video reels, and volume discount widgets — all without touching a single line of code.
               </p>

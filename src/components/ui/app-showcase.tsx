@@ -3,6 +3,7 @@
 import { motion } from "motion/react";
 import { ArrowUpRight, Star } from "lucide-react";
 import klenzoVideo from "@/videos/klenzo ai vriant main video.mp4";
+import klenzoLogo from "@/images/klenzo logo.jpg";
 
 const features = [
   "Replace native Shopify variant dropdowns with stunning swatches",
@@ -61,9 +62,22 @@ export function AppShowcase() {
             className="flex flex-col gap-6"
           >
             <div className="flex flex-col gap-1">
-              <h3 className="text-2xl md:text-3xl font-extrabold text-white leading-tight">
-                Klenzo: AI Variants
-              </h3>
+              <a
+                href="https://apps.shopify.com/variantify-1"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group hover:opacity-80 transition-opacity w-fit"
+              >
+                <h3 className="text-2xl md:text-3xl font-extrabold text-white leading-tight flex items-center gap-3">
+                  <img
+                    src={klenzoLogo}
+                    alt="Klenzo Logo"
+                    className="w-8 h-8 md:w-10 md:h-10 rounded-lg object-contain"
+                  />
+                  <span>Klenzo: AI Variants</span>
+                  <ArrowUpRight className="w-5 h-5 text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-200" />
+                </h3>
+              </a>
               <p className="text-zinc-400 text-sm md:text-base leading-relaxed max-w-sm">
                 Visual swatch selectors powered by AI that auto-detect your product variants and display them beautifully — no code needed.
               </p>
