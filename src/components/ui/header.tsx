@@ -36,23 +36,23 @@ function Header1() {
         },
         {
             title: "Company",
-            description: "Managing a small business today is already tough.",
+            description: "Solvify Tech offers bespoke Web, App, and Digital Marketing Solutions.",
             items: [
                 {
                     title: "About us",
-                    href: "/about",
+                    href: "https://www.solvifytech.in/about-us",
                 },
                 {
-                    title: "Fundraising",
-                    href: "/fundraising",
+                    title: "Our Services",
+                    href: "https://www.solvifytech.in/services",
                 },
                 {
-                    title: "Investors",
-                    href: "/investors",
+                    title: "Portfolio",
+                    href: "https://www.solvifytech.in/portfolio",
                 },
                 {
                     title: "Contact us",
-                    href: "/contact",
+                    href: "https://www.solvifytech.in/contact-us",
                 },
             ],
         },
