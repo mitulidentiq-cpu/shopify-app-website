@@ -43,7 +43,7 @@ export function MinimalFooter() {
 
 	const products = [
 		{
-			title: 'Sectionly',
+			title: 'AI Section Hub',
 			href: 'https://apps.shopify.com/sectionly?search_id=51ad5287-4c05-4dd7-a428-e2f8353694e1&surface_detail=ai9+section+hub&surface_inter_position=1&surface_intra_position=5&surface_type=search',
 		},
 		{
