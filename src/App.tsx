@@ -11,18 +11,18 @@ import { MinimalFooter } from "@/components/ui/minimal-footer"
 
 function App() {
   const partnerLogos = [
-    "https://cdn.worldvectorlogo.com/logos/react-2.svg",
-    "https://cdn.worldvectorlogo.com/logos/next-js.svg",
-    "https://cdn.worldvectorlogo.com/logos/vercel.svg",
-    "https://cdn.worldvectorlogo.com/logos/typescript.svg",
-    "https://cdn.worldvectorlogo.com/logos/tailwindcss.svg",
-    "https://cdn.worldvectorlogo.com/logos/stripe-4.svg",
-    "https://cdn.worldvectorlogo.com/logos/notion-2.svg",
-    "https://cdn.worldvectorlogo.com/logos/github-icon-1.svg",
-    "https://cdn.worldvectorlogo.com/logos/figma-icon-one-color.svg",
-    "https://cdn.worldvectorlogo.com/logos/framer-motion.svg",
-    "https://cdn.worldvectorlogo.com/logos/storybook-1.svg",
-    "https://cdn.worldvectorlogo.com/logos/sanity.svg",
+    "https://cdn.simpleicons.org/react/000000",
+    "https://cdn.simpleicons.org/nextdotjs/000000",
+    "https://cdn.simpleicons.org/vercel/000000",
+    "https://cdn.simpleicons.org/typescript/000000",
+    "https://cdn.simpleicons.org/tailwindcss/000000",
+    "https://cdn.simpleicons.org/stripe/000000",
+    "https://cdn.simpleicons.org/notion/000000",
+    "https://cdn.simpleicons.org/github/000000",
+    "https://cdn.simpleicons.org/figma/000000",
+    "https://cdn.simpleicons.org/framer/000000",
+    "https://cdn.simpleicons.org/storybook/000000",
+    "https://cdn.simpleicons.org/sanity/000000",
   ]
 
   return (

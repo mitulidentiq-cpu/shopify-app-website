@@ -96,11 +96,11 @@ export const AnimatedCarousel = ({
 
                   return (
                     <CarouselItem className={`${itemsPerViewMobileClass} ${itemsPerViewDesktopClass}`} key={index}>
-                      <div className={`flex rounded-md ${logoContainerWidth} ${logoContainerHeight} items-center justify-center p-4 hover:bg-zinc-900 transition-colors ${logoClassName}`}>
+                      <div className={`flex rounded-md ${logoContainerWidth} ${logoContainerHeight} items-center justify-center p-4 hover:bg-zinc-100 transition-colors ${logoClassName}`}>
                         <img
                           src={logo}
                           alt={`Logo ${index + 1}`}
-                          className={`${logoImageSizeClasses} object-contain brightness-0 invert opacity-70 hover:opacity-100 transition-opacity duration-300`}
+                          className={`${logoImageSizeClasses} object-contain opacity-50 hover:opacity-100 transition-opacity duration-300`}
                         />
                       </div>
                     </CarouselItem>
