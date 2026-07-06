@@ -22,23 +22,15 @@ function Header1() {
         },
         {
             title: "Product",
-            description: "Managing a small business today is already tough.",
+            description: "Install our powerful Shopify apps to grow your store instantly.",
             items: [
                 {
-                    title: "Reports",
-                    href: "/reports",
+                    title: "Sectionly",
+                    href: "https://apps.shopify.com/sectionly?search_id=51ad5287-4c05-4dd7-a428-e2f8353694e1&surface_detail=ai9+section+hub&surface_inter_position=1&surface_intra_position=5&surface_type=search",
                 },
                 {
-                    title: "Statistics",
-                    href: "/statistics",
-                },
-                {
-                    title: "Dashboards",
-                    href: "/dashboards",
-                },
-                {
-                    title: "Recordings",
-                    href: "/recordings",
+                    title: "Variantify",
+                    href: "https://apps.shopify.com/variantify-1?search_id=2bf64c58-8f42-4490-94cc-ea44d5bab45f&surface_detail=klenzo&surface_inter_position=1&surface_intra_position=1&surface_type=search",
                 },
             ],
         },
@@ -95,14 +87,18 @@ function Header1() {
                                                                 {item.description}
                                                             </p>
                                                         </div>
-                                                        <Button size="sm" className="mt-10">
-                                                            Book a call today
+                                                        <Button size="sm" className="mt-10" asChild>
+                                                            <a href="mailto:mitulzalavadiya11@gmail.com">
+                                                                Email us today
+                                                            </a>
                                                         </Button>
                                                     </div>
                                                     <div className="flex flex-col text-sm h-full justify-end">
                                                         {item.items?.map((subItem) => (
                                                             <NavigationMenuLink
                                                                 href={subItem.href}
+                                                                target={subItem.href.startsWith("http") ? "_blank" : undefined}
+                                                                rel={subItem.href.startsWith("http") ? "noopener noreferrer" : undefined}
                                                                 key={subItem.title}
                                                                 className="flex flex-row justify-between items-center hover:bg-muted py-2 px-4 rounded"
                                                             >
@@ -155,6 +151,8 @@ function Header1() {
                                                 <a
                                                     key={subItem.title}
                                                     href={subItem.href}
+                                                    target={subItem.href.startsWith("http") ? "_blank" : undefined}
+                                                    rel={subItem.href.startsWith("http") ? "noopener noreferrer" : undefined}
                                                     className="flex justify-between items-center pl-4 py-1 text-muted-foreground hover:text-foreground"
                                                 >
                                                     <span>
