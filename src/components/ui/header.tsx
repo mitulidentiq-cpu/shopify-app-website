@@ -125,10 +125,9 @@ function Header1() {
                 </div>
                 <div className="flex justify-end w-full gap-4 items-center">
                     <a href="https://apps.shopify.com" target="_blank" rel="noopener noreferrer" className="hidden md:inline-block z-20">
-                        <img src={shopifyBadge} alt="Shopify Badge" className="h-8 w-auto object-contain hover:scale-105 transition-transform duration-300" />
+                        <img src={shopifyBadge} alt="Shopify Badge" className="h-12 w-auto object-contain hover:scale-105 transition-transform duration-300" />
                     </a>
                     <div className="border-r h-6 hidden md:block border-border"></div>
-                    <Button variant="outline">Sign in</Button>
                     <Button>Get started</Button>
                 </div>
                 <div className="flex w-12 shrink lg:hidden items-end justify-end">

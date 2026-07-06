@@ -37,66 +37,35 @@
   :root {
     --background: 0 0% 100%;
     --foreground: 0 0% 0%;
-    
+
     --card: 0 0% 100%;
     --card-foreground: 0 0% 0%;
-    
+
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 0%;
-    
+
     --primary: 0 0% 0%;
     --primary-foreground: 0 0% 100%;
-    
+
     --secondary: 0 0% 96%;
     --secondary-foreground: 0 0% 0%;
-    
+
     --muted: 0 0% 96%;
     --muted-foreground: 0 0% 38%;
-    
+
     --accent: 0 0% 96%;
     --accent-foreground: 0 0% 0%;
-    
+
     --destructive: 0 0% 0%;
     --destructive-foreground: 0 0% 100%;
-    
+
     --border: 0 0% 89%;
     --input: 0 0% 89%;
     --ring: 0 0% 0%;
-    
-    --radius: 0.5rem;
-  }
 
-  /* Force dark theme default or systems that prefer dark */
-  .dark, :root {
-    --background: 0 0% 0%;
-    --foreground: 0 0% 100%;
-    
-    --card: 0 0% 0%;
-    --card-foreground: 0 0% 100%;
-    
-    --popover: 0 0% 0%;
-    --popover-foreground: 0 0% 100%;
-    
-    --primary: 0 0% 100%;
-    --primary-foreground: 0 0% 0%;
-    
-    --secondary: 0 0% 9%;
-    --secondary-foreground: 0 0% 100%;
-    
-    --muted: 0 0% 9%;
-    --muted-foreground: 0 0% 63%;
-    
-    --accent: 0 0% 9%;
-    --accent-foreground: 0 0% 100%;
-    
-    --destructive: 0 0% 100%;
-    --destructive-foreground: 0 0% 0%;
-    
-    --border: 0 0% 15%;
-    --input: 0 0% 15%;
-    --ring: 0 0% 100%;
-  }
+    --radius: 0.5rem;
 }
+
 
 @layer base {
   * {
@@ -136,4 +105,3 @@
 .animate-fade-up {
   animation: fade-up 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
-
