@@ -8,7 +8,7 @@ import {
     NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { Menu, MoveRight, X } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import logo1 from "@/app logo/logo1.png"
 import shopifyBadge from "@/images/shopify badge.png"
@@ -59,8 +59,30 @@ function Header1() {
     ];
 
     const [isOpen, setOpen] = useState(false);
+    const [visible, setVisible] = useState(true);
+    const [lastScrollY, setLastScrollY] = useState(0);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const currentScrollY = window.scrollY;
+            if (currentScrollY > lastScrollY && currentScrollY > 80 && !isOpen) {
+                // Scrolling down - hide header
+                setVisible(false);
+            } else {
+                // Scrolling up - show header
+                setVisible(true);
+            }
+            setLastScrollY(currentScrollY);
+        };
+
+        window.addEventListener("scroll", handleScroll, { passive: true });
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, [lastScrollY, isOpen]);
+
     return (
-        <header className="w-full z-40 fixed top-0 left-0 bg-background border-b border-border">
+        <header className={`w-full z-40 fixed top-0 left-0 bg-background border-b border-border transition-transform duration-300 ease-in-out ${
+            visible ? "translate-y-0" : "-translate-y-full"
+        }`}>
             <div className="container relative mx-auto min-h-20 flex gap-4 flex-row lg:grid lg:grid-cols-3 items-center px-4">
                 <div className="justify-start items-center gap-4 lg:flex hidden flex-row">
                     <NavigationMenu className="flex justify-start items-start">
@@ -117,11 +139,11 @@ function Header1() {
                     </NavigationMenu>
                 </div>
                 <div className="flex lg:justify-center">
-                    <img src={logo1} alt="App Logo" className="h-10 w-auto object-contain" style={{ filter: 'invert(1)' }} />
+                    <img src={logo1} alt="App Logo" className="h-14 w-auto object-contain" style={{ filter: 'invert(1)' }} />
                 </div>
                 <div className="flex justify-end w-full gap-4 items-center">
                     <a href="https://apps.shopify.com" target="_blank" rel="noopener noreferrer" className="hidden md:inline-block z-20">
-                        <img src={shopifyBadge} alt="Shopify Badge" className="h-12 w-auto object-contain hover:scale-105 transition-transform duration-300" />
+                        <img src={shopifyBadge} alt="Shopify Badge" className="h-10 w-auto object-contain hover:scale-105 transition-transform duration-300" />
                     </a>
                     <div className="border-r h-6 hidden md:block border-border"></div>
                     <Button>Get started</Button>
