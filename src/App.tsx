@@ -3,6 +3,7 @@ import { Hero } from "@/components/ui/hero-1"
 import { CursorFollower } from "@/components/ui/cursor-follower"
 import { AppShowcase } from "@/components/ui/app-showcase"
 import { SectionlyShowcase } from "@/components/ui/sectionly-showcase"
+import { AppsOverview } from "@/components/ui/apps-overview"
 import { AnimatedCarousel } from "@/components/ui/logo-carousel"
 import { HeroScrollDemo } from "@/components/ui/hero-scroll-demo"
 import { FaqSection } from "@/components/ui/faq-section"
@@ -43,6 +44,9 @@ function App() {
           ctaLabel="Install on Shopify Store"
           ctaHref="https://apps.shopify.com/sectionly?st_source=autocomplete&surface_detail=autocomplete_apps"
         />
+
+        {/* Apps Overview Logo Cards Section */}
+        <AppsOverview />
 
         {/* AI Section Hub App Showcase */}
         <SectionlyShowcase />
