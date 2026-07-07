@@ -14,7 +14,7 @@ export function MinimalFooter() {
 		},
 		{
 			title: 'Contact Us',
-			href: 'mailto:mitulzalavadiya11@gmail.com',
+			href: '/contact',
 		},
 		{
 			title: 'FAQs',

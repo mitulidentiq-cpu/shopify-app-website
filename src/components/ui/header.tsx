@@ -49,7 +49,7 @@ function Header1() {
                 },
                 {
                     title: "Contact us",
-                    href: "mailto:mitulzalavadiya11@gmail.com",
+                    href: "/contact",
                 },
                 {
                     title: "FAQs",
@@ -63,7 +63,7 @@ function Header1() {
     const [visible, setVisible] = useState(true);
     const [lastScrollY, setLastScrollY] = useState(0);
     const location = useLocation();
-    const isDarkPage = location.pathname === '/about' || location.pathname === '/connect';
+    const isDarkPage = location.pathname === '/about' || location.pathname === '/connect' || location.pathname === '/contact';
 
     useEffect(() => {
         const handleScroll = () => {

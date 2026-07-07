@@ -11,6 +11,7 @@ import { CtaBanner } from "@/components/ui/cta-banner"
 import { MinimalFooter } from "@/components/ui/minimal-footer"
 import { AboutPage } from "@/pages/about"
 import { ConnectPage } from "@/pages/connect"
+import { ContactPage } from "@/pages/contact"
 
 function HomePage() {
   const partnerLogos = [
@@ -70,6 +71,7 @@ function App() {
       <Route path="/" element={<HomePage />} />
       <Route path="/about" element={<AboutPage />} />
       <Route path="/connect" element={<ConnectPage />} />
+      <Route path="/contact" element={<ContactPage />} />
     </Routes>
   )
 }
