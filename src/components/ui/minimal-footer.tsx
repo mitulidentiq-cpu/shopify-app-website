@@ -17,6 +17,10 @@ export function MinimalFooter() {
 			href: '/contact',
 		},
 		{
+			title: 'Privacy Policy',
+			href: '/privacy',
+		},
+		{
 			title: 'FAQs',
 			href: '#faq',
 		},
