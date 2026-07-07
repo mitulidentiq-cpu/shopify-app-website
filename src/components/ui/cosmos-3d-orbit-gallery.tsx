@@ -25,6 +25,9 @@ export function ParticleSphere({ images, onSelectImage }: ParticleSphereProps) {
   const groupRef = useRef<THREE.Group>(null)
   const coreRef1 = useRef<THREE.Mesh>(null)
   const coreRef2 = useRef<THREE.Mesh>(null)
+  
+  // Track pointer down coordinates to distinguish between click and drag
+  const pointerDownPos = useRef({ x: 0, y: 0 })
 
   const textures = useTexture(images)
 
@@ -152,9 +155,22 @@ export function ParticleSphere({ images, onSelectImage }: ParticleSphereProps) {
             key={`img-grp-${index}`}
             position={image.position}
             rotation={image.rotation}
-            onClick={(e) => {
+            onPointerDown={(e) => {
               e.stopPropagation()
-              onSelectImage(image.textureIndex)
+              // Store mouse position on down
+              pointerDownPos.current = { x: e.nativeEvent.clientX, y: e.nativeEvent.clientY }
+            }}
+            onPointerUp={(e) => {
+              e.stopPropagation()
+              // Calculate distance moved to prevent opening lightbox on drag/rotate
+              const dx = e.nativeEvent.clientX - pointerDownPos.current.x
+              const dy = e.nativeEvent.clientY - pointerDownPos.current.y
+              const dist = Math.sqrt(dx * dx + dy * dy)
+              
+              // Only open lightbox if the drag distance is negligible (less than 6 pixels)
+              if (dist < 6) {
+                onSelectImage(image.textureIndex)
+              }
             }}
             onPointerOver={(e) => {
               e.stopPropagation()

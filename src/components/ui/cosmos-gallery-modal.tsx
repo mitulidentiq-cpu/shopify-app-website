@@ -111,7 +111,10 @@ export function CosmosGalleryModal({ isOpen, onClose }: CosmosGalleryModalProps)
           </motion.div>
 
           {/* 3D Canvas */}
-          <div className="w-full h-full cursor-grab active:cursor-grabbing">
+          <div 
+            className="w-full h-full cursor-grab active:cursor-grabbing"
+            style={{ touchAction: "none" }}
+          >
             <Suspense
               fallback={
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-white gap-3 select-none">
@@ -136,8 +139,10 @@ export function CosmosGalleryModal({ isOpen, onClose }: CosmosGalleryModalProps)
                   enablePan={true}
                   enableZoom={true}
                   enableRotate={true}
-                  maxDistance={25}
-                  minDistance={4}
+                  maxDistance={22}
+                  minDistance={5}
+                  enableDamping={true}
+                  dampingFactor={0.05}
                 />
               </Canvas>
             </Suspense>
