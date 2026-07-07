@@ -1,7 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "motion/react";
 import { Star, Layers, ArrowUpRight } from "lucide-react";
+import { CosmosGalleryModal } from "@/components/ui/cosmos-gallery-modal";
 
 import img1 from "@/images/images1.jpg";
 import img2 from "@/images/images2.jpg";
@@ -64,6 +66,8 @@ function MarqueeRow({ images, direction }: { images: string[]; direction: "left"
 }
 
 export function SectionlyShowcase() {
+  const [isCosmosOpen, setIsCosmosOpen] = useState(false);
+
   return (
     <section id="sectionly-showcase" className="w-full bg-black py-20 md:py-28 border-t border-zinc-900">
       <div className="container mx-auto max-w-6xl px-6 md:px-8">
@@ -176,6 +180,15 @@ export function SectionlyShowcase() {
               >
                 Browse Sections
               </motion.a>
+
+              <motion.button
+                onClick={() => setIsCosmosOpen(true)}
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.97 }}
+                className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black font-bold text-sm rounded-full cursor-pointer hover:bg-zinc-200 shadow-md transition-all duration-200"
+              >
+                Look Once (3D Space)
+              </motion.button>
             </div>
           </motion.div>
 
@@ -200,6 +213,7 @@ export function SectionlyShowcase() {
 
         </div>
       </div>
+      <CosmosGalleryModal isOpen={isCosmosOpen} onClose={() => setIsCosmosOpen(false)} />
     </section>
   );
 }
