@@ -1,3 +1,4 @@
+import { Routes, Route } from 'react-router-dom'
 import { Header1 } from "@/components/ui/header"
 import { Hero } from "@/components/ui/hero-1"
 import { CursorFollower } from "@/components/ui/cursor-follower"
@@ -8,8 +9,9 @@ import { HeroScrollDemo } from "@/components/ui/hero-scroll-demo"
 import { FaqSection } from "@/components/ui/faq-section"
 import { CtaBanner } from "@/components/ui/cta-banner"
 import { MinimalFooter } from "@/components/ui/minimal-footer"
+import { AboutPage } from "@/pages/about"
 
-function App() {
+function HomePage() {
   const partnerLogos = [
     "https://cdn.simpleicons.org/react/000000",
     "https://cdn.simpleicons.org/nextdotjs/000000",
@@ -27,15 +29,9 @@ function App() {
 
   return (
     <div className="relative min-h-screen bg-background text-foreground">
-      {/* Custom premium cursor follower */}
       <CursorFollower />
-
-      {/* Header component integration */}
       <Header1 />
-      
-      {/* Main Landing Page content */}
       <main className="pt-16 md:pt-20">
-        {/* Hero Section */}
         <Hero
           title="Boost Shopify Sales with AI-Powered Bundles"
           subtitle="Increase your Average Order Value (AOV) instantly. Create stunning volume discounts, product bundles, and smart quantity breaks. No coding required."
@@ -43,14 +39,8 @@ function App() {
           ctaLabel="Install on Shopify Store"
           ctaHref="https://apps.shopify.com/sectionly?st_source=autocomplete&surface_detail=autocomplete_apps"
         />
-
-        {/* AI Section Hub App Showcase */}
         <SectionlyShowcase />
-
-        {/* App Feature Showcase — Meet Klenzo: AI Variants */}
         <AppShowcase />
-
-        {/* Brand/Partner Logo Carousel Section */}
         <AnimatedCarousel
           title="Trusted by Modern Shopify Teams"
           logos={partnerLogos}
@@ -64,20 +54,21 @@ function App() {
           logoImageHeight="h-8"
           padding="pt-12 lg:pt-16 pb-0"
         />
-
-        {/* Scroll Reveal Mockup Section */}
         <HeroScrollDemo />
-
-        {/* Animated FAQ Accordion Section */}
         <FaqSection />
       </main>
-
-      {/* CTA Banner block between FAQ and Footer */}
       <CtaBanner />
-
-      {/* Footer component */}
       <MinimalFooter />
     </div>
+  )
+}
+
+function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/about" element={<AboutPage />} />
+    </Routes>
   )
 }
 

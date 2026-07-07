@@ -40,7 +40,7 @@ function Header1() {
             items: [
                 {
                     title: "About us",
-                    href: "#",
+                    href: "/about",
                 },
                 {
                     title: "Contact us",
