@@ -13,6 +13,8 @@ import { AboutPage } from "@/pages/about"
 import { ConnectPage } from "@/pages/connect"
 import { ContactPage } from "@/pages/contact"
 import { PrivacyPage } from "@/pages/privacy"
+import { TermsPage } from "@/pages/terms"
+import { GuidePage } from "@/pages/guide"
 
 function HomePage() {
   const partnerLogos = [
@@ -74,6 +76,8 @@ function App() {
       <Route path="/connect" element={<ConnectPage />} />
       <Route path="/contact" element={<ContactPage />} />
       <Route path="/privacy" element={<PrivacyPage />} />
+      <Route path="/terms" element={<TermsPage />} />
+      <Route path="/guide" element={<GuidePage />} />
     </Routes>
   )
 }

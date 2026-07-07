@@ -55,6 +55,10 @@ function Header1() {
                     title: "FAQs",
                     href: "#faq",
                 },
+                {
+                    title: "User Guide",
+                    href: "/guide",
+                },
             ],
         },
     ];
@@ -63,7 +67,7 @@ function Header1() {
     const [visible, setVisible] = useState(true);
     const [lastScrollY, setLastScrollY] = useState(0);
     const location = useLocation();
-    const isDarkPage = location.pathname === '/about' || location.pathname === '/connect' || location.pathname === '/contact' || location.pathname === '/privacy';
+    const isDarkPage = location.pathname === '/about' || location.pathname === '/connect' || location.pathname === '/contact' || location.pathname === '/privacy' || location.pathname === '/terms' || location.pathname === '/guide';
 
     useEffect(() => {
         const handleScroll = () => {

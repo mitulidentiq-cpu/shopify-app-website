@@ -21,6 +21,14 @@ export function MinimalFooter() {
 			href: '/privacy',
 		},
 		{
+			title: 'Terms of Service',
+			href: '/terms',
+		},
+		{
+			title: 'User Guide',
+			href: '/guide',
+		},
+		{
 			title: 'FAQs',
 			href: '#faq',
 		},
@@ -78,8 +86,8 @@ export function MinimalFooter() {
 	return (
 		<footer className="relative bg-black text-white border-t border-zinc-800">
 			<div className="bg-[radial-gradient(35%_80%_at_30%_0%,rgba(255,255,255,0.05),transparent)] mx-auto max-w-5xl">
-				<div className="grid grid-cols-6 gap-8 pt-12 pb-8 px-8">
-					<div className="col-span-6 flex flex-col gap-5 md:col-span-3">
+				<div className="grid grid-cols-12 gap-8 pt-12 pb-8 px-8">
+					<div className="col-span-12 flex flex-col gap-5 md:col-span-6">
 						<a href="#" className="w-max">
 							<img src={logo1} alt="Klenzo Logo" className="h-8 w-auto object-contain" style={{ filter: 'invert(1)' }} />
 						</a>
@@ -100,7 +108,7 @@ export function MinimalFooter() {
 							))}
 						</div>
 					</div>
-					<div className="col-span-3 w-full md:col-span-1.5">
+					<div className="col-span-6 w-full md:col-span-3">
 						<span className="text-zinc-400 mb-3 block text-xs font-semibold uppercase tracking-wider">
 							Company
 						</span>
@@ -116,7 +124,7 @@ export function MinimalFooter() {
 							))}
 						</div>
 					</div>
-					<div className="col-span-3 w-full md:col-span-1.5">
+					<div className="col-span-6 w-full md:col-span-3">
 						<span className="text-zinc-400 mb-3 block text-xs font-semibold uppercase tracking-wider">
 							Products
 						</span>
