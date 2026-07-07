@@ -41,35 +41,35 @@ export function GuidePage() {
       id: "2M13L18AugI",
       title: "AI Section Hub: Getting Started & Theme Setup",
       duration: "3:40",
-      thumbnail: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&auto=format&fit=crop&q=80",
+      thumbnail: "https://img.youtube.com/vi/2M13L18AugI/hqdefault.jpg",
       description: "Learn how to activate the App Embed code and integrate Klenzo components into your Shopify theme."
     },
     {
       id: "bFgpeJPlMBU",
       title: "How to Configure Custom Theme Sections",
       duration: "5:12",
-      thumbnail: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=600&auto=format&fit=crop&q=80",
+      thumbnail: "https://img.youtube.com/vi/bFgpeJPlMBU/hqdefault.jpg",
       description: "Detailed walkthrough of customizing layouts, margins, typography, and colors with no-code."
     },
     {
       id: "xtGEvdR5ukY",
       title: "AI Variants Swatches: Dropdowns Replacement",
       duration: "4:05",
-      thumbnail: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&auto=format&fit=crop&q=80",
+      thumbnail: "https://img.youtube.com/vi/xtGEvdR5ukY/hqdefault.jpg",
       description: "Setup AI automatic color matching to replace Shopify's default product variant selector dropdowns."
     },
     {
       id: "RjLKL8BEiWQ",
       title: "Integrating Shoppable Instagram Reels Feed",
       duration: "3:55",
-      thumbnail: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=600&auto=format&fit=crop&q=80",
+      thumbnail: "https://img.youtube.com/vi/RjLKL8BEiWQ/hqdefault.jpg",
       description: "How to connect your social media feeds and tag product links directly inside shoppable video grids."
     },
     {
       id: "4N3o7UhKauk",
       title: "Quantity Discount Bundles Setup Guide",
       duration: "4:20",
-      thumbnail: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&auto=format&fit=crop&q=80",
+      thumbnail: "https://img.youtube.com/vi/4N3o7UhKauk/hqdefault.jpg",
       description: "Maximize your store's AOV by creating high-converting tiered volume discount sections."
     }
   ]
