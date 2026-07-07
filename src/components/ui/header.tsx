@@ -43,6 +43,10 @@ function Header1() {
                     href: "/about",
                 },
                 {
+                    title: "Connect with us",
+                    href: "/connect",
+                },
+                {
                     title: "Contact us",
                     href: "mailto:mitulzalavadiya11@gmail.com",
                 },

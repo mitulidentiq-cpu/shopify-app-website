@@ -10,6 +10,7 @@ import { FaqSection } from "@/components/ui/faq-section"
 import { CtaBanner } from "@/components/ui/cta-banner"
 import { MinimalFooter } from "@/components/ui/minimal-footer"
 import { AboutPage } from "@/pages/about"
+import { ConnectPage } from "@/pages/connect"
 
 function HomePage() {
   const partnerLogos = [
@@ -68,6 +69,7 @@ function App() {
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/about" element={<AboutPage />} />
+      <Route path="/connect" element={<ConnectPage />} />
     </Routes>
   )
 }

@@ -9,6 +9,10 @@ export function MinimalFooter() {
 			href: '/about',
 		},
 		{
+			title: 'Connect With Us',
+			href: '/connect',
+		},
+		{
 			title: 'Contact Us',
 			href: 'mailto:mitulzalavadiya11@gmail.com',
 		},
