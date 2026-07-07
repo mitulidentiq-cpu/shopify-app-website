@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { motion, AnimatePresence } from "motion/react"
-import { Sparkles, Layers, Zap, BookOpen, Settings, HelpCircle, CheckCircle2, ChevronRight, Monitor, Laptop } from "lucide-react"
+import { Sparkles, Layers, Zap, BookOpen, Settings, HelpCircle, CheckCircle2, ChevronRight, Monitor, Laptop, Play } from "lucide-react"
 import { Header1 } from "@/components/ui/header"
 import { MinimalFooter } from "@/components/ui/minimal-footer"
 import { CursorFollower } from "@/components/ui/cursor-follower"
@@ -34,6 +34,45 @@ function FadeUp({ children, delay = 0, className = "" }: { children: React.React
 export function GuidePage() {
   const [activeTab, setActiveTab] = useState<"hub" | "variants" | "general">("hub")
   const [activeStep, setActiveStep] = useState(1)
+  const [selectedVideo, setSelectedVideo] = useState<string | null>(null)
+
+  const videos = [
+    {
+      id: "2M13L18AugI",
+      title: "AI Section Hub: Getting Started & Theme Setup",
+      duration: "3:40",
+      thumbnail: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&auto=format&fit=crop&q=80",
+      description: "Learn how to activate the App Embed code and integrate Klenzo components into your Shopify theme."
+    },
+    {
+      id: "bFgpeJPlMBU",
+      title: "How to Configure Custom Theme Sections",
+      duration: "5:12",
+      thumbnail: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=600&auto=format&fit=crop&q=80",
+      description: "Detailed walkthrough of customizing layouts, margins, typography, and colors with no-code."
+    },
+    {
+      id: "xtGEvdR5ukY",
+      title: "AI Variants Swatches: Dropdowns Replacement",
+      duration: "4:05",
+      thumbnail: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&auto=format&fit=crop&q=80",
+      description: "Setup AI automatic color matching to replace Shopify's default product variant selector dropdowns."
+    },
+    {
+      id: "RjLKL8BEiWQ",
+      title: "Integrating Shoppable Instagram Reels Feed",
+      duration: "3:55",
+      thumbnail: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=600&auto=format&fit=crop&q=80",
+      description: "How to connect your social media feeds and tag product links directly inside shoppable video grids."
+    },
+    {
+      id: "4N3o7UhKauk",
+      title: "Quantity Discount Bundles Setup Guide",
+      duration: "4:20",
+      thumbnail: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&auto=format&fit=crop&q=80",
+      description: "Maximize your store's AOV by creating high-converting tiered volume discount sections."
+    }
+  ]
 
   const stats = [
     { value: "5 min", label: "Average Setup" },
@@ -72,10 +111,20 @@ export function GuidePage() {
             </h1>
           </FadeUp>
 
-          <FadeUp delay={0.2}>
-            <p className="text-zinc-400 text-base md:text-lg leading-relaxed max-w-xl font-medium">
-              Learn how to install, configure, and customize Klenzo sections and variants directly inside your Shopify Theme customizer in minutes.
-            </p>
+          <FadeUp delay={0.25}>
+            <div className="mt-8">
+              <a
+                href="https://youtube.com/@ai-section-hub?si=p8-m7K8kE8XTQcR_"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-red-500/10 border border-red-500/25 hover:bg-red-500/20 text-red-400 text-xs uppercase tracking-wider font-extrabold transition-all duration-200 hover:scale-102 hover:border-red-500/40 cursor-pointer shadow-lg shadow-red-500/5"
+              >
+                <svg className="w-4.5 h-4.5 fill-current shrink-0" viewBox="0 0 24 24">
+                  <path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.11C19.517 3.545 12 3.545 12 3.545s-7.517 0-9.388.508a3.003 3.003 0 0 0-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 0 0 2.11 2.11c1.871.508 9.388.508 9.388.508s7.517 0 9.388-.508a3.003 3.003 0 0 0 2.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                </svg>
+                Watch Video Tutorials on YouTube
+              </a>
+            </div>
           </FadeUp>
         </div>
 
@@ -500,7 +549,96 @@ export function GuidePage() {
 
         </div>
 
+        {/* Video Tutorials Section */}
+        <FadeUp delay={0.4}>
+          <div className="mt-28 border-t border-zinc-800/80 pt-20">
+            <div className="max-w-3xl mb-12">
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-red-500/20 bg-red-500/5 text-red-400 text-[10px] uppercase tracking-widest font-bold mb-4">
+                <Play className="w-3 h-3 fill-current" />
+                Video Library
+              </span>
+              <h2 className="text-3xl md:text-4xl font-black tracking-tight text-white mb-4">
+                Video Walkthroughs & Tutorials
+              </h2>
+              <p className="text-zinc-400 text-sm md:text-base leading-relaxed">
+                Watch detailed walkthroughs of how Klenzo applications can improve your conversion rates and shop setups instantly.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {videos.map((video, idx) => (
+                <div
+                  key={idx}
+                  onClick={() => setSelectedVideo(video.id)}
+                  className="bg-zinc-900/30 border border-zinc-800/80 rounded-2xl p-4 backdrop-blur hover:border-zinc-700/50 transition-all duration-300 group cursor-pointer"
+                >
+                  {/* Thumbnail Container */}
+                  <div className="relative aspect-video rounded-xl overflow-hidden bg-zinc-950 border border-zinc-850">
+                    <img
+                      src={video.thumbnail}
+                      alt={video.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-60 group-hover:opacity-85"
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-12 h-12 rounded-full bg-red-600/90 flex items-center justify-center border border-red-500/30 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                        <Play className="w-5 h-5 fill-white text-white ml-0.5" />
+                      </div>
+                    </div>
+                    <span className="absolute bottom-2.5 right-2.5 bg-black/85 backdrop-blur-md px-2 py-0.5 rounded text-[10px] font-black text-zinc-300 border border-zinc-800">
+                      {video.duration}
+                    </span>
+                  </div>
+
+                  {/* Title & Desc */}
+                  <h3 className="text-white font-bold text-sm mt-4 group-hover:text-red-400 transition-colors line-clamp-1">
+                    {video.title}
+                  </h3>
+                  <p className="text-zinc-500 text-xs mt-2 leading-relaxed line-clamp-2">
+                    {video.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </FadeUp>
+
       </main>
+
+      {/* Video Lightbox Modal */}
+      <AnimatePresence>
+        {selectedVideo && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedVideo(null)}
+            className="fixed inset-0 bg-black/95 backdrop-blur-md z-50 flex items-center justify-center p-4 cursor-pointer"
+          >
+            <motion.div
+              initial={{ scale: 0.95 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.95 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative w-full max-w-4xl aspect-video rounded-3xl overflow-hidden border border-zinc-800/80 shadow-2xl bg-black"
+            >
+              {/* Close Button */}
+              <button
+                onClick={() => setSelectedVideo(null)}
+                className="absolute top-4 right-4 z-10 w-8 h-8 rounded-full bg-black/80 hover:bg-black border border-zinc-800/80 text-zinc-400 hover:text-white flex items-center justify-center cursor-pointer transition-colors text-xs font-bold"
+              >
+                ✕
+              </button>
+              <iframe
+                className="w-full h-full"
+                src={`https://www.youtube.com/embed/${selectedVideo}?autoplay=1`}
+                title="YouTube video player"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <MinimalFooter />
     </div>
