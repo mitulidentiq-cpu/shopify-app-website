@@ -29,6 +29,10 @@ export function MinimalFooter() {
 			href: '/guide',
 		},
 		{
+			title: 'Blog',
+			href: '/blog',
+		},
+		{
 			title: 'FAQs',
 			href: '#faq',
 		},
