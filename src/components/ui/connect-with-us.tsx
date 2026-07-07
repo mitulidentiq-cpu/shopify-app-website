@@ -1,7 +1,7 @@
 const SocialConnect = () => {
   
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black flex flex-col items-center justify-center p-4 font-sans w-full">
+    <div className="bg-transparent flex flex-col items-center justify-center p-4 font-sans w-full py-12 md:py-16">
       <div className="w-full max-w-3xl mx-auto text-center mb-16">
         <h1 className="text-6xl md:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-red-400 mb-6 ">
           Connect <span className="text-white">With Us</span>

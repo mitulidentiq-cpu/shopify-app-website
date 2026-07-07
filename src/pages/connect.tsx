@@ -4,7 +4,7 @@ import { SocialConnect } from "@/components/ui/connect-with-us"
 
 export function ConnectPage() {
   return (
-    <div className="relative min-h-screen bg-black text-white">
+    <div className="relative min-h-screen bg-gradient-to-br from-gray-900 to-black text-white">
       <Header1 />
       <main className="pt-24 md:pt-32">
         <SocialConnect />
