@@ -63,6 +63,10 @@ function Header1() {
                     title: "Blog",
                     href: "/blog",
                 },
+                {
+                    title: "ROI Calculator",
+                    href: "/roi-calculator",
+                },
             ],
         },
     ];
@@ -71,7 +75,7 @@ function Header1() {
     const [visible, setVisible] = useState(true);
     const [lastScrollY, setLastScrollY] = useState(0);
     const location = useLocation();
-    const isDarkPage = location.pathname === '/about' || location.pathname === '/connect' || location.pathname === '/contact' || location.pathname === '/privacy' || location.pathname === '/terms' || location.pathname === '/guide' || location.pathname === '/blog';
+    const isDarkPage = location.pathname === '/about' || location.pathname === '/connect' || location.pathname === '/contact' || location.pathname === '/privacy' || location.pathname === '/terms' || location.pathname === '/guide' || location.pathname === '/blog' || location.pathname === '/roi-calculator';
 
     useEffect(() => {
         const handleScroll = () => {

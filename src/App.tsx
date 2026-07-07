@@ -16,6 +16,7 @@ import { PrivacyPage } from "@/pages/privacy"
 import { TermsPage } from "@/pages/terms"
 import { GuidePage } from "@/pages/guide"
 import { BlogPage } from "@/pages/blog"
+import { RoiCalculatorPage } from "@/pages/roi-calculator"
 
 function HomePage() {
   const partnerLogos = [
@@ -80,6 +81,7 @@ function App() {
       <Route path="/terms" element={<TermsPage />} />
       <Route path="/guide" element={<GuidePage />} />
       <Route path="/blog" element={<BlogPage />} />
+      <Route path="/roi-calculator" element={<RoiCalculatorPage />} />
     </Routes>
   )
 }

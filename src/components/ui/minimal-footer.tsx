@@ -17,13 +17,12 @@ export function MinimalFooter() {
 			href: '/contact',
 		},
 		{
-			title: 'Privacy Policy',
-			href: '/privacy',
+			title: 'FAQs',
+			href: '#faq',
 		},
-		{
-			title: 'Terms of Service',
-			href: '/terms',
-		},
+	];
+
+	const resources = [
 		{
 			title: 'User Guide',
 			href: '/guide',
@@ -33,8 +32,12 @@ export function MinimalFooter() {
 			href: '/blog',
 		},
 		{
-			title: 'FAQs',
-			href: '#faq',
+			title: 'Privacy Policy',
+			href: '/privacy',
+		},
+		{
+			title: 'Terms of Service',
+			href: '/terms',
 		},
 	];
 
@@ -46,6 +49,10 @@ export function MinimalFooter() {
 		{
 			title: 'Variantify',
 			href: 'https://apps.shopify.com/variantify-1?search_id=2bf64c58-8f42-4490-94cc-ea44d5bab45f&surface_detail=klenzo&surface_inter_position=1&surface_intra_position=1&surface_type=search',
+		},
+		{
+			title: 'ROI Calculator',
+			href: '/roi-calculator',
 		},
 	];
 
@@ -91,7 +98,7 @@ export function MinimalFooter() {
 		<footer className="relative bg-black text-white border-t border-zinc-800">
 			<div className="bg-[radial-gradient(35%_80%_at_30%_0%,rgba(255,255,255,0.05),transparent)] mx-auto max-w-5xl">
 				<div className="grid grid-cols-12 gap-8 pt-12 pb-8 px-8">
-					<div className="col-span-12 flex flex-col gap-5 md:col-span-6">
+					<div className="col-span-12 flex flex-col gap-5 md:col-span-5">
 						<a href="#" className="w-max">
 							<img src={logo1} alt="Klenzo Logo" className="h-8 w-auto object-contain" style={{ filter: 'invert(1)' }} />
 						</a>
@@ -112,7 +119,25 @@ export function MinimalFooter() {
 							))}
 						</div>
 					</div>
-					<div className="col-span-6 w-full md:col-span-3">
+					<div className="col-span-4 w-full md:col-span-2">
+						<span className="text-zinc-400 mb-3 block text-xs font-semibold uppercase tracking-wider">
+							Products
+						</span>
+						<div className="flex flex-col gap-2">
+							{products.map(({ href, title }, i) => (
+								<a
+									key={i}
+									className="w-max text-sm text-zinc-400 duration-200 hover:text-white hover:underline"
+									target={href.startsWith("http") ? "_blank" : undefined}
+									rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+									href={href}
+								>
+									{title}
+								</a>
+							))}
+						</div>
+					</div>
+					<div className="col-span-4 w-full md:col-span-2">
 						<span className="text-zinc-400 mb-3 block text-xs font-semibold uppercase tracking-wider">
 							Company
 						</span>
@@ -128,17 +153,15 @@ export function MinimalFooter() {
 							))}
 						</div>
 					</div>
-					<div className="col-span-6 w-full md:col-span-3">
+					<div className="col-span-4 w-full md:col-span-3">
 						<span className="text-zinc-400 mb-3 block text-xs font-semibold uppercase tracking-wider">
-							Products
+							Resources
 						</span>
 						<div className="flex flex-col gap-2">
-							{products.map(({ href, title }, i) => (
+							{resources.map(({ href, title }, i) => (
 								<a
 									key={i}
 									className="w-max text-sm text-zinc-400 duration-200 hover:text-white hover:underline"
-									target="_blank"
-									rel="noopener noreferrer"
 									href={href}
 								>
 									{title}
