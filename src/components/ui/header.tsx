@@ -13,6 +13,7 @@ import { useLocation, Link } from "react-router-dom";
 
 import logo1 from "@/app logo/logo1.png"
 import shopifyBadge from "@/images/shopify badge.png"
+import { useAuth } from "@/context/AuthContext";
 
 function Header1() {
     const navigationItems = [
@@ -71,7 +72,8 @@ function Header1() {
     const [visible, setVisible] = useState(true);
     const [lastScrollY, setLastScrollY] = useState(0);
     const location = useLocation();
-    const isDarkPage = location.pathname === '/about' || location.pathname === '/connect' || location.pathname === '/contact' || location.pathname === '/privacy' || location.pathname === '/terms' || location.pathname === '/guide' || location.pathname === '/blog' || location.pathname === '/faq';
+    const { token, logout } = useAuth();
+    const isDarkPage = location.pathname === '/about' || location.pathname === '/connect' || location.pathname === '/contact' || location.pathname === '/privacy' || location.pathname === '/terms' || location.pathname === '/guide' || location.pathname === '/blog' || location.pathname === '/faq' || location.pathname === '/login' || location.pathname === '/dashboard';
 
     useEffect(() => {
         const handleScroll = () => {
@@ -182,10 +184,23 @@ function Header1() {
                         />
                     </Link>
                 </div>
-                <div className="flex justify-end w-full gap-4 items-center">
-                    <a href="https://apps.shopify.com/partners/solvify-tech2" target="_blank" rel="noopener noreferrer" className="hidden md:inline-block z-20">
+                 <div className="flex justify-end w-full gap-4 items-center z-20">
+                    <a href="https://apps.shopify.com/partners/solvify-tech2" target="_blank" rel="noopener noreferrer" className="hidden xl:inline-block">
                         <img src={shopifyBadge} alt="Shopify Badge" className="h-11 w-auto object-contain hover:scale-105 transition-transform duration-300" />
                     </a>
+                    {token ? (
+                        <Link to="/dashboard">
+                            <Button size="sm" className="cursor-pointer font-bold bg-zinc-900 hover:bg-zinc-800 text-white border border-zinc-800 hover:border-zinc-700 rounded-xl px-4 py-2 text-xs transition-all duration-300 shadow-[0_0_15px_rgba(255,255,255,0.02)]">
+                                Merchant Console
+                            </Button>
+                        </Link>
+                    ) : (
+                        <Link to="/login">
+                            <Button size="sm" className="cursor-pointer font-bold bg-white text-black hover:bg-zinc-200 rounded-xl px-4 py-2 text-xs transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.15)]">
+                                Merchant Login
+                            </Button>
+                        </Link>
+                    )}
                 </div>
                 <div className="flex w-12 shrink lg:hidden items-end justify-end">
                     <Button 
@@ -230,6 +245,38 @@ function Header1() {
                                     </div>
                                 </div>
                             ))}
+                            <div className="border-t border-zinc-800 pt-4 mt-2">
+                                 {token ? (
+                                     <div className="flex flex-col gap-2">
+                                         <Link
+                                             to="/dashboard"
+                                             onClick={() => setOpen(false)}
+                                             className="flex justify-between items-center py-2"
+                                         >
+                                             <span className="text-lg font-medium text-emerald-400">Merchant Console</span>
+                                             <MoveRight className="w-4 h-4 stroke-1 text-emerald-400" />
+                                         </Link>
+                                         <button
+                                             onClick={() => {
+                                                 logout();
+                                                 setOpen(false);
+                                             }}
+                                             className="w-full text-left py-2 text-red-400 font-medium text-lg cursor-pointer"
+                                         >
+                                             Sign Out
+                                         </button>
+                                     </div>
+                                 ) : (
+                                     <Link
+                                         to="/login"
+                                         onClick={() => setOpen(false)}
+                                         className="flex justify-between items-center py-2"
+                                     >
+                                         <span className="text-lg font-medium text-white">Merchant Login</span>
+                                         <MoveRight className="w-4 h-4 stroke-1 text-white" />
+                                     </Link>
+                                 )}
+                             </div>
                         </div>
                     )}
                 </div>

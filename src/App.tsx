@@ -17,6 +17,11 @@ import { TermsPage } from "@/pages/terms"
 import { GuidePage } from "@/pages/guide"
 import { BlogPage } from "@/pages/blog"
 import { FaqPage } from "@/pages/faq"
+import { AuthProvider } from "@/context/AuthContext"
+import { GoogleOAuthProvider } from "@react-oauth/google"
+import { ProtectedRoute } from "@/components/ui/ProtectedRoute"
+import { LoginPage } from "@/pages/login"
+import { DashboardPage } from "@/pages/dashboard"
 
 function HomePage() {
   const partnerLogos = [
@@ -71,18 +76,28 @@ function HomePage() {
 }
 
 function App() {
+  const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID || "mock-client-id";
+
   return (
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/about" element={<AboutPage />} />
-      <Route path="/connect" element={<ConnectPage />} />
-      <Route path="/contact" element={<ContactPage />} />
-      <Route path="/privacy" element={<PrivacyPage />} />
-      <Route path="/terms" element={<TermsPage />} />
-      <Route path="/guide" element={<GuidePage />} />
-      <Route path="/blog" element={<BlogPage />} />
-      <Route path="/faq" element={<FaqPage />} />
-    </Routes>
+    <GoogleOAuthProvider clientId={googleClientId}>
+      <AuthProvider>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/connect" element={<ConnectPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/privacy" element={<PrivacyPage />} />
+          <Route path="/terms" element={<TermsPage />} />
+          <Route path="/guide" element={<GuidePage />} />
+          <Route path="/blog" element={<BlogPage />} />
+          <Route path="/faq" element={<FaqPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route element={<ProtectedRoute />}>
+            <Route path="/dashboard" element={<DashboardPage />} />
+          </Route>
+        </Routes>
+      </AuthProvider>
+    </GoogleOAuthProvider>
   )
 }
 
