@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import { Menu, MoveRight, X } from "lucide-react";
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 
 import logo1 from "@/app logo/logo1.png"
 import shopifyBadge from "@/images/shopify badge.png"
@@ -177,12 +177,14 @@ function Header1() {
                     </NavigationMenu>
                 </div>
                 <div className="flex lg:justify-center">
-                    <img 
-                        src={logo1} 
-                        alt="App Logo" 
-                        className="h-14 w-auto object-contain" 
-                        style={{ filter: isDarkPage ? 'invert(0)' : 'invert(1)' }} 
-                    />
+                    <Link to="/" className="cursor-pointer flex items-center justify-center">
+                        <img 
+                            src={logo1} 
+                            alt="App Logo" 
+                            className="h-14 w-auto object-contain" 
+                            style={{ filter: isDarkPage ? 'invert(0)' : 'invert(1)' }} 
+                        />
+                    </Link>
                 </div>
                 <div className="flex justify-end w-full gap-4 items-center">
                     <a href="https://apps.shopify.com/partners/solvify-tech2" target="_blank" rel="noopener noreferrer" className="hidden md:inline-block z-20">

@@ -83,17 +83,17 @@ export function RoiCalculatorPage() {
 
       {/* Background Orbs */}
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
-        <GlowingOrb size={600} color="bg-violet-600" x="70%" y="-10%" delay={0} />
-        <GlowingOrb size={500} color="bg-pink-600" x="-10%" y="25%" delay={2} />
-        <GlowingOrb size={400} color="bg-sky-600" x="40%" y="60%" delay={4} />
+        <GlowingOrb size={600} color="bg-zinc-900" x="70%" y="-10%" delay={0} />
+        <GlowingOrb size={500} color="bg-zinc-900" x="-10%" y="25%" delay={2} />
+        <GlowingOrb size={400} color="bg-zinc-900" x="40%" y="60%" delay={4} />
       </div>
 
       <main className="relative z-10 container mx-auto max-w-6xl px-6 md:px-8 pt-36 pb-32">
         {/* Intro section */}
         <div className="max-w-3xl mb-16 md:mb-20">
           <FadeUp>
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-zinc-800 bg-zinc-900/60 backdrop-blur text-zinc-400 text-xs uppercase tracking-widest font-bold mb-6">
-              <Calculator className="w-3.5 h-3.5 text-violet-400 animate-pulse" />
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-zinc-850 bg-zinc-900/60 backdrop-blur text-zinc-400 text-xs uppercase tracking-widest font-bold mb-6">
+              <Calculator className="w-3.5 h-3.5 text-zinc-400 animate-pulse" />
               Growth Telemetry
             </span>
           </FadeUp>
@@ -101,7 +101,7 @@ export function RoiCalculatorPage() {
           <FadeUp delay={0.1}>
             <h1 className="text-5xl md:text-6xl font-black tracking-tighter text-white leading-none mb-6">
               ROI & Revenue{" "}
-              <span className="bg-gradient-to-r from-violet-400 via-pink-400 to-amber-400 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-white via-zinc-300 to-zinc-500 bg-clip-text text-transparent">
                 Calculator
               </span>
             </h1>
@@ -129,7 +129,7 @@ export function RoiCalculatorPage() {
                 <div className="flex flex-col gap-3">
                   <div className="flex justify-between items-center text-sm font-bold">
                     <span className="text-zinc-400 flex items-center gap-2">
-                      <Users className="w-4 h-4 text-violet-400" /> Monthly Traffic
+                      <Users className="w-4 h-4 text-zinc-400" /> Monthly Traffic
                     </span>
                     <span className="text-white text-base">
                       {traffic.toLocaleString()} visitors
@@ -142,7 +142,7 @@ export function RoiCalculatorPage() {
                     step="5000"
                     value={traffic}
                     onChange={(e) => setTraffic(Number(e.target.value))}
-                    className="w-full h-1 bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-violet-500"
+                    className="w-full h-1 bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-white"
                   />
                   <div className="flex justify-between text-[10px] text-zinc-600 font-bold uppercase mt-1">
                     <span>5,000</span>
@@ -155,7 +155,7 @@ export function RoiCalculatorPage() {
                 <div className="flex flex-col gap-3">
                   <div className="flex justify-between items-center text-sm font-bold">
                     <span className="text-zinc-400 flex items-center gap-2">
-                      <DollarSign className="w-4 h-4 text-pink-400" /> Average Order Value
+                      <DollarSign className="w-4 h-4 text-zinc-400" /> Average Order Value
                     </span>
                     <span className="text-white text-base">
                       ${aov}
@@ -168,7 +168,7 @@ export function RoiCalculatorPage() {
                     step="5"
                     value={aov}
                     onChange={(e) => setAov(Number(e.target.value))}
-                    className="w-full h-1 bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-pink-500"
+                    className="w-full h-1 bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-white"
                   />
                   <div className="flex justify-between text-[10px] text-zinc-600 font-bold uppercase mt-1">
                     <span>$10</span>
@@ -181,7 +181,7 @@ export function RoiCalculatorPage() {
                 <div className="flex flex-col gap-3">
                   <div className="flex justify-between items-center text-sm font-bold">
                     <span className="text-zinc-400 flex items-center gap-2">
-                      <Percent className="w-4 h-4 text-sky-400" /> Conversion Rate
+                      <Percent className="w-4 h-4 text-zinc-400" /> Conversion Rate
                     </span>
                     <span className="text-white text-base">
                       {conversionRate.toFixed(1)}%
@@ -194,7 +194,7 @@ export function RoiCalculatorPage() {
                     step="0.1"
                     value={conversionRate}
                     onChange={(e) => setConversionRate(Number(e.target.value))}
-                    className="w-full h-1 bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-sky-500"
+                    className="w-full h-1 bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-white"
                   />
                   <div className="flex justify-between text-[10px] text-zinc-600 font-bold uppercase mt-1">
                     <span>0.5%</span>
@@ -231,10 +231,10 @@ export function RoiCalculatorPage() {
               <div className="bg-zinc-900/40 border border-zinc-800/80 rounded-3xl p-6 md:p-8 backdrop-blur-md relative overflow-hidden flex flex-col justify-between">
                 
                 {/* Accent glow corner */}
-                <div className="absolute top-0 right-0 w-32 h-32 bg-violet-500/10 blur-[50px] pointer-events-none rounded-full" />
+                <div className="absolute top-0 right-0 w-32 h-32 bg-zinc-800/10 blur-[50px] pointer-events-none rounded-full" />
                 
                 <div>
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-violet-500/20 bg-violet-500/10 text-violet-300 text-[10px] uppercase tracking-wider font-extrabold mb-6">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-zinc-800 bg-zinc-900 text-zinc-350 text-[10px] uppercase tracking-wider font-extrabold mb-6">
                     <Sparkles className="w-3.5 h-3.5 animate-spin-slow" /> Predicted Growth
                   </span>
 
@@ -255,7 +255,7 @@ export function RoiCalculatorPage() {
                           {conversionRate.toFixed(1)}% <ArrowRight className="w-3 h-3 inline mx-1.5 text-zinc-600" /> {newConversionRate.toFixed(2)}%
                         </span>
                       </div>
-                      <span className="text-xs font-extrabold text-sky-400 bg-sky-400/10 border border-sky-400/25 px-2.5 py-1 rounded-lg">
+                      <span className="text-xs font-extrabold text-zinc-300 bg-zinc-900 border border-zinc-800 px-2.5 py-1 rounded-lg">
                         AI Swatches
                       </span>
                     </div>
@@ -268,7 +268,7 @@ export function RoiCalculatorPage() {
                           ${aov} <ArrowRight className="w-3 h-3 inline mx-1.5 text-zinc-600" /> ${newAov.toFixed(0)}
                         </span>
                       </div>
-                      <span className="text-xs font-extrabold text-pink-400 bg-pink-400/10 border border-pink-400/25 px-2.5 py-1 rounded-lg">
+                      <span className="text-xs font-extrabold text-zinc-300 bg-zinc-900 border border-zinc-800 px-2.5 py-1 rounded-lg">
                         Volume Bundles
                       </span>
                     </div>
@@ -293,8 +293,8 @@ export function RoiCalculatorPage() {
                     <Zap className="w-4 h-4 fill-current" /> Install on Shopify
                   </a>
 
-                  <div className="flex items-center gap-2 text-[10px] text-zinc-500 font-bold uppercase mx-auto mt-2">
-                    <ShieldCheck className="w-4 h-4 text-emerald-500" /> 7-day free trial on all apps
+                  <div className="flex items-center gap-2 text-[10px] text-zinc-550 font-bold uppercase mx-auto mt-2">
+                    <ShieldCheck className="w-4 h-4 text-zinc-400" /> 7-day free trial on all apps
                   </div>
                 </div>
 

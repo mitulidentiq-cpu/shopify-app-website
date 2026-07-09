@@ -121,9 +121,9 @@ export function FaqPage() {
 
       {/* Background Orbs */}
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
-        <GlowingOrb size={600} color="bg-violet-600" x="70%" y="-10%" delay={0} />
-        <GlowingOrb size={500} color="bg-pink-600" x="-10%" y="25%" delay={2} />
-        <GlowingOrb size={400} color="bg-sky-600" x="40%" y="60%" delay={4} />
+        <GlowingOrb size={600} color="bg-zinc-900" x="70%" y="-10%" delay={0} />
+        <GlowingOrb size={500} color="bg-zinc-900" x="-10%" y="25%" delay={2} />
+        <GlowingOrb size={400} color="bg-zinc-900" x="40%" y="60%" delay={4} />
       </div>
 
       <main className="relative z-10 container mx-auto max-w-4xl px-6 md:px-8 pt-36 pb-32">
@@ -131,8 +131,8 @@ export function FaqPage() {
         {/* Page Title & Intro */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <FadeUp>
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-zinc-800 bg-zinc-900/60 backdrop-blur text-zinc-400 text-xs uppercase tracking-widest font-bold mb-6">
-              <Sparkles className="w-3.5 h-3.5 text-violet-400 animate-pulse" />
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-zinc-850 bg-zinc-900/60 backdrop-blur text-zinc-400 text-xs uppercase tracking-widest font-bold mb-6">
+              <Sparkles className="w-3.5 h-3.5 text-zinc-400 animate-pulse" />
               Information Desk
             </span>
           </FadeUp>
@@ -140,7 +140,7 @@ export function FaqPage() {
           <FadeUp delay={0.1}>
             <h1 className="text-5xl md:text-6xl font-black tracking-tighter text-white leading-none mb-6">
               Frequently Asked{" "}
-              <span className="bg-gradient-to-r from-violet-400 via-pink-400 to-amber-400 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-white via-zinc-300 to-zinc-500 bg-clip-text text-transparent">
                 Questions
               </span>
             </h1>
@@ -157,16 +157,16 @@ export function FaqPage() {
         <FadeUp delay={0.25} className="mb-12 flex flex-col gap-6">
           {/* Search Box */}
           <div className="relative group w-full">
-            <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-violet-500 to-pink-500 opacity-0 group-hover:opacity-10 focus-within:opacity-15 transition-opacity duration-300 pointer-events-none blur-sm" />
+            <div className="absolute -inset-1 rounded-2xl bg-zinc-800 opacity-0 group-hover:opacity-10 focus-within:opacity-15 transition-opacity duration-300 pointer-events-none blur-sm" />
             <div className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-500 z-20">
-              <Search className="w-5 h-5 group-focus-within:text-violet-400 transition-colors" />
+              <Search className="w-5 h-5 group-focus-within:text-white transition-colors" />
             </div>
             <input
               type="text"
               placeholder="Search questions or keywords (e.g. speed, swatches, pricing)..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-zinc-950/70 border border-zinc-800 focus:border-violet-500/60 rounded-2xl pl-12 pr-4 py-4 text-sm text-white outline-none transition-all duration-300 relative z-10"
+              className="w-full bg-zinc-950/70 border border-zinc-800 focus:border-zinc-500 rounded-2xl pl-12 pr-4 py-4 text-sm text-white outline-none transition-all duration-300 relative z-10"
             />
           </div>
 
@@ -213,7 +213,7 @@ export function FaqPage() {
                       key={faq.id}
                       className={`border rounded-2xl transition-all duration-300 overflow-hidden ${
                         isOpen
-                          ? "border-violet-500/30 bg-zinc-950/80 shadow-[0_0_30px_rgba(139,92,246,0.05)]"
+                          ? "border-zinc-700 bg-zinc-950/80 shadow-md"
                           : "border-zinc-800 bg-zinc-950/20 hover:border-zinc-700"
                       }`}
                     >
@@ -225,13 +225,13 @@ export function FaqPage() {
                           <span className="text-[10px] font-bold text-zinc-500 bg-zinc-900/60 border border-zinc-800 px-2 py-0.5 rounded uppercase tracking-wider shrink-0">
                             {faq.category}
                           </span>
-                          <span className="text-white font-bold text-base md:text-lg leading-tight transition-colors group-hover:text-violet-400">
+                          <span className="text-white font-bold text-base md:text-lg leading-tight transition-colors group-hover:text-white font-black">
                             {faq.question}
                           </span>
                         </div>
                         <div
                           className={`flex items-center justify-center w-8 h-8 rounded-full border border-zinc-800 bg-black text-zinc-400 transition-all duration-300 shrink-0 ${
-                            isOpen ? "rotate-180 border-violet-500/30 text-violet-400 bg-violet-500/5" : "group-hover:text-white group-hover:border-zinc-700"
+                            isOpen ? "rotate-180 border-zinc-700 text-white bg-zinc-900" : "group-hover:text-white group-hover:border-zinc-700"
                           }`}
                         >
                           <ChevronDown className="w-4 h-4" />
@@ -276,12 +276,12 @@ export function FaqPage() {
 
         {/* Call to Action Support Card */}
         <FadeUp delay={0.35} className="mt-20">
-          <div className="relative bg-zinc-900/40 border border-zinc-800 rounded-3xl p-8 md:p-10 backdrop-blur-md overflow-hidden flex flex-col md:flex-row items-center justify-between gap-8 group hover:border-violet-500/25 transition-all duration-300">
-            <div className="absolute top-0 right-0 w-40 h-40 bg-violet-600/5 blur-[60px] pointer-events-none rounded-full" />
+          <div className="relative bg-zinc-900/40 border border-zinc-800 rounded-3xl p-8 md:p-10 backdrop-blur-md overflow-hidden flex flex-col md:flex-row items-center justify-between gap-8 group hover:border-zinc-750 transition-all duration-300">
+            <div className="absolute top-0 right-0 w-40 h-40 bg-zinc-800/10 blur-[60px] pointer-events-none rounded-full" />
             
             <div className="flex gap-4 items-start text-center md:text-left flex-col md:flex-row">
-              <div className="w-12 h-12 rounded-2xl bg-violet-500/10 border border-violet-500/25 flex items-center justify-center shrink-0 mx-auto md:mx-0">
-                <MessageSquare className="w-6 h-6 text-violet-400" />
+              <div className="w-12 h-12 rounded-2xl bg-zinc-900 border border-zinc-800 flex items-center justify-center shrink-0 mx-auto md:mx-0">
+                <MessageSquare className="w-6 h-6 text-zinc-200" />
               </div>
               <div>
                 <h3 className="text-white font-extrabold text-xl">Still have questions?</h3>

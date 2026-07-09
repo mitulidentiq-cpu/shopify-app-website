@@ -89,17 +89,17 @@ export function PrivacyPage() {
 
       {/* Background Orbs (Clipped inside overflow-hidden box to protect sticky scroll container) */}
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
-        <GlowingOrb size={600} color="bg-violet-600" x="70%" y="-10%" delay={0} />
-        <GlowingOrb size={500} color="bg-pink-600" x="-10%" y="25%" delay={2} />
-        <GlowingOrb size={400} color="bg-sky-600" x="40%" y="60%" delay={4} />
+        <GlowingOrb size={600} color="bg-zinc-900" x="70%" y="-10%" delay={0} />
+        <GlowingOrb size={500} color="bg-zinc-900" x="-10%" y="25%" delay={2} />
+        <GlowingOrb size={400} color="bg-zinc-900" x="40%" y="60%" delay={4} />
       </div>
 
       <main className="relative z-10 container mx-auto max-w-6xl px-6 md:px-8 pt-36 pb-32">
         {/* Header Section */}
         <div className="max-w-3xl mb-16 md:mb-20">
           <FadeUp>
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-zinc-800 bg-zinc-900/60 backdrop-blur text-zinc-400 text-xs uppercase tracking-widest font-bold mb-6">
-              <Shield className="w-3.5 h-3.5 text-violet-400" />
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-zinc-850 bg-zinc-900/60 backdrop-blur text-zinc-400 text-xs uppercase tracking-widest font-bold mb-6">
+              <Shield className="w-3.5 h-3.5 text-zinc-400" />
               Privacy Assurance
             </span>
           </FadeUp>
@@ -107,7 +107,7 @@ export function PrivacyPage() {
           <FadeUp delay={0.1}>
             <h1 className="text-5xl md:text-6xl font-black tracking-tighter text-white leading-none mb-6">
               Privacy{" "}
-              <span className="bg-gradient-to-r from-violet-400 via-pink-400 to-amber-400 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-white via-zinc-300 to-zinc-500 bg-clip-text text-transparent">
                 Policy
               </span>
             </h1>
@@ -139,11 +139,11 @@ export function PrivacyPage() {
                       onClick={() => scrollToSection(s.id)}
                       className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left text-sm font-semibold transition-all cursor-pointer ${
                         isActive
-                          ? "bg-zinc-850 text-white border border-zinc-700/65 shadow-lg shadow-violet-500/5"
+                          ? "bg-zinc-850 text-white border border-zinc-700/65 shadow-md"
                           : "text-zinc-500 hover:text-zinc-300 hover:bg-zinc-900/50 border border-transparent"
                       }`}
                     >
-                      <Icon className={`w-4 h-4 ${isActive ? "text-violet-400" : ""}`} />
+                      <Icon className={`w-4 h-4 ${isActive ? "text-white" : ""}`} />
                       {s.label}
                     </button>
                   )
@@ -159,7 +159,7 @@ export function PrivacyPage() {
             <FadeUp delay={0.3} className="scroll-mt-28" id="intro">
               <div className="bg-zinc-900/30 border border-zinc-800/60 rounded-3xl p-8 backdrop-blur hover:border-zinc-700/50 transition-colors duration-300">
                 <h2 className="text-white text-2xl font-extrabold tracking-tight mb-4 flex items-center gap-2">
-                  <FileText className="w-5.5 h-5.5 text-violet-400" />
+                  <FileText className="w-5.5 h-5.5 text-zinc-400" />
                   1. Introduction
                 </h2>
                 <div className="text-zinc-400 text-sm leading-relaxed flex flex-col gap-4">
@@ -180,7 +180,7 @@ export function PrivacyPage() {
             <FadeUp delay={0.35} className="scroll-mt-28" id="data-collection">
               <div className="bg-zinc-900/30 border border-zinc-800/60 rounded-3xl p-8 backdrop-blur hover:border-zinc-700/50 transition-colors duration-300">
                 <h2 className="text-white text-2xl font-extrabold tracking-tight mb-4 flex items-center gap-2">
-                  <Eye className="w-5.5 h-5.5 text-emerald-400" />
+                  <Eye className="w-5.5 h-5.5 text-zinc-400" />
                   2. Data Collection
                 </h2>
                 <div className="text-zinc-400 text-sm leading-relaxed flex flex-col gap-4">
@@ -203,19 +203,19 @@ export function PrivacyPage() {
                   </p>
                   <ul className="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs text-zinc-400">
                     <li className="flex items-center gap-2 bg-zinc-900/50 border border-zinc-850 px-4 py-2.5 rounded-lg">
-                      <span className="w-1.5 h-1.5 bg-violet-400 rounded-full shrink-0" />
+                      <span className="w-1.5 h-1.5 bg-zinc-400 rounded-full shrink-0" />
                       <code>read_themes</code> & <code>write_themes</code>: To add widgets.
                     </li>
                     <li className="flex items-center gap-2 bg-zinc-900/50 border border-zinc-850 px-4 py-2.5 rounded-lg">
-                      <span className="w-1.5 h-1.5 bg-violet-400 rounded-full shrink-0" />
+                      <span className="w-1.5 h-1.5 bg-zinc-400 rounded-full shrink-0" />
                       <code>read_products</code>: To read public variant info.
                     </li>
                   </ul>
 
-                  <div className="border border-pink-500/20 bg-pink-500/5 rounded-2xl p-5 flex items-start gap-3 mt-4">
-                    <AlertCircle className="w-5 h-5 text-pink-400 shrink-0 mt-0.5" />
+                  <div className="border border-zinc-800 bg-zinc-900/60 rounded-2xl p-5 flex items-start gap-3 mt-4">
+                    <AlertCircle className="w-5 h-5 text-zinc-300 shrink-0 mt-0.5" />
                     <div>
-                      <span className="text-xs font-bold text-pink-400 block uppercase tracking-wider">Zero Customer Personal Data Collected</span>
+                      <span className="text-xs font-bold text-zinc-300 block uppercase tracking-wider">Zero Customer Personal Data Collected</span>
                       <p className="text-xs text-zinc-400 leading-relaxed mt-1">
                         Our applications do NOT collect, read, or store any Personal Identifiable Information (PII) of your end-customers. We do not read buyer emails, phone numbers, billing addresses, or checkout histories.
                       </p>
@@ -229,7 +229,7 @@ export function PrivacyPage() {
             <FadeUp delay={0.4} className="scroll-mt-28" id="data-usage">
               <div className="bg-zinc-900/30 border border-zinc-800/60 rounded-3xl p-8 backdrop-blur hover:border-zinc-700/50 transition-colors duration-300">
                 <h2 className="text-white text-2xl font-extrabold tracking-tight mb-4 flex items-center gap-2">
-                  <RefreshCw className="w-5.5 h-5.5 text-pink-400" />
+                  <RefreshCw className="w-5.5 h-5.5 text-zinc-400" />
                   3. Data Usage
                 </h2>
                 <div className="text-zinc-400 text-sm leading-relaxed flex flex-col gap-4">
@@ -238,19 +238,19 @@ export function PrivacyPage() {
                   </p>
                   <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2">
                     <li className="bg-zinc-950/60 border border-zinc-800/60 p-4 rounded-xl flex gap-2.5 text-xs font-semibold text-zinc-300">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                      <CheckCircle2 className="w-4 h-4 text-white shrink-0 mt-0.5" />
                       Rendering native Liquid sections on theme layouts
                     </li>
                     <li className="bg-zinc-950/60 border border-zinc-800/60 p-4 rounded-xl flex gap-2.5 text-xs font-semibold text-zinc-300">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                      <CheckCircle2 className="w-4 h-4 text-white shrink-0 mt-0.5" />
                       Syncing custom color values for variant swatches
                     </li>
                     <li className="bg-zinc-950/60 border border-zinc-800/60 p-4 rounded-xl flex gap-2.5 text-xs font-semibold text-zinc-300">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                      <CheckCircle2 className="w-4 h-4 text-white shrink-0 mt-0.5" />
                       Validating subscription status through Shopify billing
                     </li>
                     <li className="bg-zinc-950/60 border border-zinc-800/60 p-4 rounded-xl flex gap-2.5 text-xs font-semibold text-zinc-300">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                      <CheckCircle2 className="w-4 h-4 text-white shrink-0 mt-0.5" />
                       Providing custom layout shift resolution support
                     </li>
                   </ul>
@@ -265,7 +265,7 @@ export function PrivacyPage() {
             <FadeUp delay={0.45} className="scroll-mt-28" id="security">
               <div className="bg-zinc-900/30 border border-zinc-800/60 rounded-3xl p-8 backdrop-blur hover:border-zinc-700/50 transition-colors duration-300">
                 <h2 className="text-white text-2xl font-extrabold tracking-tight mb-4 flex items-center gap-2">
-                  <Lock className="w-5.5 h-5.5 text-sky-400" />
+                  <Lock className="w-5.5 h-5.5 text-zinc-400" />
                   4. Data Security
                 </h2>
                 <div className="text-zinc-400 text-sm leading-relaxed flex flex-col gap-4">
@@ -294,7 +294,7 @@ export function PrivacyPage() {
             <FadeUp delay={0.5} className="scroll-mt-28" id="third-party">
               <div className="bg-zinc-900/30 border border-zinc-800/60 rounded-3xl p-8 backdrop-blur hover:border-zinc-700/50 transition-colors duration-300">
                 <h2 className="text-white text-2xl font-extrabold tracking-tight mb-4 flex items-center gap-2">
-                  <Shield className="w-5.5 h-5.5 text-violet-400" />
+                  <Shield className="w-5.5 h-5.5 text-zinc-400" />
                   5. Third-Party Sharing
                 </h2>
                 <div className="text-zinc-400 text-sm leading-relaxed flex flex-col gap-4">
@@ -312,7 +312,7 @@ export function PrivacyPage() {
             <FadeUp delay={0.55} className="scroll-mt-28" id="rights">
               <div className="bg-zinc-900/30 border border-zinc-800/60 rounded-3xl p-8 backdrop-blur hover:border-zinc-700/50 transition-colors duration-300">
                 <h2 className="text-white text-2xl font-extrabold tracking-tight mb-4 flex items-center gap-2">
-                  <Scale className="w-5.5 h-5.5 text-amber-400" />
+                  <Scale className="w-5.5 h-5.5 text-zinc-400" />
                   6. Merchant Rights
                 </h2>
                 <div className="text-zinc-400 text-sm leading-relaxed flex flex-col gap-4">
@@ -327,15 +327,15 @@ export function PrivacyPage() {
                   </div>
 
                   {/* Manual Request Contact Box */}
-                  <div className="bg-zinc-900/50 border border-zinc-800 p-6 rounded-2xl flex items-center gap-4 mt-4">
-                    <div className="w-10 h-10 rounded-xl bg-violet-500/10 border border-violet-500/20 flex items-center justify-center shrink-0">
-                      <HelpCircle className="w-5 h-5 text-violet-400" />
+                  <div className="bg-zinc-900 border border-zinc-800 p-6 rounded-2xl flex items-center gap-4 mt-4">
+                    <div className="w-10 h-10 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-center shrink-0">
+                      <HelpCircle className="w-5 h-5 text-zinc-200" />
                     </div>
                     <div>
                       <p className="text-white text-xs font-bold">Have a deletion request?</p>
                       <p className="text-zinc-500 text-[11px] mt-0.5">
                         Send a message to{" "}
-                        <a href="mailto:mitulzalavadiya11@gmail.com" className="text-violet-400 hover:underline">
+                        <a href="mailto:mitulzalavadiya11@gmail.com" className="text-white font-semibold underline">
                           mitulzalavadiya11@gmail.com
                         </a>.
                       </p>

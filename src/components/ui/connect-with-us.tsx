@@ -3,7 +3,7 @@ const SocialConnect = () => {
   return (
     <div className="bg-transparent flex flex-col items-center justify-center p-4 font-sans w-full py-12 md:py-16">
       <div className="w-full max-w-3xl mx-auto text-center mb-16">
-        <h1 className="text-6xl md:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-red-400 mb-6 ">
+        <h1 className="text-6xl md:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-zinc-500 mb-6 ">
           Connect <span className="text-white">With Us</span>
         </h1>
         <p className="text-xl text-gray-300 max-w-2xl mx-auto">
@@ -16,7 +16,7 @@ const SocialConnect = () => {
         <div 
           className={`rounded-3xl bg-gradient-to-br from-gray-800/80 to-gray-900/90 border border-gray-700/50 shadow-2xl backdrop-blur-3xl overflow-hidden p-8 transition-all duration-500 hover:scale-105`}
           style={{
-            boxShadow: '0 0 50px rgba(139, 92, 246, 0.6), 0 0 80px rgba(124, 58, 237, 0.4)'
+            boxShadow: '0 0 50px rgba(255, 255, 255, 0.05), 0 0 80px rgba(255, 255, 255, 0.02)'
           }}
         >
           <div className="flex flex-wrap justify-center gap-8">
@@ -132,27 +132,16 @@ const SocialConnect = () => {
           transition: all 0.3s ease;
         }
         
-        .social-icon.instagram:hover .icon-container {
-          background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
-          box-shadow: 0 0 20px rgba(225, 48, 108, 0.6);
-        }
-        
-        .social-icon.discord:hover .icon-container {
-          background: #7289da;
-          box-shadow: 0 0 20px rgba(114, 137, 218, 0.6);
-        }
-        
-        .social-icon.github:hover .icon-container {
-          background: #333;
-          box-shadow: 0 0 20px rgba(51, 51, 51, 0.6);
-        }
-        
+        .social-icon.instagram:hover .icon-container,
+        .social-icon.discord:hover .icon-container,
+        .social-icon.github:hover .icon-container,
         .social-icon.linkedin:hover .icon-container {
-          background: #0077b5;
-          box-shadow: 0 0 20px rgba(0, 119, 181, 0.6);
+          background: #ffffff;
+          box-shadow: 0 0 20px rgba(255, 255, 255, 0.25);
         }
         
         .social-icon:hover svg {
+          color: #000000 !important;
           animation: shake 0.5s;
         }
         

@@ -86,51 +86,51 @@ function FadeUp({ children, delay = 0, className = "" }: { children: React.React
 
 /* ─── Stats ─────────────────────────────────────────────── */
 const stats = [
-  { value: 2300, suffix: "+", label: "Stores Served", icon: Globe, color: "text-violet-400" },
-  { value: 2, suffix: "", label: "AI-Powered Apps", icon: Zap, color: "text-amber-400" },
-  { value: 4, suffix: ".9★", label: "Average Rating", icon: Star, color: "text-pink-400" },
-  { value: 700, suffix: "+", label: "Premium Sections", icon: Layers, color: "text-sky-400" },
+  { value: 2300, suffix: "+", label: "Stores Served", icon: Globe, color: "text-zinc-200" },
+  { value: 2, suffix: "", label: "AI-Powered Apps", icon: Zap, color: "text-zinc-200" },
+  { value: 4, suffix: ".9★", label: "Average Rating", icon: Star, color: "text-zinc-200" },
+  { value: 700, suffix: "+", label: "Premium Sections", icon: Layers, color: "text-zinc-200" },
 ]
 
 /* ─── Values ─────────────────────────────────────────────── */
 const values = [
   {
     icon: Zap,
-    gradient: "from-amber-500/20 to-orange-600/10",
-    border: "border-amber-500/20",
-    glow: "shadow-amber-500/10",
-    iconBg: "bg-amber-500/10 border-amber-500/20",
-    iconColor: "text-amber-400",
+    gradient: "from-zinc-900 to-zinc-950",
+    border: "border-zinc-800",
+    glow: "shadow-zinc-900/10",
+    iconBg: "bg-zinc-800 border-zinc-700",
+    iconColor: "text-white",
     title: "Ship Fast",
     desc: "We move with urgency. Every feature we build delivers instant value to your store — zero friction, zero waiting.",
   },
   {
     icon: Users,
-    gradient: "from-violet-500/20 to-purple-600/10",
-    border: "border-violet-500/20",
-    glow: "shadow-violet-500/10",
-    iconBg: "bg-violet-500/10 border-violet-500/20",
-    iconColor: "text-violet-400",
+    gradient: "from-zinc-900 to-zinc-950",
+    border: "border-zinc-800",
+    glow: "shadow-zinc-900/10",
+    iconBg: "bg-zinc-800 border-zinc-700",
+    iconColor: "text-white",
     title: "Merchant First",
     desc: "Every decision starts with the merchant. We listen closely, iterate fast, and build exactly what stores need.",
   },
   {
     icon: Shield,
-    gradient: "from-emerald-500/20 to-green-600/10",
-    border: "border-emerald-500/20",
-    glow: "shadow-emerald-500/10",
-    iconBg: "bg-emerald-500/10 border-emerald-500/20",
-    iconColor: "text-emerald-400",
+    gradient: "from-zinc-900 to-zinc-950",
+    border: "border-zinc-800",
+    glow: "shadow-zinc-900/10",
+    iconBg: "bg-zinc-800 border-zinc-700",
+    iconColor: "text-white",
     title: "Zero Complexity",
     desc: "No developers. No settings nightmares. Our apps are built for real store owners who just want things to work.",
   },
   {
     icon: Code2,
-    gradient: "from-sky-500/20 to-blue-600/10",
-    border: "border-sky-500/20",
-    glow: "shadow-sky-500/10",
-    iconBg: "bg-sky-500/10 border-sky-500/20",
-    iconColor: "text-sky-400",
+    gradient: "from-zinc-900 to-zinc-950",
+    border: "border-zinc-800",
+    glow: "shadow-zinc-900/10",
+    iconBg: "bg-zinc-800 border-zinc-700",
+    iconColor: "text-white",
     title: "AI at the Core",
     desc: "Every product we build is powered by artificial intelligence — from smart section recommendations to auto variant detection.",
   },
@@ -144,11 +144,11 @@ const apps = [
     desc: "700+ premium native Shopify sections, FAQ accordions, shoppable Instagram reels and volume widgets — installed in one click. No code, ever.",
     href: "https://apps.shopify.com/sectionly?st_source=autocomplete&surface_detail=autocomplete_apps",
     tag: "2,300+ Installs",
-    gradient: "from-violet-600/25 via-purple-600/10 to-transparent",
-    border: "border-violet-500/25",
-    glow: "hover:shadow-[0_0_60px_rgba(139,92,246,0.15)]",
+    gradient: "from-zinc-900/50 via-zinc-950/20 to-transparent",
+    border: "border-zinc-800",
+    glow: "hover:shadow-[0_0_60px_rgba(255,255,255,0.05)]",
     icon: Layers,
-    iconGradient: "from-violet-500 to-purple-600",
+    iconGradient: "from-zinc-700 to-zinc-800",
     features: ["700+ Sections", "AI Recommendations", "One-Click Install"],
   },
   {
@@ -157,11 +157,11 @@ const apps = [
     desc: "Replace boring Shopify dropdowns with beautiful AI-powered color & image swatches. Boost conversions and make product pages stunning.",
     href: "https://apps.shopify.com/variantify-1",
     tag: "New App",
-    gradient: "from-pink-600/25 via-rose-600/10 to-transparent",
-    border: "border-pink-500/25",
-    glow: "hover:shadow-[0_0_60px_rgba(236,72,153,0.15)]",
+    gradient: "from-zinc-900/50 via-zinc-950/20 to-transparent",
+    border: "border-zinc-800",
+    glow: "hover:shadow-[0_0_60px_rgba(255,255,255,0.05)]",
     icon: Zap,
-    iconGradient: "from-pink-500 to-rose-600",
+    iconGradient: "from-zinc-700 to-zinc-800",
     features: ["AI Detection", "Color & Image Swatches", "Conversion Boost"],
   },
 ]
@@ -189,9 +189,9 @@ export function AboutPage() {
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff06_1px,transparent_1px),linear-gradient(to_bottom,#ffffff06_1px,transparent_1px)] bg-[size:5rem_5rem]" />
 
         {/* Orbs */}
-        <FloatingOrb size={600} color="bg-violet-600" x="60%" y="-10%" delay={0} />
-        <FloatingOrb size={500} color="bg-pink-600" x="-10%" y="20%" delay={1.5} />
-        <FloatingOrb size={400} color="bg-sky-600" x="40%" y="60%" delay={3} />
+        <FloatingOrb size={600} color="bg-zinc-900" x="60%" y="-10%" delay={0} />
+        <FloatingOrb size={500} color="bg-zinc-900" x="-10%" y="20%" delay={1.5} />
+        <FloatingOrb size={400} color="bg-zinc-900" x="40%" y="60%" delay={3} />
 
         {/* Noise overlay */}
         <div className="absolute inset-0 bg-black/50" />
@@ -204,7 +204,7 @@ export function AboutPage() {
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-zinc-700/60 bg-zinc-900/60 backdrop-blur text-zinc-400 text-xs uppercase tracking-widest font-bold mb-8"
           >
-            <Sparkles className="w-3.5 h-3.5 text-violet-400" />
+            <Sparkles className="w-3.5 h-3.5 text-zinc-400" />
             Meet the Team Behind the Magic
           </motion.div>
 
@@ -218,12 +218,12 @@ export function AboutPage() {
             We build tools{" "}
             <br className="hidden md:block" />
             <span className="relative inline-block">
-              <span className="bg-gradient-to-r from-violet-400 via-pink-400 to-amber-400 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-white via-zinc-300 to-zinc-500 bg-clip-text text-transparent">
                 Shopify loves
               </span>
               {/* Underline animated */}
               <motion.span
-                className="absolute -bottom-2 left-0 h-[3px] rounded-full bg-gradient-to-r from-violet-400 via-pink-400 to-amber-400"
+                className="absolute -bottom-2 left-0 h-[3px] rounded-full bg-gradient-to-r from-white via-zinc-300 to-zinc-500"
                 initial={{ width: "0%" }}
                 animate={{ width: "100%" }}
                 transition={{ duration: 1, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
@@ -309,17 +309,17 @@ export function AboutPage() {
 
       {/* ══ MISSION ═══════════════════════════════════════ */}
       <section className="py-32 border-t border-zinc-900 relative overflow-hidden">
-        <FloatingOrb size={500} color="bg-violet-800" x="-15%" y="10%" delay={2} />
+        <FloatingOrb size={500} color="bg-zinc-900" x="-15%" y="10%" delay={2} />
         <div className="relative z-10 container mx-auto max-w-6xl px-6 md:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
             <FadeUp>
-              <span className="inline-flex items-center gap-2 text-violet-400 text-xs uppercase tracking-widest font-bold mb-5">
-                <span className="w-6 h-[2px] bg-violet-400 rounded-full" />
+              <span className="inline-flex items-center gap-2 text-zinc-400 text-xs uppercase tracking-widest font-bold mb-5">
+                <span className="w-6 h-[2px] bg-zinc-400 rounded-full" />
                 Our Mission
               </span>
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter text-white leading-tight mb-6">
                 Empowering every merchant to{" "}
-                <span className="bg-gradient-to-r from-violet-400 to-pink-400 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent">
                   build a better store
                 </span>
               </h2>
@@ -336,31 +336,31 @@ export function AboutPage() {
             {/* Founder quote card */}
             <FadeUp delay={0.15}>
               <TiltCard>
-                <div className="relative bg-gradient-to-br from-zinc-900 to-zinc-950 border border-zinc-800 rounded-3xl p-8 overflow-hidden group hover:border-violet-500/30 transition-colors duration-500">
+                <div className="relative bg-gradient-to-br from-zinc-900 to-zinc-950 border border-zinc-800 rounded-3xl p-8 overflow-hidden group hover:border-zinc-700 transition-colors duration-500">
                   {/* Animated glow top-right */}
-                  <div className="absolute -top-10 -right-10 w-40 h-40 bg-violet-600/20 rounded-full blur-3xl group-hover:bg-violet-600/30 transition-colors duration-700" />
+                  <div className="absolute -top-10 -right-10 w-40 h-40 bg-zinc-800/20 rounded-full blur-3xl group-hover:bg-zinc-800/30 transition-colors duration-700" />
 
                   <div className="relative flex items-center gap-3 mb-8">
                     <div className="flex h-3 w-3">
-                      <span className="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-violet-400 opacity-40"></span>
-                      <span className="relative inline-flex rounded-full h-3 w-3 bg-violet-500"></span>
+                      <span className="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-zinc-400 opacity-40"></span>
+                      <span className="relative inline-flex rounded-full h-3 w-3 bg-zinc-500"></span>
                     </div>
-                    <span className="text-xs font-bold text-violet-400 uppercase tracking-widest">Founder's Note</span>
+                    <span className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Founder's Note</span>
                   </div>
 
                   <blockquote className="relative text-zinc-200 text-base md:text-lg leading-relaxed font-medium mb-8">
-                    <span className="text-5xl text-violet-500/30 font-serif absolute -top-3 -left-1">"</span>
+                    <span className="text-5xl text-zinc-500/30 font-serif absolute -top-3 -left-1">"</span>
                     <span className="relative z-10 ml-4">
                       I started Klenzo because I wanted every Shopify merchant — not just big brands — to have access
                       to truly powerful, beautiful store tools. No dev needed. No complexity. Just results.
                     </span>
-                    <span className="text-5xl text-violet-500/30 font-serif">"</span>
+                    <span className="text-5xl text-zinc-500/30 font-serif">"</span>
                   </blockquote>
 
                   <div className="flex items-center gap-4 pt-6 border-t border-zinc-800">
-                    <div className="relative w-12 h-12 rounded-full bg-gradient-to-br from-violet-500 to-pink-500 flex items-center justify-center text-white font-black text-lg shadow-lg shadow-violet-500/30">
+                    <div className="relative w-12 h-12 rounded-full bg-gradient-to-br from-zinc-700 to-zinc-800 flex items-center justify-center text-white font-black text-lg shadow-lg shadow-zinc-800/30">
                       M
-                      <span className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 bg-emerald-500 rounded-full border-2 border-zinc-900" />
+                      <span className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 bg-zinc-400 rounded-full border-2 border-zinc-900" />
                     </div>
                     <div>
                       <p className="text-white font-bold text-sm">Mitul Zalavadiya</p>
@@ -368,7 +368,7 @@ export function AboutPage() {
                     </div>
                     <div className="ml-auto flex gap-0.5">
                       {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                        <Star key={i} className="w-3.5 h-3.5 fill-white text-white" />
                       ))}
                     </div>
                   </div>
@@ -383,10 +383,10 @@ export function AboutPage() {
       <section className="py-28 border-t border-zinc-900 relative">
         <div className="container mx-auto max-w-5xl px-6 md:px-8">
           <FadeUp className="text-center mb-16">
-            <span className="inline-flex items-center gap-2 text-pink-400 text-xs uppercase tracking-widest font-bold mb-4">
-              <span className="w-6 h-[2px] bg-pink-400 rounded-full" />
+            <span className="inline-flex items-center gap-2 text-zinc-400 text-xs uppercase tracking-widest font-bold mb-4">
+              <span className="w-6 h-[2px] bg-zinc-400 rounded-full" />
               Our Journey
-              <span className="w-6 h-[2px] bg-pink-400 rounded-full" />
+              <span className="w-6 h-[2px] bg-zinc-400 rounded-full" />
             </span>
             <h2 className="text-4xl md:text-5xl font-black tracking-tighter text-white">
               How we got here
@@ -395,7 +395,7 @@ export function AboutPage() {
 
           <div className="relative">
             {/* Vertical line */}
-            <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-violet-500/60 via-pink-500/40 to-transparent md:-translate-x-[1px]" />
+            <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-zinc-700/60 via-zinc-800/40 to-transparent md:-translate-x-[1px]" />
 
             <div className="flex flex-col gap-12">
               {timeline.map((item, i) => (
@@ -403,16 +403,16 @@ export function AboutPage() {
                   <div className={`relative flex flex-col ${i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"} gap-8 md:gap-16 items-start md:items-center`}>
                     {/* Dot */}
                     <div className="absolute left-6 md:left-1/2 w-4 h-4 -translate-x-1/2 mt-1.5 md:mt-0">
-                      <span className="block w-4 h-4 rounded-full bg-gradient-to-br from-violet-500 to-pink-500 shadow-lg shadow-violet-500/40 ring-4 ring-black" />
+                      <span className="block w-4 h-4 rounded-full bg-gradient-to-br from-zinc-700 to-zinc-800 shadow-lg shadow-zinc-800/40 ring-4 ring-black" />
                     </div>
 
                     {/* Content */}
                     <div className={`ml-14 md:ml-0 md:w-1/2 ${i % 2 === 0 ? "md:text-right md:pr-10" : "md:pl-10"}`}>
                       <motion.div
                         whileHover={{ scale: 1.02 }}
-                        className="inline-block bg-zinc-900/80 border border-zinc-800 rounded-2xl px-6 py-5 backdrop-blur hover:border-violet-500/30 transition-colors duration-300"
+                        className="inline-block bg-zinc-900/80 border border-zinc-800 rounded-2xl px-6 py-5 backdrop-blur hover:border-zinc-700 transition-colors duration-300"
                       >
-                        <span className="text-xs font-black text-violet-400 tracking-widest uppercase block mb-1">{item.year}</span>
+                        <span className="text-xs font-black text-zinc-400 tracking-widest uppercase block mb-1">{item.year}</span>
                         <h3 className="text-white font-bold text-lg mb-2">{item.title}</h3>
                         <p className="text-zinc-500 text-sm leading-relaxed">{item.desc}</p>
                       </motion.div>
@@ -429,13 +429,13 @@ export function AboutPage() {
 
       {/* ══ VALUES ════════════════════════════════════════ */}
       <section className="py-28 border-t border-zinc-900 relative overflow-hidden">
-        <FloatingOrb size={450} color="bg-pink-700" x="70%" y="20%" delay={1} />
+        <FloatingOrb size={450} color="bg-zinc-900" x="70%" y="20%" delay={1} />
         <div className="relative z-10 container mx-auto max-w-6xl px-6 md:px-8">
           <FadeUp className="text-center mb-16">
-            <span className="inline-flex items-center gap-2 text-amber-400 text-xs uppercase tracking-widest font-bold mb-4">
-              <span className="w-6 h-[2px] bg-amber-400 rounded-full" />
+            <span className="inline-flex items-center gap-2 text-zinc-400 text-xs uppercase tracking-widest font-bold mb-4">
+              <span className="w-6 h-[2px] bg-zinc-400 rounded-full" />
               What We Stand For
-              <span className="w-6 h-[2px] bg-amber-400 rounded-full" />
+              <span className="w-6 h-[2px] bg-zinc-400 rounded-full" />
             </span>
             <h2 className="text-4xl md:text-5xl font-black tracking-tighter text-white">Our core values</h2>
           </FadeUp>
@@ -469,13 +469,13 @@ export function AboutPage() {
 
       {/* ══ APPS ══════════════════════════════════════════ */}
       <section className="py-28 border-t border-zinc-900 relative overflow-hidden">
-        <FloatingOrb size={400} color="bg-sky-700" x="10%" y="30%" delay={2.5} />
+        <FloatingOrb size={400} color="bg-zinc-900" x="10%" y="30%" delay={2.5} />
         <div className="relative z-10 container mx-auto max-w-6xl px-6 md:px-8">
           <FadeUp className="text-center mb-16">
-            <span className="inline-flex items-center gap-2 text-sky-400 text-xs uppercase tracking-widest font-bold mb-4">
-              <span className="w-6 h-[2px] bg-sky-400 rounded-full" />
+            <span className="inline-flex items-center gap-2 text-zinc-400 text-xs uppercase tracking-widest font-bold mb-4">
+              <span className="w-6 h-[2px] bg-zinc-400 rounded-full" />
               Our Products
-              <span className="w-6 h-[2px] bg-sky-400 rounded-full" />
+              <span className="w-6 h-[2px] bg-zinc-400 rounded-full" />
             </span>
             <h2 className="text-4xl md:text-5xl font-black tracking-tighter text-white mb-4">Apps we've built</h2>
             <p className="text-zinc-400 text-base md:text-lg max-w-xl mx-auto">
@@ -523,7 +523,7 @@ export function AboutPage() {
                         <h3 className="text-white font-extrabold text-2xl tracking-tight">{app.name}</h3>
                         <span className="text-[10px] font-bold text-zinc-400 bg-zinc-800/80 px-2.5 py-1 rounded-full border border-zinc-700">{app.tag}</span>
                       </div>
-                      <p className="text-violet-300/70 text-sm font-semibold mb-3">{app.tagline}</p>
+                      <p className="text-zinc-400 text-sm font-semibold mb-3">{app.tagline}</p>
                       <p className="text-zinc-400 text-sm leading-relaxed">{app.desc}</p>
                     </div>
 
@@ -539,7 +539,7 @@ export function AboutPage() {
                     {/* Stars */}
                     <div className="flex items-center gap-1.5 pt-4 border-t border-white/5">
                       {[...Array(5)].map((_, j) => (
-                        <Star key={j} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                        <Star key={j} className="w-3.5 h-3.5 fill-white text-white" />
                       ))}
                       <span className="text-zinc-500 text-xs ml-1.5 font-medium">Shopify App Store</span>
                       <ChevronRight className="w-3.5 h-3.5 text-zinc-600 ml-auto group-hover:text-zinc-400 transition-colors" />
@@ -554,34 +554,34 @@ export function AboutPage() {
 
       {/* ══ CTA ═══════════════════════════════════════════ */}
       <section className="py-28 border-t border-zinc-900 relative overflow-hidden">
-        <FloatingOrb size={600} color="bg-violet-800" x="30%" y="0%" delay={0.5} />
-        <FloatingOrb size={400} color="bg-pink-800" x="60%" y="40%" delay={2} />
+        <FloatingOrb size={600} color="bg-zinc-900" x="30%" y="0%" delay={0.5} />
+        <FloatingOrb size={400} color="bg-zinc-900" x="60%" y="40%" delay={2} />
         <div className="relative z-10 container mx-auto max-w-4xl px-6 md:px-8 text-center">
           <FadeUp>
             <motion.div
               className="relative bg-zinc-900/70 border border-zinc-800 rounded-3xl px-8 py-16 md:py-24 backdrop-blur overflow-hidden"
-              whileHover={{ borderColor: "rgba(139, 92, 246, 0.3)" }}
+              whileHover={{ borderColor: "rgba(255, 255, 255, 0.2)" }}
               transition={{ duration: 0.4 }}
             >
               {/* Animated gradient border top */}
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-[2px] bg-gradient-to-r from-transparent via-violet-500 to-transparent" />
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-[2px] bg-gradient-to-r from-transparent via-zinc-700 to-transparent" />
 
               <motion.div
-                className="absolute inset-0 bg-gradient-to-br from-violet-600/8 via-transparent to-pink-600/8 pointer-events-none"
+                className="absolute inset-0 bg-gradient-to-br from-zinc-800/10 via-transparent to-zinc-900/10 pointer-events-none"
                 animate={{ opacity: [0.5, 1, 0.5] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
               />
 
               <div className="relative">
                 <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-zinc-700 bg-zinc-800/80 text-zinc-400 text-xs uppercase tracking-widest font-bold mb-6">
-                  <Sparkles className="w-3.5 h-3.5 text-violet-400" />
+                  <Sparkles className="w-3.5 h-3.5 text-zinc-400" />
                   Get Started Free
                 </span>
 
                 <h2 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter text-white leading-[1.05] mb-5">
                   Ready to supercharge{" "}
                   <br className="hidden md:block" />
-                  <span className="bg-gradient-to-r from-violet-400 to-pink-400 bg-clip-text text-transparent">
+                  <span className="bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent">
                     your store?
                   </span>
                 </h2>

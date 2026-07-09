@@ -45,7 +45,7 @@ function RotatingGlobe() {
         </bufferGeometry>
         <pointsMaterial
           size={0.06}
-          color="#8b5cf6"
+          color="#ffffff"
           sizeAttenuation={true}
           transparent={true}
           opacity={0.8}
@@ -56,10 +56,10 @@ function RotatingGlobe() {
       <mesh>
         <sphereGeometry args={[2.5, 32, 32]} />
         <meshBasicMaterial
-          color="#d946ef"
+          color="#3f3f46"
           wireframe={true}
           transparent={true}
-          opacity={0.06}
+          opacity={0.12}
         />
       </mesh>
     </group>
@@ -89,7 +89,7 @@ function FloatingInput({
     <div className="relative w-full group mb-6">
       {/* Background glow when focused */}
       <motion.div
-        className="absolute -inset-1 rounded-xl bg-gradient-to-r from-violet-500 to-pink-500 opacity-0 group-hover:opacity-10 transition-opacity duration-300 pointer-events-none blur-sm"
+        className="absolute -inset-1 rounded-xl bg-zinc-800 opacity-0 group-hover:opacity-10 transition-opacity duration-300 pointer-events-none blur-sm"
         animate={{ opacity: isFocused ? 0.15 : 0 }}
       />
       <input
@@ -100,7 +100,7 @@ function FloatingInput({
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full bg-zinc-950/70 border border-zinc-800 focus:border-violet-500/60 rounded-xl px-4 py-4 text-sm text-white outline-none transition-all duration-300 relative z-10"
+        className="w-full bg-zinc-950/70 border border-zinc-800 focus:border-zinc-500 rounded-xl px-4 py-4 text-sm text-white outline-none transition-all duration-300 relative z-10"
       />
       <motion.label
         htmlFor={id}
@@ -108,7 +108,7 @@ function FloatingInput({
         animate={{
           y: isFocused || isFilled ? -28 : 0,
           scale: isFocused || isFilled ? 0.85 : 1,
-          color: isFocused ? "#a78bfa" : "#71717a",
+          color: isFocused ? "#ffffff" : "#71717a",
         }}
         transition={{ duration: 0.25, ease: "easeOut" }}
         className="absolute left-4 top-4 text-sm font-medium tracking-wide pointer-events-none select-none z-20 origin-left"
@@ -148,8 +148,8 @@ export function ContactPage() {
       {/* Background Visual Elements */}
       <div className="pointer-events-none absolute inset-0 z-0">
         {/* Glow orbs */}
-        <div className="absolute top-[20%] left-[20%] w-[500px] h-[500px] bg-violet-600/10 rounded-full blur-[140px] animate-pulse" />
-        <div className="absolute bottom-[20%] right-[20%] w-[500px] h-[500px] bg-pink-600/10 rounded-full blur-[140px] animate-pulse" />
+        <div className="absolute top-[20%] left-[20%] w-[500px] h-[500px] bg-zinc-800/5 rounded-full blur-[140px] animate-pulse" />
+        <div className="absolute bottom-[20%] right-[20%] w-[500px] h-[500px] bg-zinc-850/5 rounded-full blur-[140px] animate-pulse" />
         
         {/* Digital Grid */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:5rem_5rem] pointer-events-none" />
@@ -162,9 +162,9 @@ export function ContactPage() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ type: "spring", stiffness: 100, damping: 15 }}
-            className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-violet-500/20 bg-violet-500/10 backdrop-blur shadow-[0_0_20px_rgba(139,92,246,0.15)] text-violet-300 text-[11px] md:text-xs uppercase tracking-widest font-black mb-8"
+            className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-zinc-800 bg-zinc-900/60 backdrop-blur shadow-md text-zinc-300 text-[11px] md:text-xs uppercase tracking-widest font-black mb-8"
           >
-            <Sparkles className="w-3.5 h-3.5 text-violet-400 animate-spin-slow" />
+            <Sparkles className="w-3.5 h-3.5 text-zinc-400 animate-spin-slow" />
             Merchant Support Hub
           </motion.div>
 
@@ -175,10 +175,10 @@ export function ContactPage() {
             className="text-6xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[0.95] mb-6"
           >
             Let's Start a{" "}
-            <span className="bg-gradient-to-r from-violet-400 via-pink-400 to-amber-400 bg-clip-text text-transparent relative">
+            <span className="bg-gradient-to-r from-white to-zinc-500 bg-clip-text text-transparent relative">
               Conversation
               <motion.span
-                className="absolute -bottom-2 left-0 h-[2px] bg-gradient-to-r from-violet-400 to-amber-400"
+                className="absolute -bottom-2 left-0 h-[2px] bg-gradient-to-r from-white to-zinc-650"
                 initial={{ width: 0 }}
                 animate={{ width: "100%" }}
                 transition={{ duration: 1, delay: 0.6 }}
@@ -207,11 +207,11 @@ export function ContactPage() {
             className="lg:col-span-5 flex flex-col gap-6"
           >
             {/* 3D Visual Box */}
-            <div className="relative h-[300px] md:h-[380px] bg-gradient-to-br from-zinc-900/60 to-zinc-950/80 border border-zinc-800 rounded-3xl overflow-hidden backdrop-blur flex items-center justify-center shadow-2xl group hover:border-violet-500/20 transition-all duration-300">
+            <div className="relative h-[300px] md:h-[380px] bg-gradient-to-br from-zinc-900/60 to-zinc-950/80 border border-zinc-800 rounded-3xl overflow-hidden backdrop-blur flex items-center justify-center shadow-2xl group hover:border-zinc-750 transition-all duration-300">
               <div className="absolute inset-0 z-0">
                 <Suspense fallback={
                   <div className="absolute inset-0 flex items-center justify-center text-white/50">
-                    <div className="w-10 h-10 border-2 border-violet-500/20 border-t-violet-500 rounded-full animate-spin" />
+                    <div className="w-10 h-10 border-2 border-zinc-850 border-t-white rounded-full animate-spin" />
                   </div>
                 }>
                   <Canvas camera={{ position: [0, 0, 8], fov: 45 }}>
@@ -225,25 +225,25 @@ export function ContactPage() {
               {/* Status Badge overlay */}
               <div className="absolute top-6 left-6 z-10 flex items-center gap-2 bg-zinc-950/80 border border-zinc-800 px-3.5 py-1.5 rounded-full select-none">
                 <span className="flex h-2.5 w-2.5 relative">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-zinc-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-zinc-500"></span>
                 </span>
                 <span className="text-zinc-200 text-xs font-bold uppercase tracking-wider">Founder Active Online</span>
               </div>
 
               <div className="absolute bottom-6 left-6 right-6 z-10 pointer-events-none select-none">
                 <p className="text-zinc-400 text-xs font-semibold uppercase tracking-wider flex items-center gap-1">
-                  <Globe className="w-3.5 h-3.5 text-violet-400" /> Connection Node
+                  <Globe className="w-3.5 h-3.5 text-zinc-400" /> Connection Node
                 </p>
                 <p className="text-white text-lg font-bold mt-1">Direct developer assistance</p>
               </div>
             </div>
 
             {/* Support Details Glass Card */}
-            <div className="bg-gradient-to-br from-zinc-900/60 to-zinc-950/80 border border-zinc-800 rounded-3xl p-8 backdrop-blur flex flex-col gap-5 hover:border-violet-500/20 transition-all duration-300 group overflow-hidden relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-violet-600/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="w-12 h-12 rounded-2xl bg-violet-500/10 border border-violet-500/25 flex items-center justify-center shrink-0">
-                <Mail className="w-6 h-6 text-violet-400" />
+            <div className="bg-gradient-to-br from-zinc-900/60 to-zinc-950/80 border border-zinc-800 rounded-3xl p-8 backdrop-blur flex flex-col gap-5 hover:border-zinc-700 transition-all duration-300 group overflow-hidden relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-zinc-800/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="w-12 h-12 rounded-2xl bg-zinc-900 border border-zinc-800 flex items-center justify-center shrink-0">
+                <Mail className="w-6 h-6 text-zinc-200" />
               </div>
               <div>
                 <h3 className="text-white font-extrabold text-xl">Direct Email</h3>
@@ -253,7 +253,7 @@ export function ContactPage() {
               </div>
               <a
                 href="mailto:mitulzalavadiya11@gmail.com"
-                className="inline-flex items-center gap-1.5 text-violet-400 group-hover:text-white text-sm font-extrabold transition-colors mt-2"
+                className="inline-flex items-center gap-1.5 text-white group-hover:text-zinc-300 text-sm font-extrabold transition-colors mt-2"
               >
                 mitulzalavadiya11@gmail.com
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-300" />
@@ -293,10 +293,10 @@ export function ContactPage() {
             {/* Animated Form Card with Border-Beam Neon Glow */}
             <div className="relative bg-zinc-900/50 border border-zinc-800/80 rounded-3xl p-8 md:p-10 backdrop-blur-xl shadow-[0_0_50px_rgba(0,0,0,0.4)] overflow-hidden flex-1 flex flex-col justify-center group">
               {/* Glowing header line inside card */}
-              <div className="absolute top-0 left-10 right-10 h-[1.5px] bg-gradient-to-r from-transparent via-violet-500 to-transparent" />
+              <div className="absolute top-0 left-10 right-10 h-[1.5px] bg-gradient-to-r from-transparent via-zinc-700 to-transparent" />
 
               {/* Pulsing Border Glow */}
-              <div className="absolute -inset-[1px] bg-gradient-to-r from-violet-500/20 to-pink-500/20 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none blur-[1px]" />
+              <div className="absolute -inset-[1px] bg-gradient-to-r from-zinc-800/20 to-zinc-900/20 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none blur-[1px]" />
 
               <AnimatePresence mode="wait">
                 {!isSuccess ? (
@@ -309,7 +309,7 @@ export function ContactPage() {
                   >
                     <div className="mb-8">
                       <h2 className="text-white text-2xl font-black tracking-tight flex items-center gap-2">
-                        <MessageSquare className="w-5.5 h-5.5 text-violet-400" />
+                        <MessageSquare className="w-5.5 h-5.5 text-zinc-400" />
                         {activeTab === "general"
                           ? "Send a Message"
                           : activeTab === "custom"
@@ -350,7 +350,7 @@ export function ContactPage() {
                           rows={4}
                           value={formData.message}
                           onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                          className="w-full bg-zinc-950/70 border border-zinc-800 focus:border-violet-500/60 rounded-xl px-4 py-4 text-sm text-white placeholder-zinc-700 outline-none resize-none transition-all duration-300 relative z-10"
+                          className="w-full bg-zinc-950/70 border border-zinc-800 focus:border-zinc-500 rounded-xl px-4 py-4 text-sm text-white placeholder-zinc-700 outline-none resize-none transition-all duration-300 relative z-10"
                           placeholder="Provide details about your query..."
                         />
                       </div>
@@ -391,9 +391,9 @@ export function ContactPage() {
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
                       transition={{ type: "spring", stiffness: 200, damping: 10, delay: 0.15 }}
-                      className="w-20 h-20 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center mb-6 shadow-[0_0_30px_rgba(16,185,129,0.15)]"
+                      className="w-20 h-20 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center mb-6 shadow-md"
                     >
-                      <CheckCircle2 className="w-10 h-10 text-emerald-400" />
+                      <CheckCircle2 className="w-10 h-10 text-white" />
                     </motion.div>
 
                     <h2 className="text-white text-3xl font-black tracking-tight mb-2">Message Dispatched!</h2>

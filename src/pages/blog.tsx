@@ -160,17 +160,17 @@ export function BlogPage() {
 
       {/* Background Orbs */}
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
-        <GlowingOrb size={600} color="bg-violet-600" x="70%" y="-10%" delay={0} />
-        <GlowingOrb size={500} color="bg-pink-600" x="-10%" y="25%" delay={2} />
-        <GlowingOrb size={400} color="bg-sky-600" x="40%" y="60%" delay={4} />
+        <GlowingOrb size={600} color="bg-zinc-900" x="70%" y="-10%" delay={0} />
+        <GlowingOrb size={500} color="bg-zinc-900" x="-10%" y="25%" delay={2} />
+        <GlowingOrb size={400} color="bg-zinc-900" x="40%" y="60%" delay={4} />
       </div>
 
       <main className="relative z-10 container mx-auto max-w-6xl px-6 md:px-8 pt-36 pb-32">
         {/* Intro Header Section */}
         <div className="max-w-3xl mb-16 md:mb-20">
           <FadeUp>
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-zinc-800 bg-zinc-900/60 backdrop-blur text-zinc-400 text-xs uppercase tracking-widest font-bold mb-6">
-              <BookOpen className="w-3.5 h-3.5 text-violet-400 animate-pulse" />
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-zinc-850 bg-zinc-900/60 backdrop-blur text-zinc-400 text-xs uppercase tracking-widest font-bold mb-6">
+              <BookOpen className="w-3.5 h-3.5 text-zinc-400 animate-pulse" />
               Resource Center
             </span>
           </FadeUp>
@@ -178,7 +178,7 @@ export function BlogPage() {
           <FadeUp delay={0.1}>
             <h1 className="text-5xl md:text-6xl font-black tracking-tighter text-white leading-none mb-6">
               Klenzo{" "}
-              <span className="bg-gradient-to-r from-violet-400 via-pink-400 to-amber-400 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-white via-zinc-300 to-zinc-500 bg-clip-text text-transparent">
                 Blog
               </span>
             </h1>
@@ -210,7 +210,7 @@ export function BlogPage() {
             <div className="lg:col-span-5 flex flex-col justify-between">
               <div>
                 <div className="flex items-center gap-3 text-xs font-bold text-zinc-400 uppercase tracking-wider mb-4">
-                  <span className="px-3 py-1 rounded-full border border-violet-500/20 bg-violet-500/10 text-violet-300">
+                  <span className="px-3 py-1 rounded-full border border-zinc-800 bg-zinc-900 text-zinc-300">
                     {featuredPost.category}
                   </span>
                   <span className="flex items-center gap-1">
@@ -218,7 +218,7 @@ export function BlogPage() {
                   </span>
                 </div>
 
-                <h2 className="text-2xl md:text-3xl font-black tracking-tight text-white mb-4 group-hover:text-violet-400 transition-colors">
+                <h2 className="text-2xl md:text-3xl font-black tracking-tight text-white mb-4 group-hover:text-zinc-200 transition-colors">
                   {featuredPost.title}
                 </h2>
                 
@@ -241,7 +241,7 @@ export function BlogPage() {
                   </div>
                 </div>
 
-                <div className="w-10 h-10 rounded-full bg-white text-black flex items-center justify-center group-hover:bg-violet-400 group-hover:text-white transition-colors duration-300 shrink-0">
+                <div className="w-10 h-10 rounded-full bg-white text-black flex items-center justify-center group-hover:bg-zinc-800 group-hover:text-white transition-colors duration-300 shrink-0">
                   <ArrowRight className="w-5 h-5" />
                 </div>
               </div>
@@ -294,7 +294,7 @@ export function BlogPage() {
                   </div>
 
                   {/* Title & summary */}
-                  <h3 className="text-white font-bold text-lg leading-snug group-hover:text-violet-400 transition-colors">
+                  <h3 className="text-white font-bold text-lg leading-snug group-hover:text-zinc-200 transition-colors">
                     {post.title}
                   </h3>
                   <p className="text-zinc-500 text-xs mt-3 leading-relaxed line-clamp-2">
@@ -363,7 +363,7 @@ export function BlogPage() {
               {/* Article Content */}
               <div className="p-6 md:p-10">
                 <div className="flex items-center gap-3 text-xs font-bold text-zinc-400 uppercase tracking-wider mb-5">
-                  <span className="px-3 py-1 rounded-full border border-violet-500/20 bg-violet-500/10 text-violet-300">
+                  <span className="px-3 py-1 rounded-full border border-zinc-800 bg-zinc-900 text-zinc-300">
                     {selectedPost.category}
                   </span>
                   <span className="flex items-center gap-1">

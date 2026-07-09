@@ -74,7 +74,7 @@ const StickyTestimonialCard = ({ testimonial, index }: { testimonial: Testimonia
                 className={cn(
                   "h-4 w-4",
                   i < Math.floor(testimonial.rating)
-                    ? "text-yellow-500 fill-yellow-500"
+                    ? "text-white fill-white"
                     : "text-zinc-700/50"
                 )}
               />
@@ -112,8 +112,8 @@ export const ClientsSection = ({
         
         {/* Left Column: Sticky Info */}
         <div className="flex flex-col gap-6 lg:sticky lg:top-28">
-          <div className="inline-flex items-center gap-2 self-start rounded-full border border-violet-500/20 bg-violet-500/10 backdrop-blur px-4 py-1.5 text-xs uppercase tracking-widest font-bold text-violet-300">
-            <div className="h-1.5 w-1.5 rounded-full bg-violet-400 animate-pulse" />
+          <div className="inline-flex items-center gap-2 self-start rounded-full border border-zinc-800 bg-zinc-900/60 backdrop-blur px-4 py-1.5 text-xs uppercase tracking-widest font-bold text-zinc-300">
+            <div className="h-1.5 w-1.5 rounded-full bg-zinc-400 animate-pulse" />
             <span>{tagLabel}</span>
           </div>
 
