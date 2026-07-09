@@ -4,6 +4,7 @@ import { motion } from "motion/react";
 import { ArrowUpRight, Star } from "lucide-react";
 import klenzoVideo from "@/videos/klenzo ai vriant main video.mp4";
 import klenzoLogo from "@/images/klenzo logo.jpg";
+import { trackAppInstallClick } from "@/components/ui/AnalyticsTracker";
 
 const features = [
   "Replace native Shopify variant dropdowns with stunning swatches",
@@ -66,6 +67,7 @@ export function AppShowcase() {
                 href="https://apps.shopify.com/variantify-1"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackAppInstallClick('Variantify', 'Showcase Header')}
                 className="group hover:opacity-80 transition-opacity w-fit"
               >
                 <h3 className="text-2xl md:text-3xl font-headings font-extrabold text-white leading-tight flex items-center gap-3">
@@ -116,6 +118,7 @@ export function AppShowcase() {
                 href="https://apps.shopify.com/variantify-1"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackAppInstallClick('Variantify', 'Showcase Bottom Link')}
                 className="inline-flex items-center gap-2 mt-2 font-bold text-sm text-white border-b border-white pb-0.5 w-fit hover:text-zinc-400 hover:border-zinc-400 transition-colors group"
               >
                 View on Shopify App Store

@@ -8,6 +8,7 @@ import {
   Zap, Copy, CheckCircle2 
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
+import { trackStoreConnection, trackEvent } from "@/components/ui/AnalyticsTracker";
 
 export function DashboardPage() {
   const { user, logout } = useAuth();
@@ -32,13 +33,16 @@ export function DashboardPage() {
       setIsConnected(true);
       // Extract clean name
       const cleanName = shopUrl.replace("https://", "").replace("http://", "").split(".")[0];
-      setConnectedStoreName(cleanName.charAt(0).toUpperCase() + cleanName.slice(1) + " Store");
+      const parsedStoreName = cleanName.charAt(0).toUpperCase() + cleanName.slice(1) + " Store";
+      setConnectedStoreName(parsedStoreName);
+      trackStoreConnection(parsedStoreName, true);
     }, 1500);
   };
 
   const copyToClipboard = (text: string, id: string) => {
     navigator.clipboard.writeText(text);
     setCopiedKey(id);
+    trackEvent('API Key', 'Copy Key', id);
     setTimeout(() => setCopiedKey(null), 2000);
   };
 

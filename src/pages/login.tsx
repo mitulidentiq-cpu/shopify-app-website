@@ -6,6 +6,7 @@ import { Header1 } from "@/components/ui/header";
 import { MinimalFooter } from "@/components/ui/minimal-footer";
 import { ShieldAlert, ArrowLeft, Mail, Lock, Sparkles, Check } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
+import { trackAuthAction, trackEvent } from "@/components/ui/AnalyticsTracker";
 
 export function LoginPage() {
   const { login } = useAuth();
@@ -23,17 +24,21 @@ export function LoginPage() {
     if (credentialResponse.credential) {
       const success = await login(credentialResponse.credential);
       if (success) {
+        trackAuthAction('login', 'google');
         navigate("/dashboard");
       } else {
         setError("Failed to decode user credential profile.");
+        trackEvent('Authentication', 'Login Failure', 'Google Token Decoding Error');
       }
     } else {
       setError("No user credentials received from Google.");
+      trackEvent('Authentication', 'Login Failure', 'Missing Google Credentials');
     }
   };
 
   const handleGoogleError = () => {
     setError("Google authentication process was interrupted or failed.");
+    trackEvent('Authentication', 'Login Failure', 'Google OAuth Interrupted');
   };
 
   const handleFormSubmit = async (e: React.FormEvent) => {
@@ -60,6 +65,7 @@ export function LoginPage() {
       const dummyToken = `${dummyHeader}.${dummyBody}.dummy-signature`;
 
       login(dummyToken);
+      trackAuthAction(isSignUp ? 'sign_up' : 'login', 'email');
       navigate("/dashboard");
     }, 1200);
   };

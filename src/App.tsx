@@ -22,6 +22,7 @@ import { GoogleOAuthProvider } from "@react-oauth/google"
 import { ProtectedRoute } from "@/components/ui/ProtectedRoute"
 import { LoginPage } from "@/pages/login"
 import { DashboardPage } from "@/pages/dashboard"
+import { AnalyticsTracker } from "@/components/ui/AnalyticsTracker"
 
 function HomePage() {
   const partnerLogos = [
@@ -81,6 +82,7 @@ function App() {
   return (
     <GoogleOAuthProvider clientId={googleClientId}>
       <AuthProvider>
+        <AnalyticsTracker />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />

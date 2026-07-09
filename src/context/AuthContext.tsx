@@ -6,6 +6,8 @@ export interface UserProfile {
   picture?: string;
 }
 
+import { setAnalyticsUserContext, clearAnalyticsUserContext } from '@/components/ui/AnalyticsTracker';
+
 interface AuthContextType {
   user: UserProfile | null;
   token: string | null;
@@ -27,8 +29,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const savedUser = localStorage.getItem('user_profile');
     if (savedToken && savedUser) {
       try {
+        const parsedUser = JSON.parse(savedUser);
         setToken(savedToken);
-        setUser(JSON.parse(savedUser));
+        setUser(parsedUser);
+        setAnalyticsUserContext(parsedUser.email, parsedUser.name);
       } catch (e) {
         console.error('Failed to parse saved session:', e);
         localStorage.removeItem('session_token');
@@ -62,6 +66,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setUser(userProfile);
         localStorage.setItem('session_token', googleCredential);
         localStorage.setItem('user_profile', JSON.stringify(userProfile));
+        setAnalyticsUserContext(userProfile.email, userProfile.name);
         return true;
       }
       return false;
@@ -76,6 +81,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setUser(null);
     localStorage.removeItem('session_token');
     localStorage.removeItem('user_profile');
+    clearAnalyticsUserContext();
   };
 
   return (

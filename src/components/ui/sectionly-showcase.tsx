@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion } from "motion/react";
 import { Star, Layers, ArrowUpRight } from "lucide-react";
 import { CosmosGalleryModal } from "@/components/ui/cosmos-gallery-modal";
+import { trackAppInstallClick, trackEvent } from "@/components/ui/AnalyticsTracker";
 
 import img1 from "@/images/images1.jpg";
 import img2 from "@/images/images2.jpg";
@@ -108,6 +109,7 @@ export function SectionlyShowcase() {
                 href="https://apps.shopify.com/sectionly?st_source=autocomplete&surface_detail=autocomplete_apps"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackAppInstallClick('AI Section Hub', 'Showcase Header')}
                 className="group hover:opacity-80 transition-opacity w-fit"
               >
                 <h3 className="text-2xl md:text-3xl font-headings font-extrabold text-white leading-tight flex items-center gap-3">
@@ -159,6 +161,7 @@ export function SectionlyShowcase() {
                 href="https://apps.shopify.com/sectionly"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackAppInstallClick('AI Section Hub', 'Showcase Install Button')}
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.97 }}
                 className="inline-flex items-center gap-2.5 px-6 py-3 bg-black text-white font-bold text-sm rounded-full border border-zinc-700 hover:bg-zinc-900 transition-colors shadow-md"
@@ -174,6 +177,7 @@ export function SectionlyShowcase() {
                 href="https://sectionly.vercel.app"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackEvent('Outbound Link', 'Click Live Demo', 'AI Section Hub')}
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.97 }}
                 className="inline-flex items-center gap-2 px-6 py-3 bg-transparent text-white font-bold text-sm rounded-full border border-zinc-600 hover:border-zinc-400 hover:text-zinc-300 transition-colors"
