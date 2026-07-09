@@ -18,7 +18,7 @@ export function MinimalFooter() {
 		},
 		{
 			title: 'FAQs',
-			href: '#faq',
+			href: '/faq',
 		},
 	];
 
