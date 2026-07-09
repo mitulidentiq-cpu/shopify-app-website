@@ -14,6 +14,7 @@ import { useLocation, Link } from "react-router-dom";
 import logo1 from "@/app logo/logo1.png"
 import shopifyBadge from "@/images/shopify badge.png"
 import { useAuth } from "@/context/AuthContext";
+import { clearAnalyticsUserContext } from "@/components/ui/AnalyticsTracker";
 
 function Header1() {
     const navigationItems = [
@@ -191,13 +192,13 @@ function Header1() {
                     {token ? (
                         <Link to="/dashboard">
                             <Button size="lg" className="cursor-pointer font-bold bg-[#0B0B0B] hover:bg-zinc-900 text-white border border-zinc-800 hover:border-zinc-700 rounded-lg px-5 text-sm transition-all duration-300 shadow-[0_0_15px_rgba(255,255,255,0.02)]">
-                                Merchant Console
+                                Console
                             </Button>
                         </Link>
                     ) : (
                         <Link to="/login">
                             <Button size="lg" className="cursor-pointer font-bold bg-[#0B0B0B] hover:bg-zinc-900 text-white border border-zinc-800 hover:border-zinc-700 rounded-lg px-5 text-sm transition-all duration-300 shadow-[0_0_15px_rgba(255,255,255,0.02)]">
-                                Merchant Login
+                                Login
                             </Button>
                         </Link>
                     )}
@@ -253,13 +254,14 @@ function Header1() {
                                              onClick={() => setOpen(false)}
                                              className="flex justify-between items-center py-2"
                                          >
-                                             <span className="text-lg font-medium text-emerald-400">Merchant Console</span>
+                                             <span className="text-lg font-medium text-emerald-400">Console</span>
                                              <MoveRight className="w-4 h-4 stroke-1 text-emerald-400" />
                                          </Link>
                                          <button
                                              onClick={() => {
                                                  logout();
                                                  setOpen(false);
+                                                 clearAnalyticsUserContext();
                                              }}
                                              className="w-full text-left py-2 text-red-400 font-medium text-lg cursor-pointer"
                                          >
@@ -272,7 +274,7 @@ function Header1() {
                                          onClick={() => setOpen(false)}
                                          className="flex justify-between items-center py-2"
                                      >
-                                         <span className="text-lg font-medium text-white">Merchant Login</span>
+                                         <span className="text-lg font-medium text-white">Login</span>
                                          <MoveRight className="w-4 h-4 stroke-1 text-white" />
                                      </Link>
                                  )}
