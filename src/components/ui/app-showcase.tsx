@@ -20,10 +20,10 @@ export function AppShowcase() {
 
         {/* Section Header */}
         <div className="flex flex-col items-center text-center gap-4 mb-16">
-          <span className="inline-flex px-4 py-1 rounded-full border border-zinc-800 bg-zinc-900 text-zinc-400 text-xs uppercase tracking-widest font-semibold">
+          <span className="inline-flex px-4 py-1 rounded-full border border-zinc-800 bg-zinc-900 text-zinc-400 text-xs uppercase tracking-widest font-headings font-semibold">
             App Feature
           </span>
-          <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white max-w-2xl leading-tight">
+          <h2 className="text-4xl md:text-5xl font-headings font-extrabold tracking-tight text-white max-w-2xl leading-tight">
             Meet <span className="text-zinc-400">Klenzo: AI Variants</span>
           </h2>
           <p className="text-zinc-400 max-w-xl text-base md:text-lg leading-relaxed">
@@ -68,7 +68,7 @@ export function AppShowcase() {
                 rel="noopener noreferrer"
                 className="group hover:opacity-80 transition-opacity w-fit"
               >
-                <h3 className="text-2xl md:text-3xl font-extrabold text-white leading-tight flex items-center gap-3">
+                <h3 className="text-2xl md:text-3xl font-headings font-extrabold text-white leading-tight flex items-center gap-3">
                   <img
                     src={klenzoLogo}
                     alt="Klenzo Logo"

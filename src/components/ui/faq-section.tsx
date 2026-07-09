@@ -52,10 +52,10 @@ export function FaqSection() {
           
           {/* Left Column - Heading Context */}
           <div className="lg:col-span-5 flex flex-col gap-6 lg:sticky lg:top-32">
-            <div className="inline-flex w-fit px-3 py-1 text-xs uppercase tracking-widest bg-zinc-900 border border-zinc-800 text-zinc-300 rounded-full font-medium">
+            <div className="inline-flex w-fit px-3 py-1 text-xs uppercase tracking-widest bg-zinc-900 border border-zinc-800 text-zinc-300 rounded-full font-headings font-semibold">
               Frequently Asked Questions
             </div>
-            <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight leading-tight text-white">
+            <h2 className="text-4xl md:text-5xl font-headings font-extrabold tracking-tight leading-tight text-white">
               We're here to answer all your questions
             </h2>
             <p className="text-zinc-400 text-base md:text-lg leading-relaxed max-w-md">

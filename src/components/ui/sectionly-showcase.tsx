@@ -74,10 +74,10 @@ export function SectionlyShowcase() {
 
         {/* Section Header */}
         <div className="flex flex-col items-center text-center gap-4 mb-16">
-          <span className="inline-flex px-4 py-1 rounded-full border border-zinc-800 bg-zinc-900 text-zinc-400 text-xs uppercase tracking-widest font-semibold">
+          <span className="inline-flex px-4 py-1 rounded-full border border-zinc-800 bg-zinc-900 text-zinc-400 text-xs uppercase tracking-widest font-headings font-semibold">
             App Feature
           </span>
-          <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white max-w-2xl leading-tight">
+          <h2 className="text-4xl md:text-5xl font-headings font-extrabold tracking-tight text-white max-w-2xl leading-tight">
             Meet{" "}
             <span className="text-zinc-400">AI Section Hub</span>
           </h2>
@@ -98,7 +98,7 @@ export function SectionlyShowcase() {
             className="flex flex-col gap-6"
           >
             {/* Trust badge */}
-            <div className="inline-flex items-center gap-2 w-fit bg-zinc-900 border border-zinc-800 text-zinc-300 text-xs font-semibold px-3 py-1.5 rounded-full">
+            <div className="inline-flex items-center gap-2 w-fit bg-zinc-900 border border-zinc-800 text-zinc-300 text-xs font-headings font-semibold px-3 py-1.5 rounded-full">
               <Layers className="w-3.5 h-3.5 text-zinc-400" />
               Trusted by 2,300+ Shopify stores
             </div>
@@ -110,7 +110,7 @@ export function SectionlyShowcase() {
                 rel="noopener noreferrer"
                 className="group hover:opacity-80 transition-opacity w-fit"
               >
-                <h3 className="text-2xl md:text-3xl font-extrabold text-white leading-tight flex items-center gap-3">
+                <h3 className="text-2xl md:text-3xl font-headings font-extrabold text-white leading-tight flex items-center gap-3">
                   <img
                     src={aiSectionHubLogo}
                     alt="AI Section Hub Logo"

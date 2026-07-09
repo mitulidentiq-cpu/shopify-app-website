@@ -43,7 +43,7 @@ export function Hero({
       {/* Eyebrow */}
       {eyebrow && (
         <div className="mb-4">
-          <span className="text-xs md:text-sm font-bold uppercase tracking-widest text-zinc-500">
+          <span className="text-xs md:text-sm font-headings font-bold uppercase tracking-widest text-zinc-500">
             {eyebrow}
           </span>
         </div>
@@ -53,7 +53,7 @@ export function Hero({
       <h1
         className="animate-fade-in -translate-y-4 text-balance 
         bg-gradient-to-br from-black from-30% to-black/40 
-        bg-clip-text py-6 text-5xl font-semibold leading-none tracking-tighter 
+        bg-clip-text py-6 text-5xl font-headings font-black leading-[1.05] tracking-tighter 
         text-transparent opacity-0 sm:text-6xl md:text-7xl lg:text-8xl"
       >
         {title}

@@ -120,7 +120,7 @@ export function MinimalFooter() {
 						</div>
 					</div>
 					<div className="col-span-4 w-full md:col-span-2">
-						<span className="text-zinc-400 mb-3 block text-xs font-semibold uppercase tracking-wider">
+						<span className="text-zinc-400 mb-3 block text-xs font-headings font-bold uppercase tracking-wider">
 							Products
 						</span>
 						<div className="flex flex-col gap-2">
@@ -138,7 +138,7 @@ export function MinimalFooter() {
 						</div>
 					</div>
 					<div className="col-span-4 w-full md:col-span-2">
-						<span className="text-zinc-400 mb-3 block text-xs font-semibold uppercase tracking-wider">
+						<span className="text-zinc-400 mb-3 block text-xs font-headings font-bold uppercase tracking-wider">
 							Company
 						</span>
 						<div className="flex flex-col gap-2">
@@ -154,7 +154,7 @@ export function MinimalFooter() {
 						</div>
 					</div>
 					<div className="col-span-4 w-full md:col-span-3">
-						<span className="text-zinc-400 mb-3 block text-xs font-semibold uppercase tracking-wider">
+						<span className="text-zinc-400 mb-3 block text-xs font-headings font-bold uppercase tracking-wider">
 							Resources
 						</span>
 						<div className="flex flex-col gap-2">

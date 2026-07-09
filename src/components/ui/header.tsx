@@ -113,7 +113,7 @@ function Header1() {
                                             <NavigationMenuLink href={item.href}>
                                                 <Button 
                                                     variant="ghost"
-                                                    className={isDarkPage ? "text-zinc-200 hover:text-white hover:bg-zinc-900" : ""}
+                                                    className={`font-headings ${isDarkPage ? "text-zinc-200 hover:text-white hover:bg-zinc-900" : ""}`}
                                                 >
                                                     {item.title}
                                                 </Button>
@@ -122,7 +122,7 @@ function Header1() {
                                     ) : (
                                         <>
                                             <NavigationMenuTrigger 
-                                                className={`font-medium text-sm ${
+                                                className={`font-headings font-medium text-sm ${
                                                     isDarkPage 
                                                       ? "text-zinc-200 hover:text-white hover:bg-zinc-900 bg-transparent focus:bg-transparent data-[state=open]:bg-zinc-900" 
                                                       : ""
@@ -138,7 +138,7 @@ function Header1() {
                                                 <div className="flex flex-col lg:grid grid-cols-2 gap-4">
                                                     <div className="flex flex-col h-full justify-between">
                                                         <div className="flex flex-col">
-                                                            <p className="text-base font-semibold">{item.title}</p>
+                                                            <p className="text-base font-headings font-semibold">{item.title}</p>
                                                             <p className={`text-sm ${isDarkPage ? "text-zinc-400" : "text-muted-foreground"}`}>
                                                                 {item.description}
                                                             </p>
