@@ -330,7 +330,7 @@ export function TermsPage() {
                     <div>
                       <span className="text-xs font-bold text-zinc-300 block uppercase tracking-wider">Direct Support Guarantee</span>
                       <p className="text-xs text-zinc-400 leading-relaxed mt-1">
-                        If any section breaks your theme, our founder is available to fix it manually. You can reach out directly via our contact form or send a message to <a href="mailto:mitulzalavadiya11@gmail.com" className="text-white font-semibold underline">mitulzalavadiya11@gmail.com</a>.
+                        If any section breaks your theme, our founder is available to fix it manually. You can reach out directly via our contact form or send a message to <a href="mailto:support@klenzo.app" className="text-white font-semibold underline">support@klenzo.app</a>.
                       </p>
                     </div>
                   </div>

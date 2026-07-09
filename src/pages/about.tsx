@@ -261,7 +261,7 @@ export function AboutPage() {
               <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
             </motion.a>
             <motion.a
-              href="mailto:mitulzalavadiya11@gmail.com"
+              href="mailto:support@klenzo.app"
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
               className="inline-flex items-center gap-2 px-8 py-4 bg-zinc-900/80 text-white font-bold text-sm rounded-full border border-zinc-700 hover:border-zinc-500 backdrop-blur transition-all duration-300"
@@ -602,7 +602,7 @@ export function AboutPage() {
                     <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                   </motion.a>
                   <motion.a
-                    href="mailto:mitulzalavadiya11@gmail.com"
+                    href="mailto:support@klenzo.app"
                     whileHover={{ scale: 1.04 }}
                     whileTap={{ scale: 0.97 }}
                     className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-transparent text-white font-bold text-sm rounded-full border border-zinc-700 hover:border-zinc-400 backdrop-blur transition-all duration-300"

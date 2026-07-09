@@ -252,10 +252,10 @@ export function ContactPage() {
                 </p>
               </div>
               <a
-                href="mailto:mitulzalavadiya11@gmail.com"
+                href="mailto:support@klenzo.app"
                 className="inline-flex items-center gap-1.5 text-white group-hover:text-zinc-300 text-sm font-extrabold transition-colors mt-2"
               >
-                mitulzalavadiya11@gmail.com
+                support@klenzo.app
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-300" />
               </a>
             </div>

@@ -63,10 +63,6 @@ function Header1() {
                     title: "Blog",
                     href: "/blog",
                 },
-                {
-                    title: "ROI Calculator",
-                    href: "/roi-calculator",
-                },
             ],
         },
     ];
@@ -75,7 +71,7 @@ function Header1() {
     const [visible, setVisible] = useState(true);
     const [lastScrollY, setLastScrollY] = useState(0);
     const location = useLocation();
-    const isDarkPage = location.pathname === '/about' || location.pathname === '/connect' || location.pathname === '/contact' || location.pathname === '/privacy' || location.pathname === '/terms' || location.pathname === '/guide' || location.pathname === '/blog' || location.pathname === '/roi-calculator' || location.pathname === '/faq';
+    const isDarkPage = location.pathname === '/about' || location.pathname === '/connect' || location.pathname === '/contact' || location.pathname === '/privacy' || location.pathname === '/terms' || location.pathname === '/guide' || location.pathname === '/blog' || location.pathname === '/faq';
 
     useEffect(() => {
         const handleScroll = () => {
@@ -144,7 +140,7 @@ function Header1() {
                                                             </p>
                                                         </div>
                                                         <Button size="sm" className="mt-10" asChild>
-                                                            <a href="mailto:mitulzalavadiya11@gmail.com">
+                                                            <a href="mailto:support@klenzo.app">
                                                                 Email us today
                                                             </a>
                                                         </Button>

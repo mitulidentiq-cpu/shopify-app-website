@@ -50,28 +50,17 @@ export function MinimalFooter() {
 			title: 'Variantify',
 			href: 'https://apps.shopify.com/variantify-1?search_id=2bf64c58-8f42-4490-94cc-ea44d5bab45f&surface_detail=klenzo&surface_inter_position=1&surface_intra_position=1&surface_type=search',
 		},
-		{
-			title: 'ROI Calculator',
-			href: '/roi-calculator',
-		},
 	];
 
 	const socialLinks = [
 		{
 			icon: (
 				<svg className="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-					<path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+					<path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z" />
+					<polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="currentColor" />
 				</svg>
 			),
-			link: '#',
-		},
-		{
-			icon: (
-				<svg className="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-					<path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
-				</svg>
-			),
-			link: 'https://github.com',
+			link: 'https://www.youtube.com/@KlenzoApp',
 		},
 		{
 			icon: (
@@ -81,16 +70,42 @@ export function MinimalFooter() {
 					<circle cx="4" cy="4" r="2" />
 				</svg>
 			),
-			link: 'https://linkedin.com',
+			link: 'https://www.linkedin.com/company/klenzo/about/?viewAsMember=true',
+		},
+		{
+			icon: (
+				<svg className="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+					<rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+					<path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+					<line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+				</svg>
+			),
+			link: 'https://www.instagram.com/klenzo.app/',
 		},
 		{
 			icon: (
 				<svg className="size-4" fill="currentColor" viewBox="0 0 24 24">
-					<path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-					<path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+					<path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
 				</svg>
 			),
-			link: 'mailto:mitulzalavadiya11@gmail.com',
+			link: 'https://x.com/klenzo_',
+		},
+		{
+			icon: (
+				<svg className="size-4" fill="currentColor" viewBox="0 0 24 24">
+					<path d="M24 11.5c0-1.65-1.35-3-3-3-.96 0-1.86.48-2.42 1.24-1.64-1-3.85-1.64-6.29-1.72l1.35-4.24 3.71.79c.05.89.79 1.6 1.69 1.6 1 0 1.8-.8 1.8-1.8s-.8-1.8-1.8-1.8c-.81 0-1.5.54-1.72 1.28l-3.97-.85c-.2-.04-.4.07-.46.27l-1.5 4.73c-2.49.04-4.75.68-6.42 1.7C3.36 9.79 2.46 9.3 1.5 9.3c-1.65 0-3 1.35-3 3 0 1.13.63 2.11 1.56 2.62-.06.29-.1.59-.1.88 0 3.69 4.19 6.7 9.35 6.7s9.35-3 9.35-6.7c0-.29-.04-.59-.1-.88.94-.51 1.56-1.5 1.56-2.62zm-18 2.71c0-1 1-1.8 1.8-1.8s1.8.8 1.8 1.8-1 1.8-1.8 1.8-1.8-.8-1.8-1.8zm7.55 3.32c-1.02 1.02-2.97 1.09-3.55 1.09-.59 0-2.54-.07-3.56-1.09-.19-.19-.19-.51 0-.7.19-.19.51-.19.7 0 .8.8 2.29.87 2.86.87.56 0 2.05-.07 2.85-.86.19-.19.51-.19.7 0 .2.19.2.51.01.7zm-.51-1.52c-.8 0-1.8-.8-1.8-1.8s1-1.8 1.8-1.8 1.8.8 1.8 1.8-1 1.8-1.8 1.8z" />
+				</svg>
+			),
+			link: 'https://www.reddit.com/user/Klenzo_App_Shopify/',
+		},
+		{
+			icon: (
+				<svg className="size-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+					<rect x="2" y="4" width="20" height="16" rx="2" />
+					<path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+				</svg>
+			),
+			link: 'mailto:support@klenzo.app',
 		},
 	];
 

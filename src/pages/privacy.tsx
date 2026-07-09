@@ -335,8 +335,8 @@ export function PrivacyPage() {
                       <p className="text-white text-xs font-bold">Have a deletion request?</p>
                       <p className="text-zinc-500 text-[11px] mt-0.5">
                         Send a message to{" "}
-                        <a href="mailto:mitulzalavadiya11@gmail.com" className="text-white font-semibold underline">
-                          mitulzalavadiya11@gmail.com
+                        <a href="mailto:support@klenzo.app" className="text-white font-semibold underline">
+                          support@klenzo.app
                         </a>.
                       </p>
                     </div>
