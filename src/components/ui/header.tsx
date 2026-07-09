@@ -190,13 +190,13 @@ function Header1() {
                     </a>
                     {token ? (
                         <Link to="/dashboard">
-                            <Button size="sm" className="cursor-pointer font-bold bg-zinc-900 hover:bg-zinc-800 text-white border border-zinc-800 hover:border-zinc-700 rounded-xl px-4 py-2 text-xs transition-all duration-300 shadow-[0_0_15px_rgba(255,255,255,0.02)]">
+                            <Button size="lg" className="cursor-pointer font-bold bg-[#0B0B0B] hover:bg-zinc-900 text-white border border-zinc-800 hover:border-zinc-700 rounded-lg px-5 text-sm transition-all duration-300 shadow-[0_0_15px_rgba(255,255,255,0.02)]">
                                 Merchant Console
                             </Button>
                         </Link>
                     ) : (
                         <Link to="/login">
-                            <Button size="sm" className="cursor-pointer font-bold bg-white text-black hover:bg-zinc-200 rounded-xl px-4 py-2 text-xs transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.15)]">
+                            <Button size="lg" className="cursor-pointer font-bold bg-[#0B0B0B] hover:bg-zinc-900 text-white border border-zinc-800 hover:border-zinc-700 rounded-lg px-5 text-sm transition-all duration-300 shadow-[0_0_15px_rgba(255,255,255,0.02)]">
                                 Merchant Login
                             </Button>
                         </Link>
