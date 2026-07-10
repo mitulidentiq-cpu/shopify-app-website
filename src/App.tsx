@@ -7,6 +7,7 @@ import { SectionlyShowcase } from "@/components/ui/sectionly-showcase"
 import { AnimatedCarousel } from "@/components/ui/logo-carousel"
 import { HeroScrollDemo } from "@/components/ui/hero-scroll-demo"
 import { FaqSection } from "@/components/ui/faq-section"
+import { FeedbackSection } from "@/components/ui/feedback-section"
 import { CtaBanner } from "@/components/ui/cta-banner"
 import { MinimalFooter } from "@/components/ui/minimal-footer"
 import { AboutPage } from "@/pages/about"
@@ -68,6 +69,7 @@ function HomePage() {
           padding="pt-12 lg:pt-16 pb-0"
         />
         <HeroScrollDemo />
+        <FeedbackSection />
         <FaqSection />
       </main>
       <CtaBanner />

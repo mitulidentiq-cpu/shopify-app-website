@@ -8,16 +8,54 @@ export function MinimalFooter() {
 	const [isSubmitted, setIsSubmitted] = useState(false);
 	const [isSubmitting, setIsSubmitting] = useState(false);
 
-	const handleSubscribe = (e: React.FormEvent) => {
+	const handleSubscribe = async (e: React.FormEvent) => {
 		e.preventDefault();
 		if (!email) return;
 		setIsSubmitting(true);
 
-		setTimeout(() => {
-			setIsSubmitting(false);
+		const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
+
+		if (!accessKey) {
+			console.warn("Web3Forms access key is not set. Simulating form submission locally.");
+			setTimeout(() => {
+				setIsSubmitting(false);
+				setIsSubmitted(true);
+				setEmail("");
+			}, 1200);
+			return;
+		}
+
+		try {
+			const response = await fetch("https://api.web3forms.com/submit", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+					Accept: "application/json",
+				},
+				body: JSON.stringify({
+					access_key: accessKey,
+					subject: "New Newsletter Subscriber (Klenzo)",
+					from_name: "Klenzo Website Newsletter",
+					email: email,
+					message: `A user has subscribed to the newsletter. Email: ${email}`,
+				}),
+			});
+
+			if (response.ok) {
+				setIsSubmitted(true);
+				setEmail("");
+			} else {
+				console.error("Web3Forms subscription failed:", await response.json());
+				setIsSubmitted(true);
+				setEmail("");
+			}
+		} catch (error) {
+			console.error("Web3Forms submission error:", error);
 			setIsSubmitted(true);
 			setEmail("");
-		}, 1200);
+		} finally {
+			setIsSubmitting(false);
+		}
 	};
 
 	const company = [
