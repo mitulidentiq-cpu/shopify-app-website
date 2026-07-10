@@ -1,7 +1,24 @@
+import { useState } from "react";
+import { Send, CheckCircle2 } from "lucide-react";
 import logo1 from "@/app logo/logo1.png";
 
 export function MinimalFooter() {
 	const year = new Date().getFullYear();
+	const [email, setEmail] = useState("");
+	const [isSubmitted, setIsSubmitted] = useState(false);
+	const [isSubmitting, setIsSubmitting] = useState(false);
+
+	const handleSubscribe = (e: React.FormEvent) => {
+		e.preventDefault();
+		if (!email) return;
+		setIsSubmitting(true);
+
+		setTimeout(() => {
+			setIsSubmitting(false);
+			setIsSubmitted(true);
+			setEmail("");
+		}, 1200);
+	};
 
 	const company = [
 		{
@@ -111,8 +128,68 @@ export function MinimalFooter() {
 
 	return (
 		<footer className="relative bg-black text-white border-t border-zinc-800">
-			<div className="bg-[radial-gradient(35%_80%_at_30%_0%,rgba(255,255,255,0.05),transparent)] mx-auto max-w-5xl">
-				<div className="grid grid-cols-12 gap-8 pt-12 pb-8 px-8">
+			<div className="bg-[radial-gradient(35%_80%_at_30%_0%,rgba(255,255,255,0.05),transparent)] mx-auto max-w-6xl px-6 md:px-8">
+				{/* Newsletter Signup Row */}
+				<div className="border-b border-zinc-900 pb-12 pt-12">
+					<div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+						<div className="lg:col-span-6 flex flex-col gap-2">
+							<h3 className="text-xl font-extrabold font-headings text-white tracking-tight">
+								Sign Up for Newsletter
+							</h3>
+							<p className="text-zinc-500 text-sm">
+								Subscribe to receive store updates, product drops, and exclusive discounts directly in your inbox.
+							</p>
+						</div>
+						<div className="lg:col-span-6">
+							{isSubmitted ? (
+								<div className="p-4 bg-zinc-900/50 border border-zinc-800 rounded-2xl flex items-center gap-3">
+									<CheckCircle2 className="w-5 h-5 text-white shrink-0 animate-pulse" />
+									<div>
+										<h4 className="text-sm font-bold text-white">Subscription Successful!</h4>
+										<p className="text-xs text-zinc-500">Thank you for connecting with us. All updates will be sent to your email.</p>
+									</div>
+								</div>
+							) : (
+								<form onSubmit={handleSubscribe} className="flex flex-col gap-3">
+									<div className="relative flex items-center">
+										<input
+											type="email"
+											required
+											placeholder="Enter your email..."
+											value={email}
+											onChange={(e) => setEmail(e.target.value)}
+											disabled={isSubmitting}
+											className="w-full bg-zinc-950 hover:bg-zinc-900 focus:bg-zinc-900 border border-zinc-800 focus:border-white rounded-2xl py-3.5 pl-5 pr-14 text-sm text-white placeholder-zinc-600 outline-none transition-all duration-300"
+										/>
+										<button
+											type="submit"
+											disabled={isSubmitting || !email}
+											className="absolute right-2 w-10 h-10 bg-white text-black hover:bg-zinc-200 disabled:bg-zinc-900 disabled:text-zinc-700 rounded-xl flex items-center justify-center transition-all duration-300 cursor-pointer shadow-md"
+										>
+											{isSubmitting ? (
+												<div className="animate-spin rounded-full h-4 w-4 border-t-2 border-black" />
+											) : (
+												<Send className="w-4 h-4" />
+											)}
+										</button>
+									</div>
+									<p className="text-[11px] text-zinc-600 leading-relaxed">
+										By subscribing, you agree to our{" "}
+										<a href="/terms" className="text-zinc-400 hover:text-white underline transition-colors">
+											Terms and Conditions
+										</a>{" "}
+										and{" "}
+										<a href="/privacy" className="text-zinc-400 hover:text-white underline transition-colors">
+											Privacy Policy
+										</a>.
+									</p>
+								</form>
+							)}
+						</div>
+					</div>
+				</div>
+
+				<div className="grid grid-cols-12 gap-8 pt-12 pb-8">
 					<div className="col-span-12 flex flex-col gap-5 md:col-span-5">
 						<a href="#" className="w-max">
 							<img src={logo1} alt="Klenzo Logo" className="h-8 w-auto object-contain" style={{ filter: 'invert(1)' }} />
@@ -134,7 +211,7 @@ export function MinimalFooter() {
 							))}
 						</div>
 					</div>
-					<div className="col-span-4 w-full md:col-span-2">
+					<div className="col-span-6 sm:col-span-4 md:col-span-2 w-full">
 						<span className="text-zinc-400 mb-3 block text-xs font-headings font-bold uppercase tracking-wider">
 							Products
 						</span>
@@ -152,7 +229,7 @@ export function MinimalFooter() {
 							))}
 						</div>
 					</div>
-					<div className="col-span-4 w-full md:col-span-2">
+					<div className="col-span-6 sm:col-span-4 md:col-span-2 w-full">
 						<span className="text-zinc-400 mb-3 block text-xs font-headings font-bold uppercase tracking-wider">
 							Company
 						</span>
@@ -168,7 +245,7 @@ export function MinimalFooter() {
 							))}
 						</div>
 					</div>
-					<div className="col-span-4 w-full md:col-span-3">
+					<div className="col-span-12 sm:col-span-4 md:col-span-3 w-full">
 						<span className="text-zinc-400 mb-3 block text-xs font-headings font-bold uppercase tracking-wider">
 							Resources
 						</span>
@@ -185,7 +262,7 @@ export function MinimalFooter() {
 						</div>
 					</div>
 				</div>
-				<div className="border-t border-zinc-800 flex flex-col justify-between gap-2 py-6 px-8">
+				<div className="border-t border-zinc-800 flex flex-col justify-between gap-2 py-6">
 					<p className="text-zinc-500 text-center text-xs">
 						&copy; {year} Klenzo. All rights reserved. Shopify is a registered trademark of Shopify Inc.
 					</p>

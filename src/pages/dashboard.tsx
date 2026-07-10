@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAuth } from "@/context/AuthContext";
 import { Header1 } from "@/components/ui/header";
 import { MinimalFooter } from "@/components/ui/minimal-footer";
@@ -23,6 +23,17 @@ export function DashboardPage() {
   const [connectedStoreName, setConnectedStoreName] = useState("");
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
 
+  // Load store connection from localStorage on mount
+  useEffect(() => {
+    const savedUrl = localStorage.getItem("connected_store_url");
+    const savedName = localStorage.getItem("connected_store_name");
+    if (savedUrl && savedName) {
+      setShopUrl(savedUrl);
+      setConnectedStoreName(savedName);
+      setIsConnected(true);
+    }
+  }, []);
+
   const handleConnectStore = (e: React.FormEvent) => {
     e.preventDefault();
     if (!shopUrl) return;
@@ -35,8 +46,18 @@ export function DashboardPage() {
       const cleanName = shopUrl.replace("https://", "").replace("http://", "").split(".")[0];
       const parsedStoreName = cleanName.charAt(0).toUpperCase() + cleanName.slice(1) + " Store";
       setConnectedStoreName(parsedStoreName);
+      localStorage.setItem("connected_store_url", shopUrl);
+      localStorage.setItem("connected_store_name", parsedStoreName);
       trackStoreConnection(parsedStoreName, true);
     }, 1500);
+  };
+
+  const handleDisconnect = () => {
+    setIsConnected(false);
+    setShopUrl("");
+    setConnectedStoreName("");
+    localStorage.removeItem("connected_store_url");
+    localStorage.removeItem("connected_store_name");
   };
 
   const copyToClipboard = (text: string, id: string) => {
@@ -127,15 +148,33 @@ export function DashboardPage() {
                     {/* Live metrics widgets */}
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                       {[
-                        { title: "Store Conversions", value: "3.48%", trend: "+1.2%", sub: "Avg conversion lift" },
-                        { title: "Active Sections", value: "14 / 700+", trend: "Live", sub: "Compiled templates" },
-                        { title: "Monthly Syncs", value: "142,852", trend: "100%", sub: "Asynchronous webhook triggers" }
+                        { 
+                          title: "Store Conversions", 
+                          value: isConnected ? "3.48%" : "—", 
+                          trend: isConnected ? "+1.2%" : "Pending", 
+                          trendColor: isConnected ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/20" : "bg-zinc-900 text-zinc-500 border-zinc-800",
+                          sub: isConnected ? "Avg conversion lift" : "Link store to track conversions" 
+                        },
+                        { 
+                          title: "Active Sections", 
+                          value: isConnected ? "14 / 100+" : "0 / 100+", 
+                          trend: isConnected ? "Live" : "Inactive", 
+                          trendColor: isConnected ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/20" : "bg-zinc-900 text-zinc-500 border-zinc-800",
+                          sub: isConnected ? "Compiled templates" : "Link store to compile templates" 
+                        },
+                        { 
+                          title: "Monthly Syncs", 
+                          value: isConnected ? "142,852" : "—", 
+                          trend: isConnected ? "100%" : "0%", 
+                          trendColor: isConnected ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/20" : "bg-zinc-900 text-zinc-500 border-zinc-800",
+                          sub: isConnected ? "Asynchronous webhook triggers" : "Link store to log webhooks" 
+                        }
                       ].map((stat, i) => (
                         <div key={i} className="bg-zinc-950 border border-zinc-900 rounded-3xl p-6 shadow-md relative overflow-hidden">
                           <p className="text-zinc-500 text-xs font-medium uppercase tracking-wider">{stat.title}</p>
                           <div className="flex items-baseline justify-between mt-3">
                             <h4 className="text-2xl font-extrabold text-white">{stat.value}</h4>
-                            <span className="text-[10px] font-bold px-2 py-0.5 bg-emerald-500/10 text-emerald-400 rounded-full border border-emerald-500/20">
+                            <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${stat.trendColor}`}>
                               {stat.trend}
                             </span>
                           </div>
@@ -151,7 +190,7 @@ export function DashboardPage() {
                     >
                       <h3 className="text-xl font-bold font-headings text-white flex items-center gap-3">
                         <Store className="w-5 h-5 text-zinc-400" />
-                        Connect Shopify Store
+                        {isConnected ? "Connected Shopify Store" : "Connect Shopify Store"}
                       </h3>
                       <p className="text-zinc-400 text-xs mt-2 leading-relaxed max-w-md">
                         Enter your store URL to sync variants, liquid templates, and AOV settings seamlessly.
@@ -208,10 +247,7 @@ export function DashboardPage() {
                                 Live Syncing
                               </span>
                               <button
-                                onClick={() => {
-                                  setIsConnected(false);
-                                  setShopUrl("");
-                                }}
+                                onClick={handleDisconnect}
                                 className="text-zinc-500 hover:text-white text-xs font-bold underline cursor-pointer"
                               >
                                 Disconnect
@@ -254,7 +290,7 @@ export function DashboardPage() {
                         </div>
                         <div className="flex items-center gap-2 text-xs text-zinc-400">
                           <Sparkles className="w-4 h-4 text-amber-400 shrink-0" />
-                          <span>App Subscription active</span>
+                          <span>{isConnected ? "App Subscription active" : "Subscription pending connection"}</span>
                         </div>
                       </div>
                     </div>
@@ -276,8 +312,12 @@ export function DashboardPage() {
                           <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-400 text-sm font-bold font-headings">
                             SV
                           </div>
-                          <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                            Connected
+                          <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold border ${
+                            isConnected 
+                              ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/20" 
+                              : "bg-zinc-900 text-zinc-500 border-zinc-800"
+                          }`}>
+                            {isConnected ? "Connected" : "Not Connected"}
                           </span>
                         </div>
                         <h4 className="text-lg font-extrabold text-white mt-4">AI Section Hub</h4>
@@ -285,15 +325,24 @@ export function DashboardPage() {
                           Synchronizes custom FAQ accordions, shoppable image/video reels, and direct liquid modules directly into the native theme manager.
                         </p>
                       </div>
-                      <a 
-                        href="https://apps.shopify.com/sectionly" 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        className="inline-flex items-center gap-2 text-white hover:text-zinc-300 font-bold text-xs mt-6 group w-fit"
-                      >
-                        Launch Configurator
-                        <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                      </a>
+                      {isConnected ? (
+                        <a 
+                          href="https://apps.shopify.com/sectionly" 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className="inline-flex items-center gap-2 text-white hover:text-zinc-300 font-bold text-xs mt-6 group w-fit"
+                        >
+                          Launch Configurator
+                          <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                        </a>
+                      ) : (
+                        <button 
+                          disabled
+                          className="inline-flex items-center gap-2 text-zinc-600 font-bold text-xs mt-6 cursor-not-allowed w-fit"
+                        >
+                          Awaiting Store Connection
+                        </button>
+                      )}
                     </div>
 
                     {/* App 2 */}
@@ -303,8 +352,12 @@ export function DashboardPage() {
                           <div className="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-400 text-sm font-bold font-headings">
                             AV
                           </div>
-                          <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                            Connected
+                          <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold border ${
+                            isConnected 
+                              ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/20" 
+                              : "bg-zinc-900 text-zinc-500 border-zinc-800"
+                          }`}>
+                            {isConnected ? "Connected" : "Not Connected"}
                           </span>
                         </div>
                         <h4 className="text-lg font-extrabold text-white mt-4">Klenzo: AI Variants</h4>
@@ -312,15 +365,24 @@ export function DashboardPage() {
                           Replaces standard selector selectors on product detail screens with visual color grids and image swatches using AI mapping auto-detectors.
                         </p>
                       </div>
-                      <a 
-                        href="https://apps.shopify.com/variantify-1" 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        className="inline-flex items-center gap-2 text-white hover:text-zinc-300 font-bold text-xs mt-6 group w-fit"
-                      >
-                        Configure Swatches
-                        <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                      </a>
+                      {isConnected ? (
+                        <a 
+                          href="https://apps.shopify.com/variantify-1" 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className="inline-flex items-center gap-2 text-white hover:text-zinc-300 font-bold text-xs mt-6 group w-fit"
+                        >
+                          Configure Swatches
+                          <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                        </a>
+                      ) : (
+                        <button 
+                          disabled
+                          className="inline-flex items-center gap-2 text-zinc-600 font-bold text-xs mt-6 cursor-not-allowed w-fit"
+                        >
+                          Awaiting Store Connection
+                        </button>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -334,29 +396,37 @@ export function DashboardPage() {
                     <p className="text-zinc-500 text-xs mt-1.5">Use your API tokens to trigger automated external updates or integrate with custom headless systems.</p>
                   </div>
 
-                  <div className="flex flex-col gap-6">
-                    {[
-                      { label: "Public Publishable Token", val: "pk_live_klenzo_51782390aefd9021e1" },
-                      { label: "Webhook Integration Secret", val: "whsec_908facc12019abddcc2a" }
-                    ].map((key, idx) => (
-                      <div key={idx} className="flex flex-col gap-2">
-                        <span className="text-xs font-bold text-zinc-400">{key.label}</span>
-                        <div className="flex items-center gap-3 bg-zinc-900/50 border border-zinc-800/80 rounded-2xl p-4">
-                          <code className="text-xs text-zinc-300 font-mono flex-grow select-all overflow-x-auto break-all">{key.val}</code>
-                          <button
-                            onClick={() => copyToClipboard(key.val, key.label)}
-                            className="w-9 h-9 rounded-xl hover:bg-zinc-800 flex items-center justify-center text-zinc-400 hover:text-white transition-colors duration-200 shrink-0 cursor-pointer"
-                          >
-                            {copiedKey === key.label ? (
-                              <Check className="w-4 h-4 text-emerald-400 animate-bounce" />
-                            ) : (
-                              <Copy className="w-4 h-4" />
-                            )}
-                          </button>
+                  {isConnected ? (
+                    <div className="flex flex-col gap-6">
+                      {[
+                        { label: "Public Publishable Token", val: `pk_live_klenzo_${connectedStoreName.toLowerCase().replace(/[^a-z0-9]/g, "") || "store"}_51782390aefd9021e1` },
+                        { label: "Webhook Integration Secret", val: "whsec_908facc12019abddcc2a" }
+                      ].map((key, idx) => (
+                        <div key={idx} className="flex flex-col gap-2">
+                          <span className="text-xs font-bold text-zinc-400">{key.label}</span>
+                          <div className="flex items-center gap-3 bg-zinc-900/50 border border-zinc-800/80 rounded-2xl p-4">
+                            <code className="text-xs text-zinc-300 font-mono flex-grow select-all overflow-x-auto break-all">{key.val}</code>
+                            <button
+                              onClick={() => copyToClipboard(key.val, key.label)}
+                              className="w-9 h-9 rounded-xl hover:bg-zinc-800 flex items-center justify-center text-zinc-400 hover:text-white transition-colors duration-200 shrink-0 cursor-pointer"
+                            >
+                              {copiedKey === key.label ? (
+                                <Check className="w-4 h-4 text-emerald-400 animate-bounce" />
+                              ) : (
+                                <Copy className="w-4 h-4" />
+                              )}
+                            </button>
+                          </div>
                         </div>
-                      </div>
-                    ))}
-                  </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="text-center py-12 border border-dashed border-zinc-800/50 rounded-2xl flex flex-col items-center justify-center gap-3">
+                      <Key className="w-8 h-8 text-zinc-600" />
+                      <h4 className="text-sm font-bold text-white">No API Credentials Generated</h4>
+                      <p className="text-zinc-500 text-xs max-w-sm">Please connect your Shopify store to generate publishable API tokens and webhook secrets.</p>
+                    </div>
+                  )}
                 </div>
               )}
 
@@ -365,26 +435,34 @@ export function DashboardPage() {
                 <div className="lg:col-span-12 bg-zinc-950 border border-zinc-900 rounded-3xl p-8">
                   <h3 className="text-xl font-bold font-headings text-white mb-6">Recent Activity Logs</h3>
                   
-                  <div className="flex flex-col gap-4">
-                    {[
-                      { action: "Webhook trigger success", detail: "Synchronized 14 sections on main theme", time: "2 hours ago", status: "success" },
-                      { action: "AI Swatches detect success", detail: "Color nodes loaded for Olive Green and Charcoal Gray", time: "1 day ago", status: "success" },
-                      { action: "Token initialization success", detail: "Google credential login session validated", time: "2 days ago", status: "success" },
-                    ].map((log, i) => (
-                      <div key={i} className="flex justify-between items-center p-4 bg-zinc-900/25 border border-zinc-900 rounded-xl">
-                        <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-400">
-                            <Zap className="w-4 h-4" />
+                  {isConnected ? (
+                    <div className="flex flex-col gap-4">
+                      {[
+                        { action: "Webhook trigger success", detail: `Synchronized 14 sections on ${connectedStoreName || "main"} theme`, time: "Just now", status: "success" },
+                        { action: "AI Swatches detect success", detail: "Color nodes loaded for Olive Green and Charcoal Gray", time: "5 minutes ago", status: "success" },
+                        { action: "Token initialization success", detail: "Google credential login session validated", time: "1 hour ago", status: "success" },
+                      ].map((log, i) => (
+                        <div key={i} className="flex justify-between items-center p-4 bg-zinc-900/25 border border-zinc-900 rounded-xl">
+                          <div className="flex items-center gap-3">
+                            <div className="w-8 h-8 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-400">
+                              <Zap className="w-4 h-4" />
+                            </div>
+                            <div>
+                              <h4 className="text-xs font-bold text-white">{log.action}</h4>
+                              <p className="text-zinc-500 text-[10px] mt-0.5">{log.detail}</p>
+                            </div>
                           </div>
-                          <div>
-                            <h4 className="text-xs font-bold text-white">{log.action}</h4>
-                            <p className="text-zinc-500 text-[10px] mt-0.5">{log.detail}</p>
-                          </div>
+                          <span className="text-[10px] text-zinc-500 font-medium shrink-0">{log.time}</span>
                         </div>
-                        <span className="text-[10px] text-zinc-500 font-medium shrink-0">{log.time}</span>
-                      </div>
-                    ))}
-                  </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="text-center py-12 border border-dashed border-zinc-800/50 rounded-2xl flex flex-col items-center justify-center gap-3">
+                      <Activity className="w-8 h-8 text-zinc-600" />
+                      <h4 className="text-sm font-bold text-white">No Activity Logs Found</h4>
+                      <p className="text-zinc-500 text-xs max-w-sm">Connect a Shopify store to view real-time sync histories, API webhook events, and Liquid template compile logs.</p>
+                    </div>
+                  )}
                 </div>
               )}
 
