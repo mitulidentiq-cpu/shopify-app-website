@@ -34,9 +34,9 @@ export interface ClientsSectionProps {
 
 const StatCard = ({ value, label }: Stat) => (
   <Card className="bg-zinc-900/40 border-zinc-800/80 text-center rounded-xl backdrop-blur">
-    <CardContent className="p-4">
-      <p className="text-3xl font-black text-white">{value}</p>
-      <p className="text-xs text-zinc-400 mt-1 font-semibold">{label}</p>
+    <CardContent className="p-3 sm:p-4">
+      <p className="text-xl sm:text-2xl md:text-3xl font-black text-white leading-tight break-words">{value}</p>
+      <p className="text-[10px] sm:text-xs text-zinc-400 mt-1 font-semibold leading-snug">{label}</p>
     </CardContent>
   </Card>
 );
@@ -48,19 +48,19 @@ const StickyTestimonialCard = ({ testimonial, index }: { testimonial: Testimonia
       style={{ top: `${120 + index * 24}px` }} // Staggered top position for stacking (adjusted for header offset)
     >
       <div className={cn(
-        "p-6 rounded-2xl shadow-xl flex flex-col h-auto w-full",
+        "p-5 sm:p-6 rounded-2xl shadow-xl flex flex-col h-auto w-full",
         "bg-zinc-950/70 border border-zinc-800/80 backdrop-blur-md"
       )}>
         {/* Top section: Image and Author */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3 sm:gap-4">
           <div
-            className="w-14 h-14 rounded-xl bg-cover bg-center flex-shrink-0 border border-zinc-800"
+            className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-cover bg-center flex-shrink-0 border border-zinc-800"
             style={{ backgroundImage: `url(${testimonial.avatarSrc})` }}
             aria-label={`Photo of ${testimonial.name}`}
           />
-          <div className="flex-grow">
-            <p className="font-bold text-lg text-white">{testimonial.name}</p>
-            <p className="text-xs text-zinc-400 font-semibold mt-0.5">{testimonial.title}</p>
+          <div className="flex-grow min-w-0">
+            <p className="font-bold text-base sm:text-lg text-white truncate">{testimonial.name}</p>
+            <p className="text-xs text-zinc-400 font-semibold mt-0.5 truncate">{testimonial.title}</p>
           </div>
         </div>
 
@@ -107,8 +107,8 @@ export const ClientsSection = ({
   const scrollContainerHeight = `calc(100vh + ${testimonials.length * 120}px)`;
 
   return (
-    <section className={cn("w-full bg-transparent text-white py-20 md:py-28", className)}>
-      <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+    <section className={cn("w-full bg-transparent text-white py-16 md:py-28", className)}>
+      <div className="container mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-start">
         
         {/* Left Column: Sticky Info */}
         <div className="flex flex-col gap-6 lg:sticky lg:top-28">
@@ -117,18 +117,18 @@ export const ClientsSection = ({
             <span>{tagLabel}</span>
           </div>
 
-          <h2 className="text-4xl md:text-5xl font-black tracking-tight leading-tight">{title}</h2>
-          <p className="text-base text-zinc-400 leading-relaxed font-medium">{description}</p>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight">{title}</h2>
+          <p className="text-sm sm:text-base text-zinc-400 leading-relaxed font-medium">{description}</p>
           
-          <div className="grid grid-cols-3 gap-4 mt-4">
+          <div className="grid grid-cols-3 gap-2 sm:gap-4 mt-4">
             {stats.map((stat) => (
               <StatCard key={stat.label} {...stat} />
             ))}
           </div>
           
-          <div className="flex items-center gap-4 mt-6">
-            <Button variant="outline" size="lg" className="rounded-xl border-zinc-800 text-zinc-300 hover:bg-zinc-900 cursor-pointer">{secondaryActionLabel}</Button>
-            <Button size="lg" className="rounded-xl bg-white text-black hover:bg-zinc-100 cursor-pointer">{primaryActionLabel}</Button>
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 mt-6">
+            <Button variant="outline" size="lg" className="rounded-xl border-zinc-800 text-zinc-300 hover:bg-zinc-900 cursor-pointer w-full sm:w-auto">{secondaryActionLabel}</Button>
+            <Button size="lg" className="rounded-xl bg-white text-black hover:bg-zinc-100 cursor-pointer w-full sm:w-auto">{primaryActionLabel}</Button>
           </div>
         </div>
 

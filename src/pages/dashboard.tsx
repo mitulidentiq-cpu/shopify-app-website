@@ -74,7 +74,7 @@ export function DashboardPage() {
       {/* Decorative Glowing Backdrop */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-zinc-800/10 blur-[130px] pointer-events-none" />
 
-      <main className="flex-grow pt-32 pb-20 px-6 max-w-6xl mx-auto w-full z-10">
+      <main className="flex-grow pt-28 md:pt-32 pb-20 px-4 md:px-6 max-w-6xl mx-auto w-full z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -82,27 +82,27 @@ export function DashboardPage() {
           className="flex flex-col gap-8"
         >
           {/* Dashboard Header Bar */}
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 border-b border-zinc-900 pb-8">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-2xl bg-zinc-900 border border-zinc-800 flex items-center justify-center">
-                <LayoutDashboard className="w-6 h-6 text-white animate-pulse" />
+          <div className="flex flex-row justify-between items-center gap-4 border-b border-zinc-900 pb-6">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 md:w-12 md:h-12 rounded-2xl bg-zinc-900 border border-zinc-800 flex items-center justify-center shrink-0">
+                <LayoutDashboard className="w-5 h-5 md:w-6 md:h-6 text-white animate-pulse" />
               </div>
               <div>
-                <h1 className="text-3xl font-extrabold font-headings tracking-tight text-white">Merchant Console</h1>
-                <p className="text-zinc-500 text-sm mt-1">Manage and sync Klenzo applications for your store</p>
+                <h1 className="text-xl md:text-3xl font-extrabold font-headings tracking-tight text-white leading-tight">Merchant Console</h1>
+                <p className="text-zinc-500 text-xs md:text-sm mt-0.5 hidden sm:block">Manage and sync Klenzo applications for your store</p>
               </div>
             </div>
             <button
               onClick={logout}
-              className="inline-flex items-center gap-2 px-5 py-2.5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-xl border border-zinc-800 hover:border-zinc-700 transition-all duration-300 shadow-md cursor-pointer group"
+              className="inline-flex items-center gap-2 px-3 py-2 md:px-5 md:py-2.5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-xs md:text-sm rounded-xl border border-zinc-800 hover:border-zinc-700 transition-all duration-300 shadow-md cursor-pointer group shrink-0"
             >
               <LogOut className="w-4 h-4 text-zinc-400 group-hover:text-red-400 transition-colors" />
-              Sign Out
+              <span className="hidden sm:inline">Sign Out</span>
             </button>
           </div>
 
           {/* Navigation Tab Bar */}
-          <div className="flex gap-2 p-1.5 bg-zinc-950 border border-zinc-900 rounded-2xl w-fit">
+          <div className="flex gap-1.5 p-1.5 bg-zinc-950 border border-zinc-900 rounded-2xl w-full overflow-x-auto scrollbar-none">
             {[
               { id: "overview", label: "Overview", icon: LayoutDashboard },
               { id: "apps", label: "Apps Status", icon: Store },
@@ -115,14 +115,15 @@ export function DashboardPage() {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id as any)}
-                  className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold transition-all duration-300 cursor-pointer ${
+                  className={`inline-flex items-center gap-1.5 px-3 py-2.5 rounded-xl text-xs font-bold transition-all duration-300 cursor-pointer whitespace-nowrap flex-1 justify-center ${
                     isActive 
                       ? "bg-white text-black shadow-lg" 
                       : "text-zinc-400 hover:text-white bg-transparent"
                   }`}
                 >
-                  <Icon className="w-3.5 h-3.5" />
-                  {tab.label}
+                  <Icon className="w-3.5 h-3.5 shrink-0" />
+                  <span className="hidden sm:inline">{tab.label}</span>
+                  <span className="sm:hidden">{tab.label.split(" ")[0]}</span>
                 </button>
               );
             })}
@@ -142,11 +143,37 @@ export function DashboardPage() {
               {/* Tab 1: Overview */}
               {activeTab === "overview" && (
                 <>
+                  {/* Profile card — visible only on mobile, at top */}
+                  <div className="lg:hidden col-span-1 bg-zinc-950 border border-zinc-900 rounded-3xl p-5 shadow-md flex flex-row items-center gap-4">
+                    <div className="shrink-0">
+                      {user?.picture ? (
+                        <img
+                          src={user.picture}
+                          alt={user.name}
+                          className="w-14 h-14 rounded-full border-2 border-zinc-800 object-cover shadow-lg"
+                          referrerPolicy="no-referrer"
+                        />
+                      ) : (
+                        <div className="w-14 h-14 rounded-full border-2 border-zinc-800 bg-zinc-900 flex items-center justify-center">
+                          <User className="w-6 h-6 text-zinc-500" />
+                        </div>
+                      )}
+                    </div>
+                    <div className="flex flex-col min-w-0">
+                      <h3 className="text-base font-bold text-white truncate">{user?.name || "Merchant"}</h3>
+                      <p className="text-zinc-500 text-xs truncate">{user?.email}</p>
+                      <div className="flex items-center gap-1.5 mt-1.5">
+                        <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                        <span className="text-xs text-zinc-400">Google Authenticated</span>
+                      </div>
+                    </div>
+                  </div>
+
                   {/* Left Column stats & store builder */}
-                  <div className="lg:col-span-8 flex flex-col gap-8">
+                  <div className="lg:col-span-8 flex flex-col gap-6 md:gap-8">
                     
                     {/* Live metrics widgets */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6">
                       {[
                         { 
                           title: "Store Conversions", 
@@ -170,29 +197,29 @@ export function DashboardPage() {
                           sub: isConnected ? "Asynchronous webhook triggers" : "Link store to log webhooks" 
                         }
                       ].map((stat, i) => (
-                        <div key={i} className="bg-zinc-950 border border-zinc-900 rounded-3xl p-6 shadow-md relative overflow-hidden">
-                          <p className="text-zinc-500 text-xs font-medium uppercase tracking-wider">{stat.title}</p>
+                        <div key={i} className="bg-zinc-950 border border-zinc-900 rounded-3xl p-5 md:p-6 shadow-md relative overflow-hidden">
+                          <p className="text-zinc-500 text-[10px] md:text-xs font-medium uppercase tracking-wider">{stat.title}</p>
                           <div className="flex items-baseline justify-between mt-3">
-                            <h4 className="text-2xl font-extrabold text-white">{stat.value}</h4>
+                            <h4 className="text-xl md:text-2xl font-extrabold text-white">{stat.value}</h4>
                             <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${stat.trendColor}`}>
                               {stat.trend}
                             </span>
                           </div>
-                          <p className="text-[11px] text-zinc-500 mt-2">{stat.sub}</p>
+                          <p className="text-[10px] md:text-[11px] text-zinc-500 mt-2">{stat.sub}</p>
                         </div>
                       ))}
                     </div>
 
                     {/* Store Connector box */}
                     <div 
-                      className="bg-gradient-to-b from-zinc-900/40 to-zinc-950/60 border border-zinc-800/80 rounded-3xl p-8 shadow-xl relative"
+                      className="bg-gradient-to-b from-zinc-900/40 to-zinc-950/60 border border-zinc-800/80 rounded-3xl p-5 md:p-8 shadow-xl relative"
                       style={{ boxShadow: "0 0 40px rgba(0,0,0,0.5)" }}
                     >
-                      <h3 className="text-xl font-bold font-headings text-white flex items-center gap-3">
-                        <Store className="w-5 h-5 text-zinc-400" />
+                      <h3 className="text-lg md:text-xl font-bold font-headings text-white flex items-center gap-3">
+                        <Store className="w-5 h-5 text-zinc-400 shrink-0" />
                         {isConnected ? "Connected Shopify Store" : "Connect Shopify Store"}
                       </h3>
-                      <p className="text-zinc-400 text-xs mt-2 leading-relaxed max-w-md">
+                      <p className="text-zinc-400 text-xs mt-2 leading-relaxed">
                         Enter your store URL to sync variants, liquid templates, and AOV settings seamlessly.
                       </p>
 
@@ -201,7 +228,7 @@ export function DashboardPage() {
                           <motion.form 
                             key="form"
                             onSubmit={handleConnectStore}
-                            className="flex flex-col md:flex-row gap-4 mt-6"
+                            className="flex flex-col gap-3 mt-6"
                           >
                             <input
                               type="text"
@@ -209,12 +236,12 @@ export function DashboardPage() {
                               value={shopUrl}
                               onChange={(e) => setShopUrl(e.target.value)}
                               disabled={isConnecting}
-                              className="flex-grow bg-zinc-900/60 hover:bg-zinc-900/80 border border-zinc-800 focus:border-zinc-700 rounded-2xl py-3.5 px-4 text-sm text-white placeholder-zinc-500 outline-none transition-all duration-300"
+                              className="w-full bg-zinc-900/60 hover:bg-zinc-900/80 border border-zinc-800 focus:border-zinc-700 rounded-2xl py-3.5 px-4 text-sm text-white placeholder-zinc-500 outline-none transition-all duration-300"
                             />
                             <button
                               type="submit"
                               disabled={isConnecting || !shopUrl}
-                              className="px-6 py-3.5 bg-white text-black hover:bg-zinc-200 disabled:bg-zinc-900 disabled:text-zinc-600 font-extrabold text-sm rounded-2xl transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer shadow-md shrink-0"
+                              className="w-full sm:w-auto sm:self-end px-6 py-3.5 bg-white text-black hover:bg-zinc-200 disabled:bg-zinc-900 disabled:text-zinc-600 font-extrabold text-sm rounded-2xl transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer shadow-md"
                             >
                               {isConnecting ? (
                                 <div className="animate-spin rounded-full h-4 w-4 border-t-2 border-black" />
@@ -231,18 +258,18 @@ export function DashboardPage() {
                             key="success"
                             initial={{ opacity: 0, scale: 0.95 }}
                             animate={{ opacity: 1, scale: 1 }}
-                            className="mt-6 p-5 bg-emerald-950/20 border border-emerald-900/50 rounded-2xl flex flex-col md:flex-row justify-between items-start md:items-center gap-4"
+                            className="mt-6 p-4 md:p-5 bg-emerald-950/20 border border-emerald-900/50 rounded-2xl flex flex-col gap-4"
                           >
                             <div className="flex items-center gap-3">
-                              <div className="w-10 h-10 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-400">
+                              <div className="w-10 h-10 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-400 shrink-0">
                                 <CheckCircle2 className="w-5 h-5" />
                               </div>
-                              <div>
-                                <h4 className="text-sm font-bold text-white">{connectedStoreName} Linked successfully</h4>
-                                <p className="text-[11px] text-zinc-500 mt-0.5">{shopUrl}</p>
+                              <div className="min-w-0">
+                                <h4 className="text-sm font-bold text-white truncate">{connectedStoreName} Linked successfully</h4>
+                                <p className="text-[11px] text-zinc-500 mt-0.5 truncate">{shopUrl}</p>
                               </div>
                             </div>
-                            <div className="flex items-center gap-3">
+                            <div className="flex items-center justify-between">
                               <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
                                 Live Syncing
                               </span>
@@ -260,8 +287,8 @@ export function DashboardPage() {
 
                   </div>
 
-                  {/* Right Column Profile and billing */}
-                  <div className="lg:col-span-4 flex flex-col gap-6">
+                  {/* Right Column Profile — desktop only */}
+                  <div className="hidden lg:flex lg:col-span-4 flex-col gap-6">
                     
                     {/* Profile Information */}
                     <div className="bg-zinc-950 border border-zinc-900 rounded-3xl p-6 shadow-md text-center flex flex-col items-center">
@@ -404,8 +431,8 @@ export function DashboardPage() {
                       ].map((key, idx) => (
                         <div key={idx} className="flex flex-col gap-2">
                           <span className="text-xs font-bold text-zinc-400">{key.label}</span>
-                          <div className="flex items-center gap-3 bg-zinc-900/50 border border-zinc-800/80 rounded-2xl p-4">
-                            <code className="text-xs text-zinc-300 font-mono flex-grow select-all overflow-x-auto break-all">{key.val}</code>
+                          <div className="flex items-center gap-2 bg-zinc-900/50 border border-zinc-800/80 rounded-2xl p-3 md:p-4">
+                            <code className="text-xs text-zinc-300 font-mono flex-grow select-all overflow-hidden text-ellipsis whitespace-nowrap min-w-0">{key.val}</code>
                             <button
                               onClick={() => copyToClipboard(key.val, key.label)}
                               className="w-9 h-9 rounded-xl hover:bg-zinc-800 flex items-center justify-center text-zinc-400 hover:text-white transition-colors duration-200 shrink-0 cursor-pointer"
@@ -442,17 +469,17 @@ export function DashboardPage() {
                         { action: "AI Swatches detect success", detail: "Color nodes loaded for Olive Green and Charcoal Gray", time: "5 minutes ago", status: "success" },
                         { action: "Token initialization success", detail: "Google credential login session validated", time: "1 hour ago", status: "success" },
                       ].map((log, i) => (
-                        <div key={i} className="flex justify-between items-center p-4 bg-zinc-900/25 border border-zinc-900 rounded-xl">
-                          <div className="flex items-center gap-3">
-                            <div className="w-8 h-8 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-400">
+                        <div key={i} className="flex justify-between items-start gap-3 p-4 bg-zinc-900/25 border border-zinc-900 rounded-xl">
+                          <div className="flex items-start gap-3 min-w-0">
+                            <div className="w-8 h-8 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-400 shrink-0 mt-0.5">
                               <Zap className="w-4 h-4" />
                             </div>
-                            <div>
+                            <div className="min-w-0">
                               <h4 className="text-xs font-bold text-white">{log.action}</h4>
-                              <p className="text-zinc-500 text-[10px] mt-0.5">{log.detail}</p>
+                              <p className="text-zinc-500 text-[10px] mt-0.5 break-words">{log.detail}</p>
                             </div>
                           </div>
-                          <span className="text-[10px] text-zinc-500 font-medium shrink-0">{log.time}</span>
+                          <span className="text-[10px] text-zinc-500 font-medium shrink-0 mt-0.5">{log.time}</span>
                         </div>
                       ))}
                     </div>

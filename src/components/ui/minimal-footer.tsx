@@ -165,13 +165,13 @@ export function MinimalFooter() {
 	];
 
 	return (
-		<footer className="relative bg-black text-white border-t border-zinc-800">
-			<div className="bg-[radial-gradient(35%_80%_at_30%_0%,rgba(255,255,255,0.05),transparent)] mx-auto max-w-6xl px-6 md:px-8">
+		<footer className="relative bg-black text-white border-t border-zinc-800 overflow-hidden">
+			<div className="bg-[radial-gradient(35%_80%_at_30%_0%,rgba(255,255,255,0.05),transparent)] mx-auto max-w-6xl px-4 sm:px-6 md:px-8">
 				{/* Newsletter Signup Row */}
-				<div className="border-b border-zinc-900 pb-12 pt-12">
-					<div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+				<div className="border-b border-zinc-900 pb-10 pt-10 md:pb-12 md:pt-12">
+					<div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
 						<div className="lg:col-span-6 flex flex-col gap-2">
-							<h3 className="text-xl font-extrabold font-headings text-white tracking-tight">
+							<h3 className="text-lg md:text-xl font-extrabold font-headings text-white tracking-tight">
 								Sign Up for Newsletter
 							</h3>
 							<p className="text-zinc-500 text-sm">
@@ -202,7 +202,7 @@ export function MinimalFooter() {
 										<button
 											type="submit"
 											disabled={isSubmitting || !email}
-											className="absolute right-2 w-10 h-10 bg-white text-black hover:bg-zinc-200 disabled:bg-zinc-900 disabled:text-zinc-700 rounded-xl flex items-center justify-center transition-all duration-300 cursor-pointer shadow-md"
+											className="absolute right-2 top-1/2 -translate-y-1/2 w-9 h-9 bg-white text-black hover:bg-zinc-200 disabled:bg-zinc-900 disabled:text-zinc-700 rounded-xl flex items-center justify-center transition-all duration-300 cursor-pointer shadow-md shrink-0"
 										>
 											{isSubmitting ? (
 												<div className="animate-spin rounded-full h-4 w-4 border-t-2 border-black" />
@@ -227,19 +227,21 @@ export function MinimalFooter() {
 					</div>
 				</div>
 
-				<div className="grid grid-cols-12 gap-8 pt-12 pb-8">
-					<div className="col-span-12 flex flex-col gap-5 md:col-span-5">
+				{/* Main Footer Links */}
+				<div className="pt-10 pb-8 md:pt-12">
+					{/* Logo + Description + Socials */}
+					<div className="flex flex-col gap-4 mb-8 md:mb-0 md:hidden">
 						<a href="#" className="w-max">
-							<img src={logo1} alt="Klenzo Logo" className="h-8 w-auto object-contain" style={{ filter: 'invert(1)' }} />
+							<img src={logo1} alt="Klenzo Logo" className="h-7 w-auto object-contain" style={{ filter: 'invert(1)' }} />
 						</a>
-						<p className="text-zinc-400 max-w-sm text-sm text-balance">
+						<p className="text-zinc-400 text-sm leading-relaxed max-w-xs">
 							Maximize your Average Order Value on Shopify with lightning-fast AI-powered bundles, upcells, and volume discounts. Built by Klenzo.
 						</p>
-						<div className="flex gap-2">
+						<div className="flex gap-2 flex-wrap">
 							{socialLinks.map((item, i) => (
 								<a
 									key={i}
-									className="hover:bg-zinc-800 rounded-md border border-zinc-800 p-1.5 duration-200 flex items-center justify-center text-zinc-400 hover:text-white"
+									className="hover:bg-zinc-800 rounded-md border border-zinc-800 p-2 duration-200 flex items-center justify-center text-zinc-400 hover:text-white"
 									target="_blank"
 									rel="noopener noreferrer"
 									href={item.link}
@@ -249,15 +251,18 @@ export function MinimalFooter() {
 							))}
 						</div>
 					</div>
-					<div className="col-span-6 sm:col-span-4 md:col-span-2 w-full">
-						<span className="text-zinc-400 mb-3 block text-xs font-headings font-bold uppercase tracking-wider">
-							Products
-						</span>
+
+					{/* Mobile: 3-col links grid */}
+					<div className="grid grid-cols-3 gap-x-4 gap-y-8 md:hidden">
+						{/* Products */}
 						<div className="flex flex-col gap-2">
+							<span className="text-zinc-400 mb-1 block text-[10px] font-headings font-bold uppercase tracking-wider">
+								Products
+							</span>
 							{products.map(({ href, title }, i) => (
 								<a
 									key={i}
-									className="w-max text-sm text-zinc-400 duration-200 hover:text-white hover:underline"
+									className="text-xs text-zinc-400 duration-200 hover:text-white hover:underline leading-snug"
 									target={href.startsWith("http") ? "_blank" : undefined}
 									rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
 									href={href}
@@ -266,32 +271,30 @@ export function MinimalFooter() {
 								</a>
 							))}
 						</div>
-					</div>
-					<div className="col-span-6 sm:col-span-4 md:col-span-2 w-full">
-						<span className="text-zinc-400 mb-3 block text-xs font-headings font-bold uppercase tracking-wider">
-							Company
-						</span>
+						{/* Company */}
 						<div className="flex flex-col gap-2">
+							<span className="text-zinc-400 mb-1 block text-[10px] font-headings font-bold uppercase tracking-wider">
+								Company
+							</span>
 							{company.map(({ href, title }, i) => (
 								<a
 									key={i}
-									className="w-max text-sm text-zinc-400 duration-200 hover:text-white hover:underline"
+									className="text-xs text-zinc-400 duration-200 hover:text-white hover:underline leading-snug"
 									href={href}
 								>
 									{title}
 								</a>
 							))}
 						</div>
-					</div>
-					<div className="col-span-12 sm:col-span-4 md:col-span-3 w-full">
-						<span className="text-zinc-400 mb-3 block text-xs font-headings font-bold uppercase tracking-wider">
-							Resources
-						</span>
+						{/* Resources */}
 						<div className="flex flex-col gap-2">
+							<span className="text-zinc-400 mb-1 block text-[10px] font-headings font-bold uppercase tracking-wider">
+								Resources
+							</span>
 							{resources.map(({ href, title }, i) => (
 								<a
 									key={i}
-									className="w-max text-sm text-zinc-400 duration-200 hover:text-white hover:underline"
+									className="text-xs text-zinc-400 duration-200 hover:text-white hover:underline leading-snug"
 									href={href}
 								>
 									{title}
@@ -299,7 +302,83 @@ export function MinimalFooter() {
 							))}
 						</div>
 					</div>
+
+					{/* Desktop: original 12-col grid */}
+					<div className="hidden md:grid grid-cols-12 gap-8">
+						<div className="col-span-5 flex flex-col gap-5">
+							<a href="#" className="w-max">
+								<img src={logo1} alt="Klenzo Logo" className="h-8 w-auto object-contain" style={{ filter: 'invert(1)' }} />
+							</a>
+							<p className="text-zinc-400 max-w-sm text-sm text-balance">
+								Maximize your Average Order Value on Shopify with lightning-fast AI-powered bundles, upcells, and volume discounts. Built by Klenzo.
+							</p>
+							<div className="flex gap-2">
+								{socialLinks.map((item, i) => (
+									<a
+										key={i}
+										className="hover:bg-zinc-800 rounded-md border border-zinc-800 p-1.5 duration-200 flex items-center justify-center text-zinc-400 hover:text-white"
+										target="_blank"
+										rel="noopener noreferrer"
+										href={item.link}
+									>
+										{item.icon}
+									</a>
+								))}
+							</div>
+						</div>
+						<div className="col-span-2 w-full">
+							<span className="text-zinc-400 mb-3 block text-xs font-headings font-bold uppercase tracking-wider">
+								Products
+							</span>
+							<div className="flex flex-col gap-2">
+								{products.map(({ href, title }, i) => (
+									<a
+										key={i}
+										className="w-max text-sm text-zinc-400 duration-200 hover:text-white hover:underline"
+										target={href.startsWith("http") ? "_blank" : undefined}
+										rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+										href={href}
+									>
+										{title}
+									</a>
+								))}
+							</div>
+						</div>
+						<div className="col-span-2 w-full">
+							<span className="text-zinc-400 mb-3 block text-xs font-headings font-bold uppercase tracking-wider">
+								Company
+							</span>
+							<div className="flex flex-col gap-2">
+								{company.map(({ href, title }, i) => (
+									<a
+										key={i}
+										className="w-max text-sm text-zinc-400 duration-200 hover:text-white hover:underline"
+										href={href}
+									>
+										{title}
+									</a>
+								))}
+							</div>
+						</div>
+						<div className="col-span-3 w-full">
+							<span className="text-zinc-400 mb-3 block text-xs font-headings font-bold uppercase tracking-wider">
+								Resources
+							</span>
+							<div className="flex flex-col gap-2">
+								{resources.map(({ href, title }, i) => (
+									<a
+										key={i}
+										className="w-max text-sm text-zinc-400 duration-200 hover:text-white hover:underline"
+										href={href}
+									>
+										{title}
+									</a>
+								))}
+							</div>
+						</div>
+					</div>
 				</div>
+
 				<div className="border-t border-zinc-800 flex flex-col justify-between gap-2 py-6">
 					<p className="text-zinc-500 text-center text-xs">
 						&copy; {year} Klenzo. All rights reserved. Shopify is a registered trademark of Shopify Inc.
