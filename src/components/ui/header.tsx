@@ -7,8 +7,8 @@ import {
     NavigationMenuList,
     NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import { Menu, MoveRight, X } from "lucide-react";
-import { useState, useEffect } from "react";
+import { Menu, MoveRight, X, LayoutDashboard, LogOut, ChevronDown } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
 import { useLocation, Link } from "react-router-dom";
 
 import logo1 from "@/app logo/logo1.png"
@@ -72,8 +72,21 @@ function Header1() {
     const [isOpen, setOpen] = useState(false);
     const [visible, setVisible] = useState(true);
     const [lastScrollY, setLastScrollY] = useState(0);
+    const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
+    const profileDropdownRef = useRef<HTMLDivElement>(null);
     const location = useLocation();
-    const { token, logout } = useAuth();
+    const { token, user, logout } = useAuth();
+
+    // Close profile dropdown on outside click
+    useEffect(() => {
+        const handleOutsideClick = (e: MouseEvent) => {
+            if (profileDropdownRef.current && !profileDropdownRef.current.contains(e.target as Node)) {
+                setProfileDropdownOpen(false);
+            }
+        };
+        document.addEventListener("mousedown", handleOutsideClick);
+        return () => document.removeEventListener("mousedown", handleOutsideClick);
+    }, []);
     const isDarkPage = location.pathname === '/about' || location.pathname === '/connect' || location.pathname === '/contact' || location.pathname === '/privacy' || location.pathname === '/terms' || location.pathname === '/guide' || location.pathname === '/blog' || location.pathname === '/faq' || location.pathname === '/login' || location.pathname === '/dashboard';
 
     useEffect(() => {
@@ -189,13 +202,70 @@ function Header1() {
                     <a href="https://apps.shopify.com/partners/solvify-tech2" target="_blank" rel="noopener noreferrer" className="hidden xl:inline-block">
                         <img src={shopifyBadge} alt="Shopify Badge" className="h-11 w-auto object-contain hover:scale-105 transition-transform duration-300" />
                     </a>
-                    {token ? (
-                        <Link to="/dashboard">
-                            <Button size="lg" className="cursor-pointer font-bold bg-[#0B0B0B] hover:bg-zinc-900 text-white border border-zinc-800 hover:border-zinc-700 rounded-lg px-5 text-sm transition-all duration-300 shadow-[0_0_15px_rgba(255,255,255,0.02)]">
-                                Console
-                            </Button>
-                        </Link>
+                    {token && user ? (
+                        /* ── Logged-in: Profile Avatar + Dropdown ── */
+                        <div className="relative" ref={profileDropdownRef}>
+                            <button
+                                onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}
+                                className="flex items-center gap-2.5 cursor-pointer group focus:outline-none"
+                                aria-label="User menu"
+                            >
+                                {/* Avatar */}
+                                {user.picture ? (
+                                    <img
+                                        src={user.picture}
+                                        alt={user.name}
+                                        referrerPolicy="no-referrer"
+                                        className="w-9 h-9 rounded-full border-2 border-zinc-700 group-hover:border-zinc-400 transition-all duration-200 object-cover shrink-0"
+                                    />
+                                ) : (
+                                    <div className="w-9 h-9 rounded-full bg-zinc-800 border-2 border-zinc-700 group-hover:border-zinc-400 flex items-center justify-center transition-all duration-200 shrink-0">
+                                        <span className="text-white text-sm font-bold">
+                                            {user.name?.charAt(0)?.toUpperCase() || "U"}
+                                        </span>
+                                    </div>
+                                )}
+                                {/* Name (hidden on small screens) */}
+                                <span className={`hidden md:block text-sm font-semibold max-w-[100px] truncate transition-colors duration-200 ${isDarkPage ? "text-zinc-200 group-hover:text-white" : "text-foreground group-hover:text-black"}`}>
+                                    {user.name?.split(" ")[0]}
+                                </span>
+                                <ChevronDown className={`w-3.5 h-3.5 hidden md:block transition-transform duration-200 ${profileDropdownOpen ? "rotate-180" : ""} ${isDarkPage ? "text-zinc-400" : "text-muted-foreground"}`} />
+                            </button>
+
+                            {/* Dropdown menu */}
+                            {profileDropdownOpen && (
+                                <div className="absolute right-0 top-[calc(100%+10px)] w-56 bg-zinc-950 border border-zinc-800 rounded-2xl shadow-2xl py-2 z-50 overflow-hidden">
+                                    {/* User info row */}
+                                    <div className="px-4 py-3 border-b border-zinc-800">
+                                        <p className="text-white text-sm font-semibold truncate">{user.name}</p>
+                                        <p className="text-zinc-500 text-xs truncate mt-0.5">{user.email}</p>
+                                    </div>
+                                    {/* Console link */}
+                                    <Link
+                                        to="/dashboard"
+                                        onClick={() => setProfileDropdownOpen(false)}
+                                        className="flex items-center gap-3 px-4 py-2.5 text-sm text-zinc-300 hover:text-white hover:bg-zinc-900 transition-colors duration-150"
+                                    >
+                                        <LayoutDashboard className="w-4 h-4 text-zinc-500" />
+                                        Console
+                                    </Link>
+                                    {/* Sign out */}
+                                    <button
+                                        onClick={() => {
+                                            logout();
+                                            clearAnalyticsUserContext();
+                                            setProfileDropdownOpen(false);
+                                        }}
+                                        className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-red-400 hover:text-red-300 hover:bg-zinc-900 transition-colors duration-150 cursor-pointer"
+                                    >
+                                        <LogOut className="w-4 h-4" />
+                                        Sign Out
+                                    </button>
+                                </div>
+                            )}
+                        </div>
                     ) : (
+                        /* ── Not logged in: Login button ── */
                         <Link to="/login">
                             <Button size="lg" className="cursor-pointer font-bold bg-[#0B0B0B] hover:bg-zinc-900 text-white border border-zinc-800 hover:border-zinc-700 rounded-lg px-5 text-sm transition-all duration-300 shadow-[0_0_15px_rgba(255,255,255,0.02)]">
                                 Login
@@ -247,8 +317,27 @@ function Header1() {
                                 </div>
                             ))}
                             <div className="border-t border-zinc-800 pt-4 mt-2">
-                                 {token ? (
+                                 {token && user ? (
                                      <div className="flex flex-col gap-2">
+                                         {/* Mobile profile info */}
+                                         <div className="flex items-center gap-3 py-2">
+                                             {user.picture ? (
+                                                 <img
+                                                     src={user.picture}
+                                                     alt={user.name}
+                                                     referrerPolicy="no-referrer"
+                                                     className="w-10 h-10 rounded-full border-2 border-zinc-700 object-cover shrink-0"
+                                                 />
+                                             ) : (
+                                                 <div className="w-10 h-10 rounded-full bg-zinc-800 border-2 border-zinc-700 flex items-center justify-center shrink-0">
+                                                     <span className="text-white font-bold">{user.name?.charAt(0)?.toUpperCase() || "U"}</span>
+                                                 </div>
+                                             )}
+                                             <div className="flex flex-col min-w-0">
+                                                 <span className="text-sm font-semibold text-white truncate">{user.name}</span>
+                                                 <span className="text-xs text-zinc-500 truncate">{user.email}</span>
+                                             </div>
+                                         </div>
                                          <Link
                                              to="/dashboard"
                                              onClick={() => setOpen(false)}
@@ -260,8 +349,8 @@ function Header1() {
                                          <button
                                              onClick={() => {
                                                  logout();
-                                                 setOpen(false);
                                                  clearAnalyticsUserContext();
+                                                 setOpen(false);
                                              }}
                                              className="w-full text-left py-2 text-red-400 font-medium text-lg cursor-pointer"
                                          >
