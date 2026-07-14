@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import { ArrowUpRight, Star } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import klenzoVideo from "@/videos/klenzo ai vriant main video.mp4";
 import klenzoLogo from "@/images/klenzo logo.jpg";
 import { trackAppInstallClick } from "@/components/ui/AnalyticsTracker";
@@ -85,14 +85,7 @@ export function AppShowcase() {
               </p>
             </div>
 
-              {/* Star Rating */}
-              <div className="flex items-center gap-2">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
-                ))}
-                <span className="text-white text-sm font-semibold ml-1">5.0</span>
-                <span className="text-zinc-500 text-sm">(New App — Be First!)</span>
-              </div>
+
 
               {/* Feature bullets */}
               <ul className="flex flex-col gap-3">

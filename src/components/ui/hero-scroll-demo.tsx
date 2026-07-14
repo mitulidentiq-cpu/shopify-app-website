@@ -1,5 +1,5 @@
 import { ContainerScroll } from "@/components/ui/container-scroll-animation";
-import scrollImg from "@/images/updated image.png";
+import scrollImg from "@/images/updated imageeeee.png";
 
 export function HeroScrollDemo() {
   return (

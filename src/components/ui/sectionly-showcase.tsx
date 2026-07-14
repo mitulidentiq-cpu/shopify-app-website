@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import { motion } from "motion/react";
-import { Star, Layers, ArrowUpRight } from "lucide-react";
+import { Layers, ArrowUpRight } from "lucide-react";
 import { CosmosGalleryModal } from "@/components/ui/cosmos-gallery-modal";
-import { trackAppInstallClick, trackEvent } from "@/components/ui/AnalyticsTracker";
+import { trackAppInstallClick } from "@/components/ui/AnalyticsTracker";
 
 import img1 from "@/images/images1.jpg";
 import img2 from "@/images/images2.jpg";
@@ -127,14 +127,7 @@ export function SectionlyShowcase() {
               </p>
             </div>
 
-            {/* Star Rating */}
-            <div className="flex items-center gap-2">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
-              ))}
-              <span className="text-white text-sm font-semibold ml-1">4.9</span>
-              <span className="text-zinc-500 text-sm">(2,300+ reviews)</span>
-            </div>
+
 
             {/* Feature bullets */}
             <ul className="flex flex-col gap-3">
@@ -173,17 +166,6 @@ export function SectionlyShowcase() {
                 </svg>
               </motion.a>
 
-              <motion.a
-                href="https://sectionly.vercel.app"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => trackEvent('Outbound Link', 'Click Live Demo', 'AI Section Hub')}
-                whileHover={{ scale: 1.04 }}
-                whileTap={{ scale: 0.97 }}
-                className="inline-flex items-center gap-2 px-6 py-3 bg-transparent text-white font-bold text-sm rounded-full border border-zinc-600 hover:border-zinc-400 hover:text-zinc-300 transition-colors"
-              >
-                Browse Sections
-              </motion.a>
 
               <motion.button
                 onClick={() => setIsCosmosOpen(true)}
