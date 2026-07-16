@@ -5,16 +5,17 @@ import { MinimalFooter } from "@/components/ui/minimal-footer";
 import { 
   LogOut, User, Sparkles, LayoutDashboard, ShieldCheck, 
   Store, Plus, ArrowUpRight, Check, Key, Activity, 
-  Zap, Copy, CheckCircle2 
+  Zap, Copy, CheckCircle2, BookOpen, Edit, Trash2, ArrowLeft, Clock 
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { trackStoreConnection, trackEvent } from "@/components/ui/AnalyticsTracker";
+import { getBlogPosts, saveBlogPosts, type BlogPost } from "@/lib/blog-store";
 
 export function DashboardPage() {
   const { user, logout } = useAuth();
   
   // Navigation Tabs state
-  const [activeTab, setActiveTab] = useState<"overview" | "apps" | "credentials" | "activity">("overview");
+  const [activeTab, setActiveTab] = useState<"overview" | "apps" | "credentials" | "activity" | "blogs">("overview");
 
   // Store Connection simulation state
   const [shopUrl, setShopUrl] = useState("");
@@ -33,6 +34,159 @@ export function DashboardPage() {
       setIsConnected(true);
     }
   }, []);
+
+  // Blog management states
+  const [blogs, setBlogs] = useState<BlogPost[]>([]);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editingPost, setEditingPost] = useState<BlogPost | null>(null);
+
+  // Form states
+  const [blogTitle, setBlogTitle] = useState("");
+  const [blogCategory, setBlogCategory] = useState<"Shopify Tips" | "App Updates" | "Design Guide" | "Shopify Store Design">("Shopify Store Design");
+  const [blogSummary, setBlogSummary] = useState("");
+  const [blogReadTime, setBlogReadTime] = useState("5 min read");
+  const [blogThumbnail, setBlogThumbnail] = useState("");
+  const [blogContentRaw, setBlogContentRaw] = useState("");
+  const [blogTagsRaw, setBlogTagsRaw] = useState("");
+  const [blogSeoTitle, setBlogSeoTitle] = useState("");
+  const [blogMetaDescription, setBlogMetaDescription] = useState("");
+  const [blogPrimaryKeyword, setBlogPrimaryKeyword] = useState("");
+  const [blogCtaLabel, setBlogCtaLabel] = useState("Explore AI Section Hub");
+  const [blogCtaUrl, setBlogCtaUrl] = useState("https://apps.shopify.com/sectionly");
+
+  // Curated Unsplash images for quick cover selection
+  const curatedImages = [
+    { url: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&auto=format&fit=crop&q=80", label: "Dashboard / Tech Mockup" },
+    { url: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&auto=format&fit=crop&q=80", label: "Analytics / Metrics Charts" },
+    { url: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=1200&auto=format&fit=crop&q=80", label: "Design / Coding Mockup" },
+    { url: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=1200&auto=format&fit=crop&q=80", label: "Social Media / App Icons" },
+    { url: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&auto=format&fit=crop&q=80", label: "Business / Tiered Pricing Table" }
+  ];
+
+  // Load blog posts on tab/page change
+  useEffect(() => {
+    if (activeTab === "blogs") {
+      setBlogs(getBlogPosts());
+    }
+  }, [activeTab]);
+
+  const openCreateForm = () => {
+    setBlogTitle("");
+    setBlogCategory("Shopify Store Design");
+    setBlogSummary("");
+    setBlogReadTime("9 min read");
+    setBlogThumbnail("https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&auto=format&fit=crop&q=80"); // default cover
+    setBlogContentRaw("");
+    setBlogTagsRaw("");
+    setBlogSeoTitle("");
+    setBlogMetaDescription("");
+    setBlogPrimaryKeyword("");
+    setBlogCtaLabel("Explore AI Section Hub");
+    setBlogCtaUrl("https://apps.shopify.com/sectionly");
+    setEditingPost(null);
+    setIsEditing(true);
+  };
+
+  const openEditForm = (post: BlogPost) => {
+    setBlogTitle(post.title);
+    setBlogCategory(post.category);
+    setBlogSummary(post.summary);
+    setBlogReadTime(post.readTime);
+    setBlogThumbnail(post.thumbnail);
+    setBlogContentRaw(post.content.join("\n\n"));
+    setBlogTagsRaw(post.tags ? post.tags.join(", ") : "");
+    setBlogSeoTitle(post.seoTitle || "");
+    setBlogMetaDescription(post.metaDescription || "");
+    setBlogPrimaryKeyword(post.primaryKeyword || "");
+    setBlogCtaLabel(post.ctaLabel || "Explore AI Section Hub");
+    setBlogCtaUrl(post.ctaUrl || "https://apps.shopify.com/sectionly");
+    setEditingPost(post);
+    setIsEditing(true);
+  };
+
+  const handleDeletePost = (id: string) => {
+    if (window.confirm("Are you sure you want to delete this blog post?")) {
+      const updated = blogs.filter(b => b.id !== id);
+      setBlogs(updated);
+      saveBlogPosts(updated);
+    }
+  };
+
+  const handleSavePost = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!blogTitle || !blogSummary || !blogContentRaw) {
+      alert("Please fill in Title, Summary, and Content fields.");
+      return;
+    }
+
+    const contentParagraphs = blogContentRaw
+      .split("\n\n")
+      .map(p => p.trim())
+      .filter(p => p.length > 0);
+
+    const tagsArray = blogTagsRaw
+      .split(",")
+      .map(t => t.trim())
+      .filter(t => t.length > 0);
+
+    const formattedDate = editingPost 
+      ? editingPost.date 
+      : new Date().toLocaleDateString("en-US", { month: "long", day: "2-digit", year: "numeric" });
+
+    const authorDetails = editingPost ? editingPost.author : {
+      name: user?.name || "Mitul Zalavadiya",
+      avatar: user?.picture || "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=100&auto=format&fit=crop&q=80"
+    };
+
+    let postSlug = editingPost?.id;
+    if (!postSlug) {
+      // Generate slug from title
+      postSlug = blogTitle
+        .toLowerCase()
+        .replace(/[^a-z0-9\s-]/g, "") // remove special chars
+        .replace(/\s+/g, "-")         // replace spaces with hyphens
+        .replace(/-+/g, "-")          // dedupe hyphens
+        .replace(/(^-|-$)/g, "");     // trim hyphens
+      
+      // Ensure slug uniqueness
+      let originalSlug = postSlug;
+      let counter = 1;
+      while (blogs.some(b => b.id === postSlug)) {
+        postSlug = `${originalSlug}-${counter}`;
+        counter++;
+      }
+    }
+
+    const savedPost: BlogPost = {
+      id: postSlug,
+      title: blogTitle,
+      category: blogCategory,
+      date: formattedDate,
+      readTime: blogReadTime,
+      thumbnail: blogThumbnail || "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&auto=format&fit=crop&q=80",
+      author: authorDetails,
+      summary: blogSummary,
+      content: contentParagraphs,
+      tags: tagsArray,
+      seoTitle: blogSeoTitle || blogTitle,
+      metaDescription: blogMetaDescription || blogSummary,
+      primaryKeyword: blogPrimaryKeyword,
+      ctaLabel: blogCtaLabel,
+      ctaUrl: blogCtaUrl
+    };
+
+    let updatedBlogs: BlogPost[] = [];
+    if (editingPost) {
+      updatedBlogs = blogs.map(b => b.id === editingPost.id ? savedPost : b);
+    } else {
+      updatedBlogs = [savedPost, ...blogs];
+    }
+
+    setBlogs(updatedBlogs);
+    saveBlogPosts(updatedBlogs);
+    setIsEditing(false);
+    setEditingPost(null);
+  };
 
   const handleConnectStore = (e: React.FormEvent) => {
     e.preventDefault();
@@ -108,6 +262,7 @@ export function DashboardPage() {
               { id: "apps", label: "Apps Status", icon: Store },
               { id: "credentials", label: "API & Webhooks", icon: Key },
               { id: "activity", label: "Sync Logs", icon: Activity },
+              { id: "blogs", label: "Manage Blogs", icon: BookOpen },
             ].map((tab) => {
               const Icon = tab.icon;
               const isActive = activeTab === tab.id;
@@ -488,6 +643,323 @@ export function DashboardPage() {
                       <Activity className="w-8 h-8 text-zinc-600" />
                       <h4 className="text-sm font-bold text-white">No Activity Logs Found</h4>
                       <p className="text-zinc-500 text-xs max-w-sm">Connect a Shopify store to view real-time sync histories, API webhook events, and Liquid template compile logs.</p>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* Tab 5: Manage Blogs */}
+              {activeTab === "blogs" && (
+                <div className="lg:col-span-12 w-full flex flex-col gap-6">
+                  {isEditing ? (
+                    <form onSubmit={handleSavePost} className="w-full flex flex-col gap-6 bg-zinc-950 border border-zinc-900 rounded-3xl p-6 md:p-8">
+                      {/* Back Button and Header */}
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-zinc-900 pb-5">
+                        <div className="flex flex-col gap-1.5">
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setIsEditing(false);
+                              setEditingPost(null);
+                            }}
+                            className="inline-flex items-center gap-2 text-zinc-400 hover:text-white text-xs font-bold w-fit cursor-pointer transition-colors"
+                          >
+                            <ArrowLeft className="w-4 h-4" /> Back to Articles
+                          </button>
+                          <h3 className="text-xl font-extrabold text-white mt-2">
+                            {editingPost ? "Edit Blog Article" : "Write New Blog Article"}
+                          </h3>
+                        </div>
+                        <button
+                          type="submit"
+                          className="px-6 py-3 bg-white hover:bg-zinc-200 text-black font-extrabold text-sm rounded-2xl transition-all duration-300 shadow-md cursor-pointer shrink-0 animate-pulse hover:animate-none"
+                        >
+                          {editingPost ? "Save Changes" : "Publish Article"}
+                        </button>
+                      </div>
+
+                      {/* Main Form Content - Two Columns */}
+                      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                        
+                        {/* Left Column: Core Fields */}
+                        <div className="lg:col-span-8 flex flex-col gap-6">
+                          {/* Title */}
+                          <div className="flex flex-col gap-2">
+                            <label className="text-xs font-bold text-zinc-400 uppercase tracking-wider">Article Title *</label>
+                            <input
+                              type="text"
+                              required
+                              placeholder="e.g., How to Add a Custom Section to a Shopify Theme"
+                              value={blogTitle}
+                              onChange={(e) => setBlogTitle(e.target.value)}
+                              className="w-full bg-zinc-900/60 hover:bg-zinc-900/80 border border-zinc-800 focus:border-zinc-750 focus:bg-zinc-905 rounded-2xl py-3.5 px-4 text-sm text-white placeholder-zinc-500 outline-none transition-all duration-300"
+                            />
+                          </div>
+
+                          {/* Summary */}
+                          <div className="flex flex-col gap-2">
+                            <label className="text-xs font-bold text-zinc-400 uppercase tracking-wider">Short Summary *</label>
+                            <textarea
+                              required
+                              rows={3}
+                              placeholder="A short snippet that appears in grid previews to grab attention (1-2 sentences)..."
+                              value={blogSummary}
+                              onChange={(e) => setBlogSummary(e.target.value)}
+                              className="w-full bg-zinc-900/60 hover:bg-zinc-900/80 border border-zinc-800 focus:border-zinc-750 focus:bg-zinc-905 rounded-2xl py-3.5 px-4 text-sm text-white placeholder-zinc-500 outline-none transition-all duration-300 resize-y"
+                            />
+                          </div>
+
+                          {/* Curated Cover Image Selection */}
+                          <div className="flex flex-col gap-3">
+                            <label className="text-xs font-bold text-zinc-400 uppercase tracking-wider">Cover Image Thumbnail *</label>
+                            
+                            {/* Preloaded Curated Row */}
+                            <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
+                              {curatedImages.map((img, idx) => {
+                                const isSelected = blogThumbnail === img.url;
+                                return (
+                                  <button
+                                    key={idx}
+                                    type="button"
+                                    onClick={() => setBlogThumbnail(img.url)}
+                                    className={`relative aspect-[16/10] rounded-xl overflow-hidden border-2 transition-all duration-300 group cursor-pointer ${
+                                      isSelected ? "border-white scale-[1.03] shadow-md" : "border-transparent opacity-60 hover:opacity-100"
+                                    }`}
+                                  >
+                                    <img src={img.url} alt={img.label} className="w-full h-full object-cover" />
+                                    <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                                      <span className="text-[9px] font-bold text-white text-center px-1 leading-tight">{img.label.split(" / ")[0]}</span>
+                                    </div>
+                                  </button>
+                                );
+                              })}
+                            </div>
+
+                            {/* Custom Thumbnail Input */}
+                            <input
+                              type="text"
+                              placeholder="Or paste custom cover image URL (e.g., from Unsplash or Shopify Files)..."
+                              value={blogThumbnail}
+                              onChange={(e) => setBlogThumbnail(e.target.value)}
+                              className="w-full bg-zinc-900/60 hover:bg-zinc-900/80 border border-zinc-800 focus:border-zinc-755 focus:bg-zinc-905 rounded-2xl py-3.5 px-4 text-sm text-white placeholder-zinc-500 outline-none transition-all duration-300 mt-1"
+                            />
+                          </div>
+
+                          {/* Content Paragraphs */}
+                          <div className="flex flex-col gap-2">
+                            <div className="flex justify-between items-baseline">
+                              <label className="text-xs font-bold text-zinc-400 uppercase tracking-wider">Article Content *</label>
+                              <span className="text-[10px] text-zinc-500">Separate paragraphs with double Line Breaks (Press Enter twice)</span>
+                            </div>
+                            <textarea
+                              required
+                              rows={15}
+                              placeholder="Type or paste your article paragraphs here.&#13;&#13;Press Enter twice to start a new paragraph.&#13;&#13;This is automatically rendered as neat paragraphs on the blog page."
+                              value={blogContentRaw}
+                              onChange={(e) => setBlogContentRaw(e.target.value)}
+                              className="w-full bg-zinc-900/60 hover:bg-zinc-900/80 border border-zinc-800 focus:border-zinc-755 focus:bg-zinc-905 rounded-2xl py-4 px-4 text-sm text-white placeholder-zinc-500 outline-none transition-all duration-300 font-mono leading-relaxed resize-y"
+                            />
+                          </div>
+                        </div>
+
+                        {/* Right Column: Category, Read time & SEO Settings */}
+                        <div className="lg:col-span-4 flex flex-col gap-6 border-t lg:border-t-0 lg:border-l border-zinc-900 pt-6 lg:pt-0 lg:pl-6">
+                          
+                          {/* Categorization */}
+                          <div className="flex flex-col gap-2">
+                            <label className="text-xs font-bold text-zinc-400 uppercase tracking-wider">Category</label>
+                            <select
+                              value={blogCategory}
+                              onChange={(e: any) => setBlogCategory(e.target.value)}
+                              className="w-full bg-zinc-900/60 hover:bg-zinc-900/80 border border-zinc-800 focus:border-zinc-755 focus:bg-zinc-905 rounded-2xl py-3.5 px-4 text-sm text-white outline-none cursor-pointer transition-all duration-300"
+                            >
+                              <option value="Shopify Store Design">Shopify Store Design</option>
+                              <option value="Shopify Tips">Shopify Tips</option>
+                              <option value="App Updates">App Updates</option>
+                              <option value="Design Guide">Design Guide</option>
+                            </select>
+                          </div>
+
+                          {/* Read Time */}
+                          <div className="flex flex-col gap-2">
+                            <label className="text-xs font-bold text-zinc-400 uppercase tracking-wider">Estimated Read Time</label>
+                            <input
+                              type="text"
+                              placeholder="e.g., 9 min read"
+                              value={blogReadTime}
+                              onChange={(e) => setBlogReadTime(e.target.value)}
+                              className="w-full bg-zinc-900/60 hover:bg-zinc-900/80 border border-zinc-800 focus:border-zinc-755 focus:bg-zinc-905 rounded-2xl py-3.5 px-4 text-sm text-white placeholder-zinc-500 outline-none transition-all duration-300"
+                            />
+                          </div>
+
+                          {/* Author details preview */}
+                          <div className="bg-zinc-900/35 border border-zinc-900 rounded-2xl p-4 flex flex-col gap-3">
+                            <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider">Author Info</span>
+                            <div className="flex items-center gap-3">
+                              <img
+                                src={editingPost ? editingPost.author.avatar : (user?.picture || "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=100&auto=format&fit=crop&q=80")}
+                                alt="Author avatar"
+                                className="w-10 h-10 rounded-full border border-zinc-800 object-cover"
+                              />
+                              <div>
+                                <p className="text-xs text-white font-bold">{editingPost ? editingPost.author.name : (user?.name || "Mitul Zalavadiya")}</p>
+                                <p className="text-[10px] text-zinc-500 font-semibold">{editingPost ? "Original Author" : "Current User Session"}</p>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* SEO & Meta (Collapsible style via visual divider) */}
+                          <div className="border-t border-zinc-900 pt-5 mt-2 flex flex-col gap-4">
+                            <h4 className="text-xs font-bold text-white uppercase tracking-wider flex items-center gap-1.5">
+                              <Sparkles className="w-3.5 h-3.5 text-indigo-400 animate-pulse" />
+                              SEO &amp; App Promotion
+                            </h4>
+                            
+                            {/* Primary Keyword */}
+                            <div className="flex flex-col gap-2">
+                              <label className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider">Primary Target Keyword</label>
+                              <input
+                                type="text"
+                                placeholder="e.g., how to add a custom section to shopify"
+                                value={blogPrimaryKeyword}
+                                onChange={(e) => setBlogPrimaryKeyword(e.target.value)}
+                                className="w-full bg-zinc-900/60 border border-zinc-800 focus:border-zinc-755 focus:bg-zinc-905 rounded-2xl py-2.5 px-3.5 text-xs text-white placeholder-zinc-500 outline-none transition-all"
+                              />
+                            </div>
+
+                            {/* Tags (comma separated) */}
+                            <div className="flex flex-col gap-2">
+                              <label className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider">Tags (comma-separated)</label>
+                              <input
+                                type="text"
+                                placeholder="e.g., shopify, no-code, tutorial"
+                                value={blogTagsRaw}
+                                onChange={(e) => setBlogTagsRaw(e.target.value)}
+                                className="w-full bg-zinc-900/60 border border-zinc-800 focus:border-zinc-755 focus:bg-zinc-905 rounded-2xl py-2.5 px-3.5 text-xs text-white placeholder-zinc-500 outline-none transition-all"
+                              />
+                            </div>
+
+                            {/* SEO Title */}
+                            <div className="flex flex-col gap-2">
+                              <label className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider">Meta SEO Title</label>
+                              <input
+                                type="text"
+                                placeholder="Custom SEO Meta Title (defaults to Title)"
+                                value={blogSeoTitle}
+                                onChange={(e) => setBlogSeoTitle(e.target.value)}
+                                className="w-full bg-zinc-900/60 border border-zinc-800 focus:border-zinc-755 focus:bg-zinc-905 rounded-2xl py-2.5 px-3.5 text-xs text-white placeholder-zinc-500 outline-none transition-all"
+                              />
+                            </div>
+
+                            {/* Meta Description */}
+                            <div className="flex flex-col gap-2">
+                              <label className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider">Meta SEO Description</label>
+                              <textarea
+                                rows={3}
+                                placeholder="Google search result snippet description (defaults to Summary)"
+                                value={blogMetaDescription}
+                                onChange={(e) => setBlogMetaDescription(e.target.value)}
+                                className="w-full bg-zinc-900/60 border border-zinc-800 focus:border-zinc-755 focus:bg-zinc-905 rounded-2xl py-2.5 px-3.5 text-xs text-white placeholder-zinc-500 outline-none transition-all resize-y"
+                              />
+                            </div>
+
+                            {/* App Promoted CTA fields */}
+                            <div className="grid grid-cols-2 gap-3 mt-1">
+                              <div className="flex flex-col gap-2">
+                                <label className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider">CTA Button Label</label>
+                                <input
+                                  type="text"
+                                  placeholder="Explore AI Section Hub"
+                                  value={blogCtaLabel}
+                                  onChange={(e) => setBlogCtaLabel(e.target.value)}
+                                  className="w-full bg-zinc-900/60 border border-zinc-800 focus:border-zinc-755 focus:bg-zinc-905 rounded-2xl py-2 px-3 text-xs text-white placeholder-zinc-500 outline-none transition-all"
+                                />
+                              </div>
+                              <div className="flex flex-col gap-2">
+                                <label className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider">CTA Shopify App Link</label>
+                                <input
+                                  type="text"
+                                  placeholder="App Store URL"
+                                  value={blogCtaUrl}
+                                  onChange={(e) => setBlogCtaUrl(e.target.value)}
+                                  className="w-full bg-zinc-900/60 border border-zinc-800 focus:border-zinc-755 focus:bg-zinc-905 rounded-2xl py-2 px-3 text-xs text-white placeholder-zinc-500 outline-none transition-all"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+                    </form>
+                  ) : (
+                    <div className="bg-zinc-950 border border-zinc-900 rounded-3xl p-6 md:p-8 flex flex-col gap-6">
+                      
+                      {/* Grid Header */}
+                      <div className="flex flex-row justify-between items-center border-b border-zinc-900 pb-5 gap-4">
+                        <div>
+                          <h3 className="text-xl font-bold font-headings text-white">Blog Article List</h3>
+                          <p className="text-zinc-500 text-xs mt-1">Write, update, and manage articles synced to your shop resources library.</p>
+                        </div>
+                        <button
+                          onClick={openCreateForm}
+                          className="inline-flex items-center gap-2 px-4 py-2.5 bg-white hover:bg-zinc-200 text-black font-extrabold text-xs md:text-sm rounded-xl transition-all duration-300 shadow-md cursor-pointer shrink-0"
+                        >
+                          <Plus className="w-4 h-4 shrink-0" />
+                          Write Article
+                        </button>
+                      </div>
+
+                      {/* Blog Lists Grid */}
+                      {blogs.length > 0 ? (
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                          {blogs.map((post) => (
+                            <div key={post.id} className="bg-zinc-900/10 border border-zinc-900 rounded-2xl overflow-hidden flex flex-col justify-between group">
+                              <div>
+                                {/* Thumbnail */}
+                                <div className="aspect-[16/10] w-full overflow-hidden bg-zinc-950/60 relative">
+                                  <img src={post.thumbnail} alt={post.title} className="w-full h-full object-cover opacity-60 group-hover:opacity-75 transition-opacity" />
+                                  <span className="absolute top-3 left-3 px-2 py-0.5 rounded-full text-[9px] font-bold bg-zinc-900/80 text-zinc-400 border border-zinc-800">
+                                    {post.category}
+                                  </span>
+                                </div>
+                                
+                                {/* Info details */}
+                                <div className="p-4 md:p-5 flex flex-col gap-2">
+                                  <div className="flex items-center justify-between text-[10px] text-zinc-500 font-semibold">
+                                    <span className="flex items-center gap-1"><Clock className="w-3 h-3"/> {post.readTime}</span>
+                                    <span>{post.date}</span>
+                                  </div>
+                                  <h4 className="text-sm font-bold text-white leading-snug line-clamp-2 mt-1">{post.title}</h4>
+                                  <p className="text-zinc-500 text-[11px] leading-relaxed line-clamp-2 mt-1">{post.summary}</p>
+                                </div>
+                              </div>
+
+                              {/* CRUD Actions Bar */}
+                              <div className="flex border-t border-zinc-900 bg-zinc-900/20">
+                                <button
+                                  onClick={() => openEditForm(post)}
+                                  className="flex-1 py-3 hover:bg-zinc-900/60 text-zinc-400 hover:text-white text-xs font-bold inline-flex items-center justify-center gap-1.5 border-r border-zinc-900 transition-colors cursor-pointer"
+                                >
+                                  <Edit className="w-3.5 h-3.5" /> Edit
+                                </button>
+                                <button
+                                  onClick={() => handleDeletePost(post.id)}
+                                  className="flex-1 py-3 hover:bg-zinc-900/60 text-zinc-500 hover:text-red-400 text-xs font-bold inline-flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
+                                >
+                                  <Trash2 className="w-3.5 h-3.5" /> Delete
+                                </button>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <div className="text-center py-16 border border-dashed border-zinc-850 rounded-2xl flex flex-col items-center justify-center gap-3">
+                          <BookOpen className="w-8 h-8 text-zinc-600 animate-pulse" />
+                          <h4 className="text-sm font-bold text-white">No Blog Articles Published</h4>
+                          <p className="text-zinc-500 text-xs max-w-sm">Create and publish blog articles here to see them appear automatically on the frontend resources directory.</p>
+                        </div>
+                      )}
+
                     </div>
                   )}
                 </div>
